@@ -74,7 +74,7 @@ Atomic CRM and Convex must not become competing systems of record. They exchange
 
 ## Interpretive Contextual Workspace Method
 
-Development is governed by an agent-oriented filesystem workspace. Claude Code and subagents must use the repository context, workstream, task, handoff, evaluation, and memory folders rather than relying on one large transient prompt.
+Development is governed by an agent-oriented filesystem workspace. Claude Code and subagents must use repository context, workstream, task, handoff, evaluation, and memory folders rather than relying on one large transient prompt.
 
 The required execution cycle is:
 
@@ -96,6 +96,7 @@ The planned workspace structure is:
 ├── 00-governance/
 ├── 01-context/
 ├── 02-intent/
+│   └── goals/
 ├── 03-architecture/
 ├── 04-workstreams/
 ├── 05-agents/
@@ -105,10 +106,61 @@ The planned workspace structure is:
 ├── 09-evaluations/
 ├── 10-memory/
 ├── 11-runbooks/
+├── templates/
 └── 99-archive/
 ```
 
 Each subagent must have a bounded role, approved writable directories, explicit inputs and outputs, required tests, escalation conditions, and a formal handoff. Agents may not mark their own work independently verified.
+
+## Claude Code `/goal` workflow
+
+`/goal` converts an approved business or technical outcome into:
+
+- A durable goal record
+- Measurable success criteria
+- Explicit constraints
+- A dependency-aware task graph
+- Specialist subagent assignments
+- Evaluation and closure evidence
+
+Goals are stored under `.workspace/02-intent/goals/GOAL-####-description/`. Every task created from a goal must link back to it. A goal is not complete until required tasks are approved, evidence supports its success criteria, open risks are documented, handoffs are complete, and durable memory is updated.
+
+Example:
+
+```text
+/goal Implement Phase 0A of the Interpretive Contextual Workspace Method.
+Create workspace folders, eight subagent contracts, templates, governance files,
+a task register, and independent review evidence. Do not create application code,
+database schemas, or production cloud resources.
+```
+
+## Claude Code `/loop` workflow
+
+`/loop` provides controlled iterative improvement for one approved task. It may refine code, tests, documentation, architecture, or user experience only within the task's permitted scope.
+
+Each loop must define:
+
+- Parent task
+- Exact objective
+- Acceptance criterion
+- Allowed and prohibited directories
+- Required tests
+- Maximum iterations
+- Stop and escalation conditions
+
+Default limits are five iterations, two repetitions of the same failed approach, and one architecture-changing iteration before ADR review. Open-ended loops are prohibited.
+
+Each iteration must make one bounded change, run checks, and record evidence. The loop stops when criteria pass, its limit is reached, scope would expand, an ADR must change, or security, consent, privacy, authorization, payment, credential, or dependency uncertainty requires review.
+
+Example:
+
+```text
+/loop TASK-0004 Improve the listing sanitizer until all protected-data tests pass.
+Maximum four iterations. Modify only the sanitizer package and its tests.
+Stop and escalate if the public listing contract must change.
+```
+
+The full requirements are documented in [Claude Code Goal and Loop Workflows](docs/CLAUDE_GOAL_LOOP_WORKFLOWS.md).
 
 ## Initial subagents
 
@@ -129,7 +181,7 @@ Additional agents may be introduced only when their scope and boundaries are doc
 
 ### Phase 0A — Agent workspace foundation
 
-Create the Interpretive Contextual Workspace Method, governance rules, context files, workstreams, agent contracts, task templates, handoff templates, ADRs, evaluation records, and durable project memory.
+Create the Interpretive Contextual Workspace Method, `/goal` and `/loop` runbooks and templates, governance rules, context files, workstreams, agent contracts, task templates, handoff templates, ADRs, evaluation records, and durable project memory.
 
 No application feature or database schema work should begin until Phase 0A is reviewed and approved.
 
@@ -159,15 +211,17 @@ Create the monorepo, shared tooling, TypeScript configuration, testing, continuo
 - Sensitive documents are stored privately and are not automatically released through a lead purchase.
 - Durable architectural changes are recorded through Architecture Decision Records.
 - A task is not complete until tests, documentation, handoff, and independent evaluation are complete.
+- `/goal` and `/loop` may organize and refine work, but they cannot bypass governance or expand agent permissions.
 
 ## Repository status
 
-This repository currently contains the product and technical requirements for the platform. The next implementation milestone is **Phase 0A: Interpretive Contextual Workspace Foundation**.
+This repository currently contains the product and technical requirements for the platform. The next implementation milestone is **Phase 0A: Interpretive Contextual Workspace Foundation**, including the goal and loop workflows.
 
 ## Documentation
 
 - [Claude Code Execution PRD](docs/CLAUDE_CODE_EXECUTION_PRD.md)
 - [Interpretive Contextual Workspace Technical Requirements](docs/TECHNICAL_REQUIREMENTS_INTERPRETIVE_CONTEXTUAL_WORKSPACE.md)
+- [Claude Code Goal and Loop Workflows](docs/CLAUDE_GOAL_LOOP_WORKFLOWS.md)
 - [Product Requirements](docs/PRD.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Claude Code instructions](CLAUDE.md)
@@ -176,15 +230,15 @@ This repository currently contains the product and technical requirements for th
 ## First Claude Code instruction
 
 ```text
-Implement Phase 0A only.
+/goal Implement Phase 0A only.
 
 Create the Interpretive Contextual Workspace Method under `.workspace/`.
 Add governance, context, architecture, workstream, agent, task, handoff,
-decision, evaluation, memory, and runbook structures.
+decision, evaluation, memory, templates, and runbook structures.
 
 Create the initial eight agent definitions and reusable templates.
-Update the root CLAUDE.md to require bounded task packets, scoped context,
-independent evaluation, formal handoffs, and durable memory updates.
+Implement the bounded `/goal` and `/loop` workflows and document their
+iteration limits, stop conditions, evidence, evaluation, and handoff rules.
 
 Do not implement application features.
 Do not create database schemas.
