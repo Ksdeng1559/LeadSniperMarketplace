@@ -1,0 +1,40 @@
+name: Bug
+description: Report reproducible incorrect behaviour using synthetic data
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Use synthetic data and remove secrets or direct identifiers.
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Critical — security, privacy, duplicate purchase or data loss
+        - High — core workflow unavailable or materially incorrect
+        - Medium — workaround exists
+        - Low — minor defect
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs or screenshots
+      description: Redact tokens and personal information.
