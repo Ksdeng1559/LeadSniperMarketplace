@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.local
+.env.*.local
+.vercel/
+.convex/
+coverage/
+.DS_Store
