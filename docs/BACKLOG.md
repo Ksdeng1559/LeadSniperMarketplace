@@ -26,6 +26,25 @@
 - [ ] PII-free preview builder
 - [ ] Internal assignment and public listing
 
+## Milestone 2B — B-Express funding channel
+
+- [ ] Approve B-Express product specification, disclosures and channel boundaries
+- [ ] Add B-Express workspace context, workstream, agent contracts and ADRs
+- [ ] Define typed intake, consent, route, score, document-status and preview contracts
+- [ ] Define lender/buyer capability profile and deterministic matching rules
+- [ ] Add synthetic B-Express applications and provider fixtures
+- [ ] Build express-assessment Astro flow with progressive save
+- [ ] Add preliminary eligibility and completeness checks
+- [ ] Add human qualification, override and routing controls
+- [ ] Add immediate acknowledgement and SLA clock tracking
+- [ ] Add secure-document request metadata without public document access
+- [ ] Add internal, direct-referral, exclusive and limited-shared routes
+- [ ] Add B-Express PII-free preview sanitizer and protected-data tests
+- [ ] Add restricted-industry, prohibited-use and serviceability rules
+- [ ] Add disclosures preventing approval or guaranteed-funding representations
+- [ ] Add B-Express funnel, response, offer, funding and complaint metrics
+- [ ] Complete privacy, security, legal and operational review before launch
+
 ## Milestone 3 — Marketplace transaction
 
 - [ ] Inventory browsing and filtering
@@ -47,6 +66,7 @@
 ## Milestone 5 — Growth and operations
 
 - [ ] Mortgage, business-loan and commercial-finance pillar pages
+- [ ] B-Express landing page and campaign-specific acquisition pages
 - [ ] Structured calculators and lead magnets
 - [ ] Source attribution
 - [ ] Operational dashboard
