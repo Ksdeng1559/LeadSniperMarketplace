@@ -1,0 +1,9 @@
+# Replace or expand these entries as additional maintainers join.
+* @Ksdeng1559
+
+# High-risk marketplace and data boundaries
+/convex/ @Ksdeng1559
+/src/domain/ @Ksdeng1559
+/docs/adr/ @Ksdeng1559
+/SECURITY.md @Ksdeng1559
+/.github/ @Ksdeng1559
