@@ -1,0 +1,59 @@
+name: Feature
+description: Define a reviewable product or engineering outcome
+title: "[Feature]: "
+labels: ["feature", "needs-triage"]
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: What measurable user or business outcome should change?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Describe included and explicitly excluded work.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Provide observable, testable criteria.
+      placeholder: |
+        - [ ] Given..., when..., then...
+        - [ ] Authorization and audit behaviour are defined
+    validations:
+      required: true
+  - type: dropdown
+    id: workstream
+    attributes:
+      label: Workstream
+      options:
+        - Experience
+        - Identity
+        - Supply
+        - Marketplace
+        - Commerce
+        - CRM
+        - Operations
+    validations:
+      required: true
+  - type: checkboxes
+    id: risk
+    attributes:
+      label: Risk areas
+      options:
+        - label: Authentication or authorization
+        - label: Consent or personal information
+        - label: Inventory, reservation, pricing or purchase
+        - label: Payments, refunds or disputes
+        - label: External integration
+        - label: Schema migration
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and coordination
+      description: Link related issues, ADRs, APIs, and shared files.
