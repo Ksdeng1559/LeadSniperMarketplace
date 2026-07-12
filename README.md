@@ -47,6 +47,30 @@ npm run check      # astro check + tsc --noEmit
 - `knowledge-base/` — source research (BDC, CSBFP program terms) feeding page copy
 - Rate data on pages is dated **July 2026** and must be re-verified against lender published rates on a recurring cadence
 
+## Content production
+
+All website pages, compact-keyword landing pages, comparison pages, industry and location pages, guides, blog articles, calculators, and supporting distribution assets are governed by the [LeadSniper Content Operating System](docs/CONTENT_OPERATING_SYSTEM.md).
+
+The Content Operating System is the model-agnostic source of truth for human contributors and AI systems, including ChatGPT, Codex, Claude, Claude Code, Gemini, Kimi, local models, and automated publishing workflows. Model-specific prompts may explain how to execute the standard but may not weaken or contradict it.
+
+The required production cycle is:
+
+```text
+Research
+→ Intent and gap analysis
+→ WARM and ROI scoring
+→ Content brief
+→ Draft and supporting assets
+→ Evidence, compliance, SEO, link, accessibility, and schema validation
+→ Human approval
+→ Publication
+→ 72-hour validation
+→ 21-day tuning
+→ 90-day performance and accuracy review
+```
+
+Content may ship only after its intent, evidence, metadata, schema, internal links, disclosures, conversion tracking, reviewer, and cannibalization checks meet the operating standard.
+
 ## Product model
 
 LeadSniper Marketplace supports four operating paths:
