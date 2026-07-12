@@ -1,0 +1,223 @@
+---
+export const prerender = true;
+import FundingLayout from '../layouts/FundingLayout.astro';
+
+const title = 'Working Capital Loans Canada 2026 | Compare Lenders & Rates';
+const description = 'Compare working capital loans in Canada. CSBFP-backed, BDC term loans, and alternative lenders with fast approval. Rates from $10K to $800K. Bad credit and startup options. Check your options in 3–5 minutes.';
+const canonicalPath = '/working-capital-loans-canada';
+const keyword = 'working capital loans canada';
+
+const faqs = [
+  { q: 'How does a working capital loan work in Canada?', a: 'A working capital loan provides a lump sum or revolving credit to cover your daily operational costs — payroll, rent, inventory, and short-term expenses. In Canada, you can secure this financing through term loans or lines of credit from banks (RBC, TD), crown corporations like BDC, or alternative lenders. With a term loan, you receive a lump sum and repay in fixed installments. With a line of credit, you only pay interest on what you use.' },
+  { q: 'Which loan is best for working capital?', a: 'The best working capital loan depends on your needs: (1) Lines of credit are best for ongoing or fluctuating needs — you only pay interest on what you draw. (2) Term loans are best for one-time expenses or seasonal cash-flow gaps with predictable payments. (3) CSBFP-backed loans offer government-guaranteed rates up to $150K for small businesses. (4) Alternative lenders offer 1–2 day approval for urgent needs, though rates are higher.' },
+  { q: 'What is the $40,000 small business loan in Canada?', a: 'The $40,000 reference is commonly associated with the Canada Emergency Business Account (CEBA), which provided interest-free loans up to $60,000 during COVID-19. For current financing, the Canada Small Business Financing Program (CSBFP) offers government-backed loans and lines of credit up to $1,000,000 for term loans and $150,000 for lines of credit to businesses with under $10M in annual revenue.' },
+  { q: 'What credit score is needed for a working capital loan?', a: 'Most Canadian banks require a credit score of 680+ for working capital loans. BDC is more flexible, considering the overall business health. Alternative lenders may accept scores as low as 500. CSBFP-backed loans have more flexible requirements since the government guarantees a portion. The lowest qualifying credit score for some alternative lenders is 500, but higher scores unlock better rates and terms.' },
+  { q: 'Can I get a working capital loan with no credit check in Canada?', a: 'Some alternative lenders in Canada offer working capital loans with minimal or no credit checks, basing approval on monthly revenue and business age instead. These typically have higher rates (15–25%) and shorter terms (6–18 months). Revenue-based financing and merchant cash advances are common no-credit-check alternatives, though they are more expensive than traditional bank loans.' },
+  { q: 'Can startups get working capital loans in Canada?', a: 'Startups can access working capital through the CSBFP (government-backed, for businesses with under $10M revenue), startup-specific funding programs, grants, or alternative lenders. Traditional bank working capital loans typically require 2+ years in business. BDC offers startup financing options. Revenue-based alternative lenders may accept businesses as young as 3–6 months if monthly revenue is sufficient ($10K+).' },
+  { q: 'What is BDC Small Business Loan?', a: 'The BDC Small Business Loan is a financing product from the Business Development Bank of Canada (a federal Crown corporation) offering up to $350,000 for Canadian businesses. It has two tiers: loans under $100K get fast approval in less than 10 days with no application fees and 5-year amortization, while loans from $100K to $350K get flexible terms with up to 8-year amortization and 12 months of interest-only payments. The rate is calculated as a floating base rate plus a variance based on your personal and business information. Eligibility requires being Canada-based, 24+ months of revenue, generating profits, and a good credit track record — with no credit check at the eligibility stage.' },
+  { q: 'How fast can I get a BDC small business loan?', a: 'BDC offers two speed tiers: for loans under $100,000, approval takes less than 10 days with minimal paperwork (personal ID only). For loans between $100,000 and $350,000, approval takes less than 30 days and requires financial statements for the last 2 years. After approval, funds can be available in less than a week. The entire process is online — from eligibility check to application to funding.' },
+];
+
+const lenders = [
+  { name: 'BDC', type: 'Crown Corp', rate: 'Floating base + variance', amount: 'Up to $350K', approval: '<10 days (<$100K) / <30 days ($100K–$350K)', notes: 'Small Business Loan up to $350K. Two tiers: <$100K (10-day approval, no fees) and $100K-$350K (30-day approval, 8-year amortization, 12 months interest-only). Floating base rate + variance per client.' },
+  { name: 'CSBFP (Government)', type: 'Government-Backed', rate: 'Prime + 1.75–3%', amount: 'Up to $150K (LOC)', approval: '2–4 weeks', notes: 'For businesses with under $10M revenue. 2-way revolving credit.' },
+  { name: 'Fincap Financial Group', type: 'Alt Lender', rate: '8%–18%', amount: '$10K–$500K', approval: '1–3 days', notes: '30+ lender network, fast approval.' },
+  { name: 'CBL Financial', type: 'Alt Lender', rate: 'From 4.99%', amount: '$10K–$300K', approval: '48 hours', notes: 'Flexible repayment, funds within 48 hours.' },
+  { name: 'Capital Advance', type: 'Alt Lender', rate: '9%–22%', amount: '$5K–$250K', approval: '1–2 days', notes: 'Bad credit OK. Revenue-based approval.' },
+  { name: 'Advance Funds Network', type: 'Alt Lender', rate: '8%–20%', amount: '$5K–$800K', approval: '1–3 days', notes: 'Transparent terms, no hidden fees.' },
+  { name: 'Swoop Funding', type: 'Marketplace', rate: 'Varies', amount: 'Up to $10M', approval: 'Varies', notes: 'Multiple lender marketplace. One application.' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a }
+    }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    author: { '@type': 'Organization', name: 'LeadSniper Marketplace' },
+    publisher: { '@type': 'Organization', name: 'LeadSniper Marketplace' },
+    datePublished: '2026-07-12',
+    dateModified: '2026-07-12',
+    about: 'Working capital loans in Canada — lender comparison, rates, CSBFP, bad credit, startup options'
+  }
+];
+---
+
+<FundingLayout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} keyword={keyword}>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Working Capital Loans <span class="gold">Canada</span></h1>
+    <p class="sub">Compare working capital loans from BDC, CSBFP-backed lenders, and alternative lenders. Cover payroll, inventory, and operating expenses. From $5,000 to $800,000. Bad credit and startup options available.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Find My Funding Options</a>
+      <a href="#lenders" class="btn btn-secondary btn-lg">Compare Lenders</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> From $5K to $800K</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Bad credit OK</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> CSBFP up to $150K</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 48-hour approval from alt lenders</span>
+    </div>
+  </div>
+</section>
+
+<!-- Lender Comparison -->
+<section id="lenders">
+  <div class="container">
+    <div class="section-header">
+      <h2>Working Capital Loan Lenders in Canada</h2>
+      <p>Compare crown corporations, government-backed programs, and alternative lenders. Rates and terms vary by business profile.</p>
+    </div>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Lender</th>
+          <th>Type</th>
+          <th>Rate</th>
+          <th>Amount</th>
+          <th>Approval</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {lenders.map(l => (
+          <tr>
+            <td><strong>{l.name}</strong></td>
+            <td>{l.type}</td>
+            <td class="rate">{l.rate}</td>
+            <td>{l.amount}</td>
+            <td>{l.approval}</td>
+            <td>{l.notes}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Types -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Types of Working Capital Financing</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">📜</div><h3>Term Loan</h3><p>Best for predictable payments over a set period. Lump sum for one-time expenses or seasonal cash-flow gaps. BDC offers these for long-term stability.</p></div>
+      <div class="card"><div class="card-icon">🔄</div><h3>Line of Credit</h3><p>Best for ongoing or fluctuating needs. You only pay interest on the money you use. Revolving credit up to a pre-set limit.</p></div>
+      <div class="card"><div class="card-icon">🏛️</div><h3>CSBFP-Backed</h3><p>Government-guaranteed through the Canada Small Business Financing Program. Up to $150K for lines of credit or $1M for term loans. For businesses with under $10M revenue.</p></div>
+      <div class="card"><div class="card-icon">⚡</div><h3>Alternative / Online</h3><p>Faster approvals (1–2 days), higher rates (9–22%). Revenue-based approval. Bad credit OK. Companies like Capital Advance and CBL Financial.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <h2>What Working Capital Loans Cover</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card"><h3>Payroll</h3><p>Keep your team paid even when revenue dips seasonally.</p></div>
+      <div class="card"><h3>Inventory</h3><p>Stock up on products during bulk discount opportunities.</p></div>
+      <div class="card"><h3>Equipment Repairs</h3><p>Fix equipment or facility issues before they impact operations.</p></div>
+      <div class="card"><h3>Growth & Expansion</h3><p>Take on new contracts or expand when the timing is right.</p></div>
+      <div class="card"><h3>Rent & Utilities</h3><p>Cover fixed operating costs during cash-flow gaps.</p></div>
+      <div class="card"><h3>Marketing</h3><p>Fund sales and marketing campaigns to drive revenue growth.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Bad Credit & Startup Section -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Bad Credit & Startup Options</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card"><h3>Bad Credit (500+)</h3><p>Alternative lenders accept credit scores from 500. Revenue-based approval — if your business generates $10K+/month in revenue, you can qualify. Expect rates of 12–22%.</p></div>
+      <div class="card"><h3>No Credit Check</h3><p>Some lenders base approval on monthly revenue and business age alone. Rates are higher (15–25%) but approval is fast. Merchant cash advances are a common option.</p></div>
+      <div class="card"><h3>Startups (3+ months)</h3><p>Traditional banks require 2+ years. Alternative lenders may accept businesses as young as 3–6 months with $10K+ monthly revenue. CSBFP is available for new businesses.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BDC Highlight Section -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>BDC Small Business Loan <span class="gold">Highlights</span></h2>
+      <p>Canada's Business Development Bank offers a Small Business Loan up to $350,000 with two tiers, online application, and no credit check at eligibility.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">💰</div><h3>Up to $350K</h3><p>Borrow up to $350,000 for your business. Two tiers: fast approval under $100K or flexible terms up to $350K.</p></div>
+      <div class="card"><div class="card-icon">⚡</div><h3>Two-Tier Speed</h3><p>Under $100K: approval in less than 10 days. $100K–$350K: approval in less than 30 days. Funds in under a week after approval.</p></div>
+      <div class="card"><div class="card-icon">⏸️</div><h3>Interest-Only Start</h3><p>Ease into your loan with interest-only payments: up to 6 months for loans under $100K, up to 12 months for loans $100K–$350K.</p></div>
+      <div class="card"><div class="card-icon">💻</div><h3>Online Application</h3><p>Fully online process — check eligibility, apply, and get funded without visiting a branch. Save your progress and return later.</p></div>
+      <div class="card"><div class="card-icon">🔒</div><h3>No Credit Check at Eligibility</h3><p>Just a few questions to check if you qualify. No impact on your credit score at the eligibility stage.</p></div>
+      <div class="card"><div class="card-icon">📋</div><h3>Term Stability</h3><p>BDC won't change terms and conditions or demand early repayment without a valid reason. 5–8 year amortization with flexible payments.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <h2>How to Get a Working Capital Loan</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Tell us your need</h3><p>Amount, use of funds, timeline, business stage.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Complete the assessment</h3><p>Business profile, monthly revenue, time in business, credit range.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Get matched</h3><p>We identify lenders — BDC, CSBFP, alt lenders — that fit your profile.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Human review</h3><p>A team member reviews before connecting you with a financing professional.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="container">
+  <div class="cta-banner">
+    <h2>Ready to get working capital?</h2>
+    <p>One assessment. Multiple lenders. No obligation.</p>
+    <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    {faqs.map(f => (
+      <details class="faq-item">
+        <summary>{f.q}</summary>
+        <div class="answer">{f.a}</div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section style="padding: 32px 0; background: var(--navy); color: rgba(255,255,255,0.5);">
+  <div class="container">
+    <p style="font-size: 13px; text-align: center;">
+      These are preliminary financing categories for discussion. They are not offers, approvals, commitments, rates, or guarantees.
+      Final eligibility and terms are determined by financing providers after complete underwriting.
+      LeadSniper Marketplace is a funding assessment platform, not a lender.
+    </p>
+  </div>
+</section>
+
+</FundingLayout>

@@ -1,0 +1,189 @@
+---
+export const prerender = true;
+import FundingLayout from '../layouts/FundingLayout.astro';
+
+const title = 'Business Acquisition Financing Canada 2026 | Complete Guide';
+const description = 'How to finance a business acquisition in Canada. Compare senior debt, CSBFP loans, seller financing, mezzanine, and cash flow loans. Down payments, EBITDA multiples, and lender options. Check your options.';
+const canonicalPath = '/business-acquisition-financing';
+const keyword = 'business acquisition financing';
+
+const faqs = [
+  { q: 'How do I finance a business acquisition in Canada?', a: 'Business acquisitions in Canada are typically financed through a combination of: (1) Senior debt — bank loans secured by the target company's assets, (2) Government-backed CSBFP loans up to $1,000,000 for term loans, (3) Seller financing (vendor take-back) where the previous owner finances part of the purchase price, (4) Mezzanine or cash flow loans from alternative lenders like BDC, and (5) Buyer's personal equity (typically 10%+ down payment). Most deals use 2–4 of these layered together.' },
+  { q: 'How much down payment do I need to buy a business in Canada?', a: 'Most Canadian lenders require a personal down payment of at least 10% of the purchase price. The remaining 90% can be financed through a combination of senior debt, CSBFP loans, and seller financing. Stronger deals with proven cash flow and solid collateral may require less personal cash, while riskier acquisitions may need 20–30% down.' },
+  { q: 'What is the Canada Small Business Financing Program (CSBFP) for acquisitions?', a: 'The CSBFP helps small businesses get loans from financial institutions by sharing the risk with lenders. For acquisitions, CSBFP term loans are available up to $1,000,000 (with a maximum of $500,000 for leasehold improvements and equipment). The program is available to businesses with under $10M in annual revenue. Rates are typically prime + 1.75% to 3%.' },
+  { q: 'What is seller financing (vendor take-back) in a business acquisition?', a: 'Seller financing, also known as a vendor take-back or vendor note, is when the previous owner agrees to finance a portion of the purchase price. The buyer pays the seller over time instead of paying the full amount upfront. This bridges funding gaps, reduces the buyer's cash requirement, and keeps the seller motivated to ensure a smooth transition. Typical vendor take-backs cover 10–40% of the purchase price.' },
+  { q: 'What is mezzanine financing for business acquisitions?', a: 'Mezzanine financing is a hybrid of debt and equity used in business acquisitions. It sits between senior debt (bank loans) and equity in the capital structure. BDC and alternative lenders offer mezzanine or cash flow-based financing based on the business's ability to service debt rather than just tangible assets. Rates are higher than senior debt (12–20%) but require less collateral. Often used for larger acquisitions ($1M+).' },
+  { q: 'How do lenders value a business for acquisition financing?', a: 'Lenders evaluate acquisition targets using a multiple of EBITDA (Earnings Before Interest, Taxes, Depreciation, and Amortization). Typical multiples range from 2x–5x EBITDA for small businesses, depending on industry, growth, and stability. Lenders also assess the target's cash flow stability, customer concentration, asset quality, and the buyer's industry experience. A clean financial history with 2–3 years of statements strengthens the application.' },
+];
+
+const structures = [
+  { name: 'Senior Debt', icon: '🏦', type: 'Bank Loan', rate: 'Prime + 1–3%', maxLTV: '50–65%', description: 'Traditional bank loans from RBC, TD, BMO, National Bank secured by the target company's physical assets, real estate, or accounts receivable. Lowest rates, strictest requirements.' },
+  { name: 'CSBFP Loan', icon: '🏛️', type: 'Government-Backed', rate: 'Prime + 1.75–3%', maxLTV: 'Up to $1M', description: 'Canada Small Business Financing Program. Government-guaranteed term loans up to $1,000,000 for businesses with under $10M revenue. Reduces lender risk, more flexible approval.' },
+  { name: 'Seller Financing', icon: '🤝', type: 'Vendor Take-Back', rate: 'Negotiated', maxLTV: '10–40%', description: 'The previous owner acts as a lender, agreeing to be paid a portion of the purchase price over time. Bridges funding gaps and keeps the seller invested in a smooth transition.' },
+  { name: 'Mezzanine / Cash Flow', icon: '📊', type: 'Subordinated Debt', rate: '12–20%', maxLTV: '15–30%', description: 'Offered by BDC and alternative lenders. Based on the business's cash flow, not just tangible assets. Higher rates, less collateral required. For larger deals ($1M+).' },
+  { name: 'Personal Equity', icon: '💰', type: 'Buyer Cash', rate: 'N/A', maxLTV: '10%+ down', description: 'The buyer's personal cash contribution. Most lenders require at least 10% of the purchase price as personal equity to demonstrate commitment and skin in the game.' },
+  { name: 'SBA-Style (US Only)', icon: '❌', type: 'Not Available', rate: 'N/A', maxLTV: 'N/A', description: 'The US SBA loan program has no direct Canadian equivalent. The CSBFP is the closest program, but with different terms and limits. Use CSBFP instead.' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a }
+    }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    author: { '@type': 'Organization', name: 'LeadSniper Marketplace' },
+    publisher: { '@type': 'Organization', name: 'LeadSniper Marketplace' },
+    datePublished: '2026-07-12',
+    dateModified: '2026-07-12',
+    about: 'Business acquisition financing in Canada — structures, down payments, CSBFP, seller financing, mezzanine'
+  }
+];
+---
+
+<FundingLayout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} keyword={keyword}>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Business Acquisition Financing <span class="gold">Canada</span></h1>
+    <p class="sub">A complete guide to financing a business purchase in Canada. Compare senior debt, CSBFP loans, seller financing, mezzanine, and cash flow loans. Understand down payments, EBITDA multiples, and layered deal structures.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Find My Funding Options</a>
+      <a href="#structures" class="btn btn-secondary btn-lg">Compare Structures</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> CSBFP up to $1M</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Seller financing options</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Layered deal structures</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 10%+ down payment</span>
+    </div>
+  </div>
+</section>
+
+<!-- Financing Structures -->
+<section id="structures">
+  <div class="container">
+    <div class="section-header">
+      <h2>Business Acquisition Financing Structures</h2>
+      <p>Most acquisitions use 2–4 of these methods layered together to minimize your personal cash outlay.</p>
+    </div>
+    <div class="card-grid">
+      {structures.map(s => (
+        <div class="card">
+          <div class="card-icon">{s.icon}</div>
+          <h3>{s.name}</h3>
+          <p style="font-size: 13px; color: var(--text-light); margin-bottom: 8px;">
+            <span class="badge badge-low">{s.type}</span><br>
+            Rate: <strong>{s.rate}</strong> · Max: <strong>{s.maxLTV}</strong>
+          </p>
+          <p>{s.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Example Deal Structure -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Example: $2M Business Acquisition</h2>
+      <p>How a typical $2,000,000 acquisition might be layered across financing types.</p>
+    </div>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Financing Layer</th>
+          <th>Amount</th>
+          <th>% of Purchase</th>
+          <th>Rate</th>
+          <th>Security</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Senior Debt (Bank)</strong></td><td>$900,000</td><td>45%</td><td class="rate">Prime + 2% (~6.45%)</td><td>Target company assets + receivables</td></tr>
+        <tr><td><strong>CSBFP Loan</strong></td><td>$500,000</td><td>25%</td><td class="rate">Prime + 2.75% (~7.20%)</td><td>Government-guaranteed</td></tr>
+        <tr><td><strong>Seller Financing (VTB)</strong></td><td>$400,000</td><td>20%</td><td class="rate">Negotiated (~8%)</td><td>Vendor note, 3-year term</td></tr>
+        <tr><td><strong>Buyer Personal Equity</strong></td><td>$200,000</td><td>10%</td><td class="rate">N/A</td><td>Cash</td></tr>
+        <tr style="font-weight: bold; background: var(--navy); color: #fff;"><td>Total</td><td>$2,000,000</td><td>100%</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 16px; font-size: 13px; color: var(--text-light);">Example only. Actual structures vary by deal size, target company assets, buyer credit, and lender appetite. The CSBFP cap is $1,000,000 for term loans.</p>
+  </div>
+</section>
+
+<!-- Key Considerations -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <h2>Key Considerations for Acquisition Financing</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card"><h3>EBITDA Multiples</h3><p>Lenders value acquisition targets using a multiple of EBITDA. Typical range: 2x–5x for small businesses. Higher multiples for stable, growing companies with diversified customers. Prepare your EBITDA calculation before approaching lenders.</p></div>
+      <div class="card"><h3>Cash for Down Payment</h3><p>Expect to contribute at least 10% of the purchase price in personal cash. Some lenders require 20–30% depending on the target's risk profile and industry. Build your cash position before starting the acquisition process.</p></div>
+      <div class="card"><h3>Use Advisors</h3><p>Work with M&A brokers, lawyers, and financial planners. A well-structured deal leaves the newly acquired business with enough working capital to operate post-sale. Professional deal structuring can reduce your personal cash requirement.</p></div>
+      <div class="card"><h3>Post-Acquisition Working Capital</h3><p>Don't spend everything on the purchase. Lenders want to see that the business will have sufficient working capital after the deal closes. Budget for 3–6 months of operating expenses as a buffer.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>How to Get Acquisition Financing</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Tell us the target</h3><p>Acquisition price, industry, your equity, deal timeline.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Complete the assessment</h3><p>Your business profile, financing history, credit range, available equity.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Get matched</h3><p>We identify financing structures — senior debt, CSBFP, seller financing, mezzanine.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Human review</h3><p>A team member reviews before connecting you with an acquisition financing professional.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="container">
+  <div class="cta-banner">
+    <h2>Ready to finance your business acquisition?</h2>
+    <p>One assessment. Multiple financing structures. No obligation.</p>
+    <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    {faqs.map(f => (
+      <details class="faq-item">
+        <summary>{f.q}</summary>
+        <div class="answer">{f.a}</div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section style="padding: 32px 0; background: var(--navy); color: rgba(255,255,255,0.5);">
+  <div class="container">
+    <p style="font-size: 13px; text-align: center;">
+      These are preliminary financing categories for discussion. They are not offers, approvals, commitments, rates, or guarantees.
+      Final eligibility and terms are determined by financing providers after complete underwriting.
+      LeadSniper Marketplace is a funding assessment platform, not a lender.
+    </p>
+  </div>
+</section>
+
+</FundingLayout>

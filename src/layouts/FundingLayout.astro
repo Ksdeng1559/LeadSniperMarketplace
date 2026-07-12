@@ -1,0 +1,329 @@
+---
+// LeadSniper Marketplace — Funding Page Layout
+// Targets: Canadian business funding SEO cluster
+export interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  ogImage?: string;
+  jsonLd?: object[];
+  keyword?: string; // for attribution tracking
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  ogImage = '/og/default-funding.png',
+  jsonLd = [],
+  keyword = '',
+} = Astro.props;
+
+const canonicalUrl = `https://leadsniperai.ca${canonicalPath}`;
+---
+
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta name="robots" content="index, follow, maxImagePreview:large" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:locale" content="en_CA" />
+  <meta property="og:site_name" content="LeadSniper Marketplace" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Attribution: pass keyword into form -->
+  <script is:inline define:vars={{ keyword }}>
+    window.__leadAttribution = window.__leadAttribution || {};
+    window.__leadAttribution.keyword = keyword;
+    window.__leadAttribution.landingPage = canonicalPath;
+  </script>
+
+  <!-- JSON-LD -->
+  {jsonLd.map((data) => (
+    <script type="application/ld+json" set:html={JSON.stringify(data)} />
+  ))}
+</head>
+<body class="funding-page">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="LeadSniper Marketplace home">
+        <span class="logo-mark">LS</span>
+        <span class="logo-text">LeadSniper <span class="logo-accent">Marketplace</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/funding">Funding Options</a>
+        <a href="/how-it-works">How It Works</a>
+        <a href="/resources">Resources</a>
+        <a href="/for-professionals">For Financial Professionals</a>
+        <a href="/sign-in" class="nav-sign-in">Sign In</a>
+      </nav>
+      <a href="#assessment" class="btn btn-primary nav-cta">Check My Funding Options</a>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Funding Options</h4>
+          <ul>
+            <li><a href="/business-line-of-credit-canada">Business Line of Credit</a></li>
+            <li><a href="/equipment-financing-canada">Equipment Financing</a></li>
+            <li><a href="/commercial-mortgage-rates-canada">Commercial Mortgages</a></li>
+            <li><a href="/business-acquisition-financing">Business Acquisition</a></li>
+            <li><a href="/working-capital-loans-canada">Working Capital Loans</a></li>
+            <li><a href="/canada-small-business-financing-program">CSBFP Guide</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="/how-it-works">How It Works</a></li>
+            <li><a href="/funding-assessment">Funding Assessment</a></li>
+            <li><a href="/resources">Blog & Guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/for-professionals">For Professionals</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} LeadSniper Marketplace. Canadian business funding assessment and marketplace.</p>
+        <p class="disclaimer">LeadSniper Marketplace is a funding assessment platform, not a lender. Assessments are preliminary and not offers, approvals, or commitments. Final eligibility is determined by financing providers after complete underwriting.</p>
+      </div>
+    </div>
+  </footer>
+
+  <style is:global>
+    :root {
+      --navy: #0a1929;
+      --navy-2: #112a44;
+      --navy-3: #1a3a5c;
+      --gold: #c5a572;
+      --gold-light: #e0c896;
+      --gold-dark: #a88a55;
+      --white: #f8f9fb;
+      --text: #1a2332;
+      --text-light: #5a6a7e;
+      --border: #e0e6ed;
+      --green: #16a34a;
+      --green-light: #dcfce7;
+      --red: #dc2626;
+      --yellow: #eab308;
+      --surface: #f6f8fb;
+      --radius: 12px;
+      --shadow: 0 2px 8px rgba(10, 25, 41, 0.08);
+      --shadow-lg: 0 8px 32px rgba(10, 25, 41, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .site-header {
+      background: var(--navy);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; gap: 24px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--gold); color: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 14px;
+    }
+    .logo-text { color: #fff; font-weight: 600; font-size: 16px; }
+    .logo-accent { color: var(--gold-light); }
+    .main-nav { display: flex; gap: 24px; align-items: center; }
+    .main-nav a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 14px; font-weight: 500; transition: color 0.15s;
+    }
+    .main-nav a:hover { color: #fff; }
+    .nav-sign-in { opacity: 0.7; }
+    .nav-cta { font-size: 13px !important; padding: 8px 18px !important; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 14px 32px; border-radius: var(--radius);
+      font-weight: 700; font-size: 16px; text-decoration: none;
+      cursor: pointer; border: none; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+    .btn-secondary { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+    .btn-secondary:hover { background: var(--navy); color: #fff; }
+    .btn-lg { padding: 18px 40px; font-size: 18px; }
+
+    /* Sections */
+    section { padding: 64px 0; }
+    .section-header { text-align: center; margin-bottom: 40px; }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif; font-size: 36px;
+      color: var(--navy); margin-bottom: 12px; font-weight: 700;
+    }
+    .section-header p { color: var(--text-light); font-size: 17px; max-width: 700px; margin: 0 auto; }
+
+    /* Hero */
+    .hero { background: var(--navy); color: #fff; padding: 80px 0 64px; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: 48px;
+      line-height: 1.15; margin-bottom: 16px; font-weight: 700;
+    }
+    .hero h1 .gold { color: var(--gold-light); }
+    .hero .sub { font-size: 19px; color: rgba(255,255,255,0.8); max-width: 720px; margin-bottom: 28px; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+    .hero-reassurance {
+      display: flex; flex-wrap: wrap; gap: 20px; font-size: 14px;
+      color: rgba(255,255,255,0.6); margin-top: 8px;
+    }
+    .hero-reassurance span { display: flex; align-items: center; gap: 6px; }
+    .hero-reassurance svg { width: 16px; height: 16px; stroke: var(--green); fill: none; stroke-width: 2; }
+
+    /* Cards */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px; box-shadow: var(--shadow); transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: var(--shadow-lg); }
+    .card h3 { font-size: 20px; color: var(--navy); margin-bottom: 10px; font-weight: 700; }
+    .card p { color: var(--text-light); font-size: 15px; }
+    .card-icon { font-size: 28px; margin-bottom: 12px; }
+
+    /* Table */
+    .rate-table, .comparison-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .rate-table th, .comparison-table th {
+      text-align: left; padding: 12px 16px; background: var(--navy);
+      color: #fff; font-weight: 600; font-size: 12px; text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .rate-table td, .comparison-table td {
+      padding: 14px 16px; border-bottom: 1px solid var(--border);
+    }
+    .rate-table tr:nth-child(even), .comparison-table tr:nth-child(even) { background: var(--surface); }
+    .rate-table .rate { font-weight: 700; color: var(--green); }
+    .badge {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 3px 10px; border-radius: 20px;
+    }
+    .badge-low { background: var(--green-light); color: var(--green); }
+    .badge-med { background: #fef3c7; color: #92400e; }
+    .badge-high { background: #fee2e2; color: #991b1b; }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
+    .step { text-align: center; }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--navy); color: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 20px; margin: 0 auto 16px;
+    }
+    .step h3 { font-size: 18px; color: var(--navy); margin-bottom: 8px; }
+    .step p { color: var(--text-light); font-size: 14px; }
+
+    /* FAQ */
+    .faq-section { background: var(--surface); }
+    .faq-item {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      margin-bottom: 12px; overflow: hidden;
+    }
+    .faq-item summary {
+      padding: 18px 24px; font-weight: 600; font-size: 16px;
+      color: var(--navy); cursor: pointer; list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; font-size: 22px; color: var(--gold); transition: transform 0.2s; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item .answer { padding: 0 24px 18px; color: var(--text-light); font-size: 15px; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--navy), var(--navy-2));
+      border-radius: var(--radius); padding: 48px; text-align: center;
+      color: #fff; margin: 48px 0;
+    }
+    .cta-banner h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 12px; }
+    .cta-banner p { color: rgba(255,255,255,0.75); margin-bottom: 24px; font-size: 17px; }
+
+    /* Footer */
+    .site-footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: 48px 0 24px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-bottom: 32px; }
+    .footer-grid h4 { color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+    .footer-grid ul { list-style: none; }
+    .footer-grid li { margin-bottom: 8px; }
+    .footer-grid a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; }
+    .footer-grid a:hover { color: var(--gold-light); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+    .footer-bottom p { font-size: 13px; margin-bottom: 8px; }
+    .disclaimer { font-size: 12px; color: rgba(255,255,255,0.4); max-width: 900px; }
+
+    @media (max-width: 768px) {
+      .main-nav { display: none; }
+      .hero h1 { font-size: 32px; }
+      .hero .sub { font-size: 16px; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-header h2 { font-size: 28px; }
+      .cta-banner { padding: 32px 20px; }
+      .cta-banner h2 { font-size: 24px; }
+    }
+  </style>
+</body>
+</html>

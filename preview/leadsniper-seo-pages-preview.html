@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeadSniper Marketplace — SEO Page Preview (Tier 1 + Tier 2)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1929; --navy-2:#112a44; --navy-3:#1a3a5c;
+  --gold:#c5a572; --gold-light:#e0c896; --gold-dark:#a88a55;
+  --white:#f8f9fb; --text:#1a2332; --text-light:#5a6a7e;
+  --border:#e0e6ed; --green:#16a34a; --green-light:#dcfce7;
+  --red:#dc2626; --yellow:#eab308; --surface:#f6f8fb;
+  --radius:12px; --shadow:0 2px 8px rgba(10,25,41,0.08); --shadow-lg:0 8px 32px rgba(10,25,41,0.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* Page Switcher */
+.page-switcher{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.1);padding:0;overflow-x:auto}
+.page-switcher .container{display:flex;gap:4px;padding:0 24px}
+.ps-tab{background:none;border:none;color:rgba(255,255,255,0.5);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;padding:14px 14px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.15s}
+.ps-tab:hover{color:rgba(255,255,255,0.8)}
+.ps-tab.active{color:#fff;border-bottom-color:var(--gold)}
+.ps-tab .kd{font-size:10px;color:var(--gold);margin-left:4px;font-weight:400}
+
+/* Page sections */
+.page{display:none;padding-bottom:60px}
+.page.active{display:block}
+
+/* Header */
+.site-header{background:var(--navy);position:relative;z-index:10}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:36px;height:36px;border-radius:8px;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.logo-text{color:#fff;font-weight:600;font-size:16px}
+.logo-accent{color:var(--gold-light)}
+.main-nav{display:flex;gap:24px;align-items:center}
+.main-nav a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:14px;font-weight:500}
+.main-nav a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 32px;border-radius:var(--radius);font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;border:none;transition:all 0.2s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+.btn-secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.3)}
+.btn-secondary:hover{background:rgba(255,255,255,0.1)}
+.btn-lg{padding:18px 40px;font-size:18px}
+
+section{padding:64px 0}
+.section-header{text-align:center;margin-bottom:40px}
+.section-header h2{font-family:'Playfair Display',serif;font-size:36px;color:var(--navy);margin-bottom:12px;font-weight:700}
+.section-header p{color:var(--text-light);font-size:17px;max-width:700px;margin:0 auto}
+
+/* Hero */
+.hero{background:var(--navy);color:#fff;padding:80px 0 64px}
+.hero h1{font-family:'Playfair Display',serif;font-size:48px;line-height:1.15;margin-bottom:16px;font-weight:700}
+.hero h1 .gold{color:var(--gold-light)}
+.hero .sub{font-size:19px;color:rgba(255,255,255,0.8);max-width:720px;margin-bottom:28px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.hero-reassurance{display:flex;flex-wrap:wrap;gap:20px;font-size:14px;color:rgba(255,255,255,0.6);margin-top:8px}
+.hero-reassurance span{display:flex;align-items:center;gap:6px}
+.hero-reassurance svg{width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:2}
+
+/* Cards */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);transition:box-shadow 0.2s;text-decoration:none;color:inherit}
+.card.clickable{cursor:pointer}
+.card:hover{box-shadow:var(--shadow-lg)}
+.card h3{font-size:20px;color:var(--navy);margin-bottom:10px;font-weight:700}
+.card p{color:var(--text-light);font-size:15px}
+.card-icon{font-size:28px;margin-bottom:12px}
+
+/* Table */
+.rate-table,.comparison-table{width:100%;border-collapse:collapse;font-size:14px;overflow:hidden;border-radius:var(--radius)}
+.rate-table th,.comparison-table th{text-align:left;padding:12px 16px;background:var(--navy);color:#fff;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:0.5px}
+.rate-table td,.comparison-table td{padding:14px 16px;border-bottom:1px solid var(--border)}
+.rate-table tr:nth-child(even),.comparison-table tr:nth-child(even){background:var(--surface)}
+.rate-table .rate,.comparison-table .rate{font-weight:700;color:var(--green)}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
+.badge-low{background:var(--green-light);color:var(--green)}
+.badge-med{background:#fef3c7;color:#92400e}
+.badge-high{background:#fee2e2;color:#991b1b}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px}
+.step{text-align:center}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;margin:0 auto 16px}
+.step h3{font-size:18px;color:var(--navy);margin-bottom:8px}
+.step p{color:var(--text-light);font-size:14px}
+
+/* FAQ */
+.faq-section{background:var(--surface)}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+.faq-item summary{padding:18px 24px;font-weight:600;font-size:16px;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-size:22px;color:var(--gold);transition:transform 0.2s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item .answer{padding:0 24px 18px;color:var(--text-light);font-size:15px}
+
+/* CTA */
+.cta-banner{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:var(--radius);padding:48px;text-align:center;color:#fff;margin:48px 0}
+.cta-banner h2{font-family:'Playfair Display',serif;font-size:32px;margin-bottom:12px}
+.cta-banner p{color:rgba(255,255,255,0.75);margin-bottom:24px;font-size:17px}
+
+/* Footer */
+.site-footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:48px 0 24px}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:32px}
+.footer-grid h4{color:#fff;font-size:14px;font-weight:600;margin-bottom:12px}
+.footer-grid ul{list-style:none}
+.footer-grid li{margin-bottom:8px}
+.footer-grid a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:14px}
+.footer-grid a:hover{color:var(--gold-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px}
+.footer-bottom p{font-size:13px;margin-bottom:8px}
+.disclaimer{font-size:12px;color:rgba(255,255,255,0.4);max-width:900px}
+
+/* Hamburger nav */
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.nav-toggle span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px}
+
+/* Assessment widget */
+.assessment-section{background:linear-gradient(135deg,var(--navy),var(--navy-2));padding:64px 0;color:#fff}
+.assessment-box{max-width:720px;margin:0 auto;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);padding:40px;text-align:center}
+.assessment-box h2{font-family:'Playfair Display',serif;font-size:30px;margin-bottom:8px}
+.assessment-box>p{color:rgba(255,255,255,0.7);margin-bottom:24px}
+.amount-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.amount-btn{background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.15);color:#fff;padding:16px 12px;border-radius:var(--radius);font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.15s}
+.amount-btn:hover{border-color:var(--gold)}
+.amount-btn.selected{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.trust-strip{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;margin-top:24px;font-size:12.5px;color:rgba(255,255,255,0.5)}
+
+/* Table source note */
+.source-note{font-size:12.5px;color:var(--text-light);margin-top:10px}
+
+/* Checklist */
+.checklist{max-width:760px;margin:0 auto;list-style:none}
+.checklist li{padding:12px 0 12px 32px;border-bottom:1px solid var(--border);position:relative;font-size:15px;color:var(--text)}
+.checklist li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700}
+.checklist li strong{color:var(--navy)}
+
+@media(max-width:768px){
+  .main-nav{display:none}
+  .nav-toggle{display:block}
+  .site-header.nav-open .main-nav{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--navy);padding:16px 24px;gap:14px;border-top:1px solid rgba(255,255,255,0.1);z-index:50}
+  .hero h1{font-size:32px}
+  .hero .sub{font-size:16px}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .section-header h2{font-size:28px}
+  .cta-banner{padding:32px 20px}
+  .cta-banner h2{font-size:24px}
+  .card-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE SWITCHER -->
+<div class="page-switcher">
+  <div class="container" id="ps-tabs">
+    <button class="ps-tab active" data-page="p1" onclick="showPage('p1')">Business LOC <span class="kd">KD4</span></button>
+    <button class="ps-tab" data-page="p2" onclick="showPage('p2')">Equipment Financing <span class="kd">KD9</span></button>
+    <button class="ps-tab" data-page="p3" onclick="showPage('p3')">Commercial Mtg Rates <span class="kd">KD6</span></button>
+    <button class="ps-tab" data-page="p4" onclick="showPage('p4')">Acquisition Financing <span class="kd">KD7</span></button>
+    <button class="ps-tab" data-page="p5" onclick="showPage('p5')">Working Capital <span class="kd">KD10</span></button>
+    <button class="ps-tab" data-page="p6" onclick="showPage('p6')">CSBFP Guide <span class="kd">KD19</span></button>
+    <button class="ps-tab" data-page="p7" onclick="showPage('p7')">Business Funding Hub <span class="kd">KD16</span></button>
+    <button class="ps-tab" data-page="p8" onclick="showPage('p8')">Commercial Mortgage <span class="kd">Greenfield</span></button>
+  </div>
+</div>
+
+<!-- ====== PAGE 1: BUSINESS LINE OF CREDIT ======
+PRODUCTION SEO SPEC:
+  URL:       /business-line-of-credit-canada/
+  Title:     Business Line of Credit Canada: Compare 2026 Rates
+  Meta desc: Compare business line of credit rates from Canadian banks, credit unions & alternative lenders. Secured, unsecured, or CSBFP-backed. 3-minute assessment.
+  Canonical: self
+  Schema:    FAQPage, BreadcrumbList, Organization
+====== -->
+<div class="page active" id="p1">
+  <header class="site-header"><div class="container header-inner">
+    <a href="#" class="logo"><span class="logo-mark">LS</span><span class="logo-text">LeadSniper <span class="logo-accent">Marketplace</span></span></a>
+    <nav class="main-nav"><a href="#">Funding Options</a><a href="#">How It Works</a><a href="#">Resources</a><a href="#">For Financial Professionals</a><a href="#">Sign In</a></nav>
+    <a href="#assessment" class="btn btn-primary" style="font-size:13px;padding:8px 18px;">Check My Funding Options</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+  </div></header>
+
+  <section class="hero"><div class="container">
+    <h1>Business Line of Credit <span class="gold">Canada</span></h1>
+    <p class="sub">Compare current rates from Canada's major banks, credit unions, and alternative lenders. Find the right line of credit for your business — secured, unsecured, or CSBFP-backed. One guided assessment, multiple potential paths.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+      <a href="#how-it-works" class="btn btn-secondary btn-lg">How It Works</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Takes 3–5 minutes</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No obligation</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No impact on credit</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Human review before matching</span>
+    </div>
+  </div></section>
+
+  <section><div class="container">
+    <div class="section-header"><h2>Current Business Line of Credit Rates in Canada</h2><p>Updated July 2026. Rates shown are starting rates — your actual rate depends on credit profile, collateral, time in business, and revenue.</p></div>
+    <table class="rate-table"><thead><tr><th>Lender</th><th>Type</th><th>Rate Range</th><th>Max Amount</th><th>Notes</th></tr></thead><tbody>
+      <tr><td><strong>BMO</strong></td><td><span class="badge badge-low">Secured</span></td><td class="rate">From 6.45%</td><td>Up to $500K</td><td>Credit Line for Business — flexible draw and repay</td></tr>
+      <tr><td><strong>CIBC</strong></td><td><span class="badge badge-high">Unsecured</span></td><td class="rate">5.95%–17.45%</td><td>Up to $250K</td><td>Bizline Visa Card for smaller operations</td></tr>
+      <tr><td><strong>RBC</strong></td><td><span class="badge badge-med">CSBFP-backed</span></td><td class="rate">7.35%–16.35%</td><td>Up to $150K</td><td>Canada Small Business Financing Line of Credit</td></tr>
+      <tr><td><strong>Scotiabank</strong></td><td><span class="badge badge-high">Unsecured</span></td><td class="rate">From 7.94%</td><td>Up to $500K</td><td>ScotiaLine for Business — revolving credit</td></tr>
+      <tr><td><strong>TD</strong></td><td><span class="badge badge-med">Secured/Unsecured</span></td><td class="rate">Variable</td><td>Up to $500K</td><td>Small Business Line of Credit — secured or unsecured</td></tr>
+      <tr><td><strong>Alternative Lenders</strong></td><td><span class="badge badge-med">Varies</span></td><td class="rate">9%–18%</td><td>$10K–$500K</td><td>Faster approval (1–3 days), higher rates, flexible criteria</td></tr>
+      <tr><td><strong>CSBFP (Government)</strong></td><td><span class="badge badge-low">Government-backed</span></td><td class="rate">Prime + 1.75%–3%</td><td>Up to $150K</td><td>For businesses with &lt;$10M revenue. 2-way revolving credit.</td></tr>
+    </tbody></table>
+    <p class="source-note">Rates verified July 2026 against lender published rates and ISED CSBFP program terms. Starting rates shown; your rate depends on credit profile, collateral, and revenue.</p>
+    <p style="text-align:center;margin-top:20px;font-size:16px;font-weight:600;color:var(--navy);">Which of these could you actually qualify for? <a href="#assessment" style="color:var(--gold-dark);">Take the 3-minute assessment →</a></p>
+  </div></section>
+
+  <section style="background:var(--surface)"><div class="container">
+    <div class="section-header"><h2>Types of Business Lines of Credit in Canada</h2></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🔐</div><h3>Secured Line of Credit</h3><p>Backed by business assets — accounts receivable, inventory, equipment, or real estate. Lower rates (5.95%–7.94%), higher limits (up to $3M+). Best for established businesses with assets to pledge.</p></div>
+      <div class="card"><div class="card-icon">🔓</div><h3>Unsecured Line of Credit</h3><p>No collateral required. Higher rates (9%–16.35%), lower limits (up to $250K–$500K). Best for businesses with strong credit but few hard assets. Faster approval process.</p></div>
+      <div class="card"><div class="card-icon">🏛️</div><h3>CSBFP-Backed Line of Credit</h3><p>Government-guaranteed through the Canada Small Business Financing Program. Up to $150K for working capital. Available to businesses with under $10M in annual revenue. Competitive rates, flexible requirements.</p></div>
+    </div>
+  </div></section>
+
+  <section id="how-it-works"><div class="container">
+    <div class="section-header"><h2>How to Get a Business Line of Credit</h2></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Tell us your goal</h3><p>What you need funding for, how much, and when. Takes 2 minutes.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Complete the assessment</h3><p>Business profile, revenue, time in business, location. 3–5 minutes total.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Receive potential paths</h3><p>We identify relevant line of credit categories and flag preparation steps.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Human review</h3><p>A qualified team member reviews before matching you with a financing professional.</p></div>
+    </div>
+  </div></section>
+
+  <div class="container"><div class="cta-banner">
+    <h2>Ready to check your line of credit options?</h2>
+    <p>One assessment. Multiple potential lenders. No obligation to proceed.</p>
+    <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+  </div></div>
+
+  <section class="faq-section"><div class="container">
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    <details class="faq-item"><summary>What is a business line of credit in Canada?</summary><div class="answer">A business line of credit is a revolving credit facility that lets you borrow up to a pre-set limit, repay, and borrow again. You only pay interest on the amount you use, not the full limit. In Canada, lines of credit are available from major banks, credit unions, and alternative lenders, with limits ranging from $5,000 to $3 million depending on your business profile and collateral.</div></details>
+    <details class="faq-item"><summary>Can I get a line of credit on a business account in Canada?</summary><div class="answer">Yes. Canadian banks and credit unions offer business lines of credit on business accounts. You can apply as a sole proprietor, partnership, or corporation. Most lenders require bank statements, financial statements, and proof of business operations. The CSBFP also offers government-backed lines of credit up to $150,000 for eligible small businesses.</div></details>
+    <details class="faq-item"><summary>How much interest is on a $100,000 line of credit?</summary><div class="answer">Interest on a $100,000 business line of credit depends on the rate. At 8% effective, you would pay approximately $667/month in interest if you carry the full $100,000 balance. You only pay interest on the drawn amount, not the credit limit. Rates typically range from 5.95% to 16.35% depending on whether the line is secured or unsecured.</div></details>
+    <details class="faq-item"><summary>What credit score do I need for a business line of credit in Canada?</summary><div class="answer">Most Canadian banks require a personal credit score of 680+ for a business line of credit. Alternative lenders may accept scores as low as 500, but with higher interest rates. The CSBFP-backed line of credit has more flexible requirements since the government guarantees a portion of the loan.</div></details>
+  </div></section>
+
+  <section style="padding:32px 0;background:var(--navy)"><div class="container"><p style="font-size:13px;text-align:center;color:rgba(255,255,255,0.5);">These are preliminary financing categories for discussion. They are not offers, approvals, commitments, rates, or guarantees. Final eligibility and terms are determined by financing providers after complete underwriting. LeadSniper Marketplace is a funding assessment platform, not a lender.</p></div></section>
+</div>
+
+<!-- ====== PAGE 2: EQUIPMENT FINANCING ======
+PRODUCTION SEO SPEC:
+  URL:       /equipment-financing-canada/
+  Title:     Equipment Financing Canada — Rates & Lenders (2026)
+  Meta desc: Compare equipment financing from BDC, banks & alternative lenders. New or used equipment, up to 100% financing, bad credit options. 24–48 hr approvals.
+  Canonical: self
+  Schema:    FAQPage, BreadcrumbList, Organization
+====== -->
+<div class="page" id="p2">
+  <header class="site-header"><div class="container header-inner">
+    <a href="#" class="logo"><span class="logo-mark">LS</span><span class="logo-text">LeadSniper <span class="logo-accent">Marketplace</span></span></a>
+    <nav class="main-nav"><a href="#">Funding Options</a><a href="#">How It Works</a><a href="#">Resources</a><a href="#">For Financial Professionals</a><a href="#">Sign In</a></nav>
+    <a href="#assessment" class="btn btn-primary" style="font-size:13px;padding:8px 18px;">Check My Funding Options</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+  </div></header>
+
+  <section class="hero"><div class="container">
+    <h1>Equipment Financing <span class="gold">Canada</span></h1>
+    <p class="sub">Compare equipment financing and leasing options from Canadian banks, crown corporations, and alternative lenders. New or used equipment, heavy machinery, vehicles, and specialized assets. Bad credit options available.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+      <a href="#lenders" class="btn btn-secondary btn-lg">Compare Lenders</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> New or used equipment</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Bad credit OK</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% financing available</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 24-hour decisions from alt lenders</span>
+    </div>
+  </div></section>
+
+  <section id="lenders"><div class="container">
+    <div class="section-header"><h2>Equipment Financing Lenders in Canada</h2></div>
+    <table class="comparison-table"><thead><tr><th>Lender</th><th>Type</th><th>Rate</th><th>Max Amount</th><th>Approval</th><th>Notes</th></tr></thead><tbody>
+      <tr><td><strong>BDC</strong></td><td>Crown Corp</td><td class="rate">From 6.5%</td><td>Up to 125% of value</td><td>1–2 weeks</td><td>New or used. Flexible terms up to 7 years.</td></tr>
+      <tr><td><strong>BMO</strong></td><td>Major Bank</td><td class="rate">From 7%</td><td>Up to $2M</td><td>2–4 weeks</td><td>Equipment financing & leasing. Wide asset types.</td></tr>
+      <tr><td><strong>Scotiabank</strong></td><td>Major Bank</td><td class="rate">From 7.5%</td><td>100% financing</td><td>2–4 weeks</td><td>Up to 100% financing to free up cash flow.</td></tr>
+      <tr><td><strong>National Bank</strong></td><td>Major Bank</td><td class="rate">From 7%</td><td>Varies</td><td>2–4 weeks</td><td>Flexible leasing and financing for buy or sell.</td></tr>
+      <tr><td><strong>Canadian Equipment Finance</strong></td><td>Alt Lender</td><td class="rate">8%–18%</td><td>$25K–$500K</td><td>24–48 hrs</td><td>BC and Ontario. 100% financing available.</td></tr>
+      <tr><td><strong>Equipment Finance Canada</strong></td><td>Alt Lender</td><td class="rate">8%–20%</td><td>Varies</td><td>24 hours</td><td>New or used. Loan decision within 24 hours.</td></tr>
+      <tr><td><strong>Greenbox Capital</strong></td><td>Alt Lender</td><td class="rate">9%–22%</td><td>$10K–$500K</td><td>1–3 days</td><td>Small business equipment loans. Bad credit OK.</td></tr>
+      <tr><td><strong>Northpoint Commercial Finance</strong></td><td>Commercial Finance</td><td class="rate">Custom</td><td>Varies</td><td>1–2 weeks</td><td>Acquisition, sale, and refinancing of equipment.</td></tr>
+    </tbody></table>
+  </div></section>
+
+  <section style="background:var(--surface)"><div class="container">
+    <div class="section-header"><h2>What Can You Finance?</h2></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🏗️</div><h3>Heavy Equipment</h3><p>Excavators, loaders, bulldozers, cranes. BDC and Northpoint specialize in heavy equipment financing with terms up to 7 years.</p></div>
+      <div class="card"><div class="card-icon">🚚</div><h3>Trucks & Vehicles</h3><p>Commercial trucks, delivery vans, fleet vehicles. Scotiabank and BMO offer up to 100% financing for commercial vehicles.</p></div>
+      <div class="card"><div class="card-icon">🍳</div><h3>Restaurant Equipment</h3><p>Ovens, refrigeration, POS systems, furniture. Alternative lenders offer fast approval for restaurant equipment.</p></div>
+      <div class="card"><div class="card-icon">🏭</div><h3>Manufacturing</h3><p>CNC machines, lathes, presses, production lines. BDC covers up to 125% of purchase price for manufacturing equipment.</p></div>
+      <div class="card"><div class="card-icon">🏥</div><h3>Medical & Dental</h3><p>Imaging equipment, dental chairs, lab instruments. Specialized lenders offer practice-specific financing terms.</p></div>
+      <div class="card"><div class="card-icon">💻</div><h3>Technology & IT</h3><p>Servers, workstations, software systems. Technology financing often includes software and installation costs.</p></div>
+      <div class="card"><div class="card-icon">🚜</div><h3>Farm Equipment</h3><p>Tractors, combines, irrigation systems. Farm Credit Canada and BDC offer specialized agricultural equipment financing.</p></div>
+      <div class="card"><div class="card-icon">🌲</div><h3>Forestry Equipment</h3><p>Harvesters, forwarders, skidders. Specialty lenders understand forestry equipment valuation and seasonality.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="container">
+    <div class="section-header"><h2>Equipment Financing With Bad Credit</h2></div>
+    <div class="card-grid">
+      <div class="card"><h3>Credit score 500+</h3><p>Alternative lenders accept scores from 500. The equipment serves as collateral, reducing lender risk. Expect rates of 12%–22% and down payments of 10–25%.</p></div>
+      <div class="card"><h3>No credit check</h3><p>Some alternative lenders offer no-credit-check equipment financing, basing approval on business revenue and equipment value. Rates are higher (15%–25%) but approval is fast.</p></div>
+      <div class="card"><h3>Used equipment</h3><p>Financing used equipment is often easier with bad credit because the purchase price is lower, reducing the lender's exposure. Used heavy equipment financing is available from specialist lenders.</p></div>
+    </div>
+  </div></section>
+
+  <div class="container"><div class="cta-banner"><h2>Ready to finance your equipment?</h2><p>One assessment. Multiple lenders. No obligation.</p><a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a></div></div>
+
+  <section class="faq-section"><div class="container">
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    <details class="faq-item"><summary>Who has the best equipment financing in Canada?</summary><div class="answer">The best equipment financing depends on your needs. BDC offers government-backed equipment loans covering up to 125% of the purchase price. BMO and Scotiabank offer competitive rates for established businesses. Alternative lenders like Greenbox Capital and Canadian Equipment Finance provide faster approval (24–48 hours) for businesses with challenged credit.</div></details>
+    <details class="faq-item"><summary>What credit score is needed for equipment financing in Canada?</summary><div class="answer">Most Canadian banks require a credit score of 680+ for equipment financing. Alternative lenders may accept scores as low as 500, but with higher rates. The equipment itself serves as collateral, which can make approval easier than an unsecured loan.</div></details>
+    <details class="faq-item"><summary>Is it hard to get equipment financing in Canada?</summary><div class="answer">Equipment financing is generally easier to obtain than unsecured business loans because the equipment serves as collateral. If you have been in business for 2+ years, can demonstrate revenue, and the equipment has resale value, approval is likely.</div></details>
+    <details class="faq-item"><summary>Can I get equipment financing with bad credit in Canada?</summary><div class="answer">Yes. Several alternative lenders in Canada offer equipment financing for businesses with bad credit (scores as low as 500). No-credit-check options are available but carry significantly higher rates (12%–25%). Expect larger down payments (10–25%) and shorter terms.</div></details>
+  </div></section>
+
+  <section style="padding:32px 0;background:var(--navy)"><div class="container"><p style="font-size:13px;text-align:center;color:rgba(255,255,255,0.5);">These are preliminary financing categories for discussion. They are not offers, approvals, commitments, rates, or guarantees. LeadSniper Marketplace is a funding assessment platform, not a lender.</p></div></section>
+</div>
+
+<!-- ====== PAGE 3: COMMERCIAL MORTGAGE RATES ======
+PRODUCTION SEO SPEC:
+  URL:       /commercial-mortgage-rates-canada/
+  Title:     Commercial Mortgage Rates Canada — July 2026 Tables
+  Meta desc: Current commercial mortgage rates in Canada: CMHC-insured from 4.25%, A-lenders 5.00–6.50%, B-lender & private options. Tables updated July 2026.
+  Canonical: self
+  Schema:    FAQPage, BreadcrumbList, Organization
+  NOTE:      Keep RATES-intent focus. Overlaps Page 8 — differentiate before ship:
+             this page owns rate tables/trends; Page 8 owns process/requirements guide.
+====== -->
+<div class="page" id="p3">
+  <header class="site-header"><div class="container header-inner">
+    <a href="#" class="logo"><span class="logo-mark">LS</span><span class="logo-text">LeadSniper <span class="logo-accent">Marketplace</span></span></a>
+    <nav class="main-nav"><a href="#">Funding Options</a><a href="#">How It Works</a><a href="#">Resources</a><a href="#">For Financial Professionals</a><a href="#">Sign In</a></nav>
+    <a href="#assessment" class="btn btn-primary" style="font-size:13px;padding:8px 18px;">Check My Funding Options</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+  </div></header>
+
+  <section class="hero"><div class="container">
+    <h1>Commercial Mortgage Rates <span class="gold">Canada</span></h1>
+    <p class="sub">Compare current commercial mortgage rates from A-lenders, B-lenders, CMHC-insured, and private lenders. Rate tables, down payment guidance, and DSCR requirements. One assessment, multiple potential paths.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+      <a href="#rates" class="btn btn-secondary btn-lg">View Rate Table</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> CMHC-insured from 4.25%</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> A-lender 5.00–6.50%</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Private lender options</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No obligation</span>
+    </div>
+  </div></section>
+
+  <section id="rates"><div class="container">
+    <div class="section-header"><h2>Current Commercial Mortgage Rates in Canada</h2><p>Updated July 2026. Prime rate: 4.45%. Rates shown are ranges.</p></div>
+    <table class="rate-table"><thead><tr><th>Category</th><th>Rate Range</th><th>Max LTV</th><th>Min DSCR</th><th>Notes</th></tr></thead><tbody>
+      <tr><td><strong>CMHC-Insured (Multi-family)</strong></td><td class="rate">4.25% – 5.25%</td><td>Up to 80%</td><td>1.20x</td><td>5+ residential units, CMHC-insured</td></tr>
+      <tr><td><strong>Conventional A-Lender</strong></td><td class="rate">5.00% – 6.50%</td><td>Up to 65%</td><td>1.25x</td><td>Banks (RBC, TD, BMO, CIBC, Scotiabank)</td></tr>
+      <tr><td><strong>B-Lender</strong></td><td class="rate">6.50% – 8.50%</td><td>Up to 75%</td><td>1.15x</td><td>Credit unions, mono-line lenders</td></tr>
+      <tr><td><strong>Private Lender</strong></td><td class="rate">8.00% – 14.00%</td><td>Up to 75%</td><td>1.10x</td><td>Short-term, equity-focused, fast approval</td></tr>
+      <tr><td><strong>Bridge Financing</strong></td><td class="rate">8.00% – 12.00%</td><td>Up to 75%</td><td>N/A</td><td>Short-term gap financing, 6–12 months</td></tr>
+    </tbody></table>
+    <p class="source-note">Rates verified July 2026 against lender published rates and CMHC program pricing. Ranges shown; actual pricing depends on DSCR, LTV, property type, and term.</p>
+    <p style="text-align:center;margin-top:20px;font-size:16px;font-weight:600;color:var(--navy);">Which rate tier would your property qualify for? <a href="#assessment" style="color:var(--gold-dark);">Take the 3-minute assessment →</a></p>
+  </div></section>
+
+  <section style="background:var(--surface)"><div class="container">
+    <div class="section-header"><h2>What Determines Your Commercial Mortgage Rate</h2><p>Lenders price commercial mortgages on risk. Four factors move your rate more than anything else.</p></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">📊</div><h3>Debt Service Coverage (DSCR)</h3><p>The property's net operating income divided by annual debt payments. A DSCR of 1.40x+ earns better pricing than the 1.20x minimum — more cushion means less lender risk.</p></div>
+      <div class="card"><div class="card-icon">🏷️</div><h3>Loan-to-Value (LTV)</h3><p>Lower LTV, lower rate. Financing 55% of the property value prices meaningfully better than the 75–80% maximum. Every 5–10% of extra equity typically shaves basis points.</p></div>
+      <div class="card"><div class="card-icon">🏢</div><h3>Property Type & Tenancy</h3><p>Multi-family and industrial price tightest. Hospitality, single-tenant retail, and special-purpose properties carry premiums of 50–150 bps due to income volatility.</p></div>
+      <div class="card"><div class="card-icon">📅</div><h3>Term & Insurance</h3><p>CMHC insurance buys the lowest rates in the market. Shorter terms and variable rates track prime (currently 4.45%); 5-year fixed terms track bond yields plus a spread.</p></div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:15px;color:var(--text-light);">Want the full picture on lender types, down payments, and approval requirements? <a href="#" onclick="showPage('p8');return false;" style="color:var(--gold-dark);font-weight:600;">Read the Commercial Mortgage Canada guide →</a></p>
+    <!-- TODO PRODUCTION: replace onclick with real href to /commercial-mortgage-canada/ -->
+  </div></section>
+
+  <section><div class="container">
+    <div class="section-header"><h2>How the Prime Rate Affects Commercial Mortgage Rates</h2></div>
+    <div class="card-grid">
+      <div class="card"><h3>Variable rates</h3><p>Priced as prime plus a spread (e.g., prime + 1.00–2.50%). When the Bank of Canada moves its policy rate, variable commercial mortgage payments move with it — usually within days.</p></div>
+      <div class="card"><h3>Fixed rates</h3><p>Priced off Government of Canada bond yields plus a lender spread, not prime. Fixed rates can fall or rise ahead of BoC announcements as bond markets price in expectations.</p></div>
+      <div class="card"><h3>Current environment</h3><p>Prime sits at 4.45% (July 2026). CMHC-insured multi-family remains the cheapest commercial money in Canada, with conventional bank pricing roughly 75–225 bps above insured rates.</p></div>
+    </div>
+  </div></section>
+
+  <div class="container"><div class="cta-banner"><h2>Ready to compare commercial mortgage options?</h2><p>One assessment. Multiple lender types. No obligation.</p><a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a></div></div>
+
+  <section class="faq-section"><div class="container">
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    <details class="faq-item"><summary>What is the interest rate on a commercial mortgage in Canada?</summary><div class="answer">As of July 2026, commercial mortgage rates in Canada range from 4.25% to 8.50%. CMHC-insured multi-family rates start at 4.25%–5.25%. Conventional A-lender rates range from 5.00% to 6.50%. B-lender financing ranges from 6.50% to 8.50%. The prime rate is currently 4.45%.</div></details>
+    <details class="faq-item"><summary>What is the lowest interest rate for commercial property in Canada?</summary><div class="answer">The lowest commercial mortgage rates are CMHC-insured multi-family residential properties, starting at 4.25%. These rates are available for properties with 5+ residential units where the borrower qualifies for CMHC insurance.</div></details>
+    <details class="faq-item"><summary>Are commercial mortgage rates higher than residential rates in Canada?</summary><div class="answer">Yes, typically by 1%–2%. Commercial properties carry more income risk than owner-occupied homes, so lenders price in a premium. The exception is CMHC-insured multi-family (5+ units), where rates from 4.25% can rival or beat residential pricing because the government insures the lender's risk.</div></details>
+    <details class="faq-item"><summary>Should I choose a fixed or variable commercial mortgage rate?</summary><div class="answer">Variable rates track prime (currently 4.45%) plus a spread and adjust when the Bank of Canada moves. Fixed rates are priced off bond yields and lock your payment for the term. Variable suits borrowers who can absorb payment swings; fixed suits tight DSCR situations where payment certainty protects your covenant. Many commercial borrowers split the difference with shorter fixed terms (3–5 years).</div></details>
+  </div></section>
+</div>
+
+<!-- ====== PAGE 4: BUSINESS ACQUISITION FINANCING ======
+PRODUCTION SEO SPEC:
+  URL:       /business-acquisition-financing-canada/
+  Title:     Business Acquisition Financing in Canada (2026 Guide)
+  Meta desc: How to finance a business purchase in Canada: senior debt, CSBFP loans up to $1M, seller financing & mezzanine. Deal structures, down payments, EBITDA.
+  Canonical: self
+  Schema:    FAQPage, BreadcrumbList, Organization
+====== -->
+<div class="page" id="p4">
+  <header class="site-header"><div class="container header-inner">
+    <a href="#" class="logo"><span class="logo-mark">LS</span><span class="logo-text">LeadSniper <span class="logo-accent">Marketplace</span></span></a>
+    <nav class="main-nav"><a href="#">Funding Options</a><a href="#">How It Works</a><a href="#">Resources</a><a href="#">For Financial Professionals</a><a href="#">Sign In</a></nav>
+    <a href="#assessment" class="btn btn-primary" style="font-size:13px;padding:8px 18px;">Check My Funding Options</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+  </div></header>
+
+  <section class="hero"><div class="container">
+    <h1>Business Acquisition Financing <span class="gold">Canada</span></h1>
+    <p class="sub">A complete guide to financing a business purchase in Canada. Compare senior debt, CSBFP loans, seller financing, mezzanine, and cash flow loans. Understand down payments, EBITDA multiples, and layered deal structures.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+      <a href="#structures" class="btn btn-secondary btn-lg">Compare Structures</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> CSBFP up to $1M</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Seller financing options</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Layered deal structures</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 10%+ down payment</span>
+    </div>
+  </div></section>
+
+  <section id="structures"><div class="container">
+    <div class="section-header"><h2>Business Acquisition Financing Structures</h2><p>Most acquisitions use 2–4 of these methods layered together to minimize your personal cash outlay.</p></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🏦</div><h3>Senior Debt</h3><p style="font-size:13px;margin-bottom:8px;"><span class="badge badge-low">Bank Loan</span><br>Rate: <strong>Prime + 1–3%</strong> · Max: <strong>50–65%</strong></p><p>Traditional bank loans from RBC, TD, BMO, National Bank secured by the target company's physical assets, real estate, or accounts receivable.</p></div>
+      <div class="card"><div class="card-icon">🏛️</div><h3>CSBFP Loan</h3><p style="font-size:13px;margin-bottom:8px;"><span class="badge badge-low">Government-Backed</span><br>Rate: <strong>Prime + 1.75–3%</strong> · Max: <strong>$1M</strong></p><p>Canada Small Business Financing Program. Government-guaranteed term loans up to $1,000,000 for businesses with under $10M revenue.</p></div>
+      <div class="card"><div class="card-icon">🤝</div><h3>Seller Financing</h3><p style="font-size:13px;margin-bottom:8px;"><span class="badge badge-low">Vendor Take-Back</span><br>Rate: <strong>Negotiated</strong> · Max: <strong>10–40%</strong></p><p>The previous owner acts as a lender, agreeing to be paid a portion of the purchase price over time. Bridges funding gaps and keeps the seller invested.</p></div>
+      <div class="card"><div class="card-icon">📊</div><h3>Mezzanine / Cash Flow</h3><p style="font-size:13px;margin-bottom:8px;"><span class="badge badge-med">Subordinated Debt</span><br>Rate: <strong>12–20%</strong> · Max: <strong>15–30%</strong></p><p>Offered by BDC and alternative lenders. Based on the business's cash flow, not just tangible assets. Higher rates, less collateral required.</p></div>
+      <div class="card"><div class="card-icon">💰</div><h3>Personal Equity</h3><p style="font-size:13px;margin-bottom:8px;"><span class="badge badge-low">Buyer Cash</span><br>Rate: <strong>N/A</strong> · Max: <strong>10%+ down</strong></p><p>The buyer's personal cash contribution. Most lenders require at least 10% of the purchase price as personal equity to demonstrate commitment.</p></div>
+      <div class="card"><div class="card-icon">❌</div><h3>SBA-Style (US Only)</h3><p style="font-size:13px;margin-bottom:8px;"><span class="badge badge-high">Not Available</span><br>Rate: <strong>N/A</strong> · Max: <strong>N/A</strong></p><p>The US SBA loan program has no direct Canadian equivalent. The CSBFP is the closest program, but with different terms and limits.</p></div>
+    </div>
+  </div></section>
+
+  <section style="background:var(--surface)"><div class="container">
+    <div class="section-header"><h2>Example: $2M Business Acquisition</h2></div>
+    <table class="comparison-table"><thead><tr><th>Financing Layer</th><th>Amount</th><th>% of Purchase</th><th>Rate</th><th>Security</th></tr></thead><tbody>
+      <tr><td><strong>Senior Debt (Bank)</strong></td><td>$900,000</td><td>45%</td><td class="rate">~6.45%</td><td>Target company assets + receivables</td></tr>
+      <tr><td><strong>CSBFP Loan</strong></td><td>$500,000</td><td>25%</td><td class="rate">~7.20%</td><td>Government-guaranteed</td></tr>
+      <tr><td><strong>Seller Financing (VTB)</strong></td><td>$400,000</td><td>20%</td><td class="rate">~8%</td><td>Vendor note, 3-year term</td></tr>
+      <tr><td><strong>Buyer Personal Equity</strong></td><td>$200,000</td><td>10%</td><td class="rate">N/A</td><td>Cash</td></tr>
+      <tr style="font-weight:bold;background:var(--navy);color:#fff;"><td>Total</td><td>$2,000,000</td><td>100%</td><td></td><td></td></tr>
+    </tbody></table>
+  </div></section>
+
+  <div class="container"><div class="cta-banner"><h2>Ready to finance your business acquisition?</h2><p>One assessment. Multiple financing structures. No obligation.</p><a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a></div></div>
+
+  <section class="faq-section"><div class="container">
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    <details class="faq-item"><summary>How do I finance a business acquisition in Canada?</summary><div class="answer">Business acquisitions in Canada are typically financed through a combination of: (1) Senior debt — bank loans secured by the target company's assets, (2) Government-backed CSBFP loans up to $1,000,000, (3) Seller financing (vendor take-back), (4) Mezzanine or cash flow loans from alternative lenders like BDC, and (5) Buyer's personal equity (typically 10%+ down payment).</div></details>
+    <details class="faq-item"><summary>How much down payment do I need to buy a business in Canada?</summary><div class="answer">Most Canadian lenders require a personal down payment of at least 10% of the purchase price. The remaining 90% can be financed through a combination of senior debt, CSBFP loans, and seller financing. Stronger deals may require less personal cash, while riskier acquisitions may need 20–30% down.</div></details>
+    <details class="faq-item"><summary>What is seller financing (vendor take-back)?</summary><div class="answer">Seller financing, also known as a vendor take-back or vendor note, is when the previous owner agrees to finance a portion of the purchase price. The buyer pays the seller over time instead of paying the full amount upfront. Typical vendor take-backs cover 10–40% of the purchase price.</div></details>
+    <details class="faq-item"><summary>How do lenders value a business for acquisition financing?</summary><div class="answer">Lenders evaluate acquisition targets using a multiple of EBITDA (Earnings Before Interest, Taxes, Depreciation, and Amortization). Typical multiples range from 2x–5x EBITDA for small businesses, depending on industry, growth, and stability.</div></details>
+  </div></section>
+</div>
+
+<!-- ====== PAGE 5: WORKING CAPITAL LOANS ======
+PRODUCTION SEO SPEC:
+  URL:       /working-capital-loans-canada/
+  Title:     Working Capital Loans Canada — Compare 2026 Lenders
+  Meta desc: Compare working capital loans from BDC, CSBFP-backed and alternative lenders. $5K–$800K for payroll, inventory & operations. Bad credit & startup options.
+  Canonical: self
+  Schema:    FAQPage, BreadcrumbList, Organization
+====== -->
+<div class="page" id="p5">
+  <header class="site-header"><div class="container header-inner">
+    <a href="#" class="logo"><span class="logo-mark">LS</span><span class="logo-text">LeadSniper <span class="logo-accent">Marketplace</span></span></a>
+    <nav class="main-nav"><a href="#">Funding Options</a><a href="#">How It Works</a><a href="#">Resources</a><a href="#">For Financial Professionals</a><a href="#">Sign In</a></nav>
+    <a href="#assessment" class="btn btn-primary" style="font-size:13px;padding:8px 18px;">Check My Funding Options</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+  </div></header>
+
+  <section class="hero"><div class="container">
+    <h1>Working Capital Loans <span class="gold">Canada</span></h1>
+    <p class="sub">Compare working capital loans from BDC, CSBFP-backed lenders, and alternative lenders. Cover payroll, inventory, and operating expenses. From $5,000 to $800,000. Bad credit and startup options available.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+      <a href="#lenders" class="btn btn-secondary btn-lg">Compare Lenders</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> From $5K to $800K</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Bad credit OK</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> CSBFP up to $150K</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 48-hour approval from alt lenders</span>
+    </div>
+  </div></section>
+
+  <section id="lenders"><div class="container">
+    <div class="section-header"><h2>Working Capital Loan Lenders in Canada</h2></div>
+    <table class="comparison-table"><thead><tr><th>Lender</th><th>Type</th><th>Rate</th><th>Amount</th><th>Approval</th><th>Notes</th></tr></thead><tbody>
+      <tr><td><strong>BDC</strong></td><td>Crown Corp</td><td class="rate">From 6.5%</td><td>$25K–$500K</td><td>1–2 weeks</td><td>Term loan with flexible terms. Protects cash flow.</td></tr>
+      <tr><td><strong>CSBFP (Government)</strong></td><td>Government-Backed</td><td class="rate">Prime + 1.75–3%</td><td>Up to $150K (LOC)</td><td>2–4 weeks</td><td>For businesses with under $10M revenue.</td></tr>
+      <tr><td><strong>Fincap Financial Group</strong></td><td>Alt Lender</td><td class="rate">8%–18%</td><td>$10K–$500K</td><td>1–3 days</td><td>30+ lender network, fast approval.</td></tr>
+      <tr><td><strong>CBL Financial</strong></td><td>Alt Lender</td><td class="rate">From 4.99%</td><td>$10K–$300K</td><td>48 hours</td><td>Flexible repayment, funds within 48 hours.</td></tr>
+      <tr><td><strong>Capital Advance</strong></td><td>Alt Lender</td><td class="rate">9%–22%</td><td>$5K–$250K</td><td>1–2 days</td><td>Bad credit OK. Revenue-based approval.</td></tr>
+      <tr><td><strong>Advance Funds Network</strong></td><td>Alt Lender</td><td class="rate">8%–20%</td><td>$5K–$800K</td><td>1–3 days</td><td>Transparent terms, no hidden fees.</td></tr>
+    </tbody></table>
+  </div></section>
+
+  <section style="background:var(--surface)"><div class="container">
+    <div class="section-header"><h2>Types of Working Capital Financing</h2></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">📜</div><h3>Term Loan</h3><p>Best for predictable payments over a set period. Lump sum for one-time expenses or seasonal cash-flow gaps. BDC offers these for long-term stability.</p></div>
+      <div class="card"><div class="card-icon">🔄</div><h3>Line of Credit</h3><p>Best for ongoing or fluctuating needs. You only pay interest on the money you use. Revolving credit up to a pre-set limit.</p></div>
+      <div class="card"><div class="card-icon">🏛️</div><h3>CSBFP-Backed</h3><p>Government-guaranteed through the Canada Small Business Financing Program. Up to $150K for lines of credit or $1M for term loans.</p></div>
+      <div class="card"><div class="card-icon">⚡</div><h3>Alternative / Online</h3><p>Faster approvals (1–2 days), higher rates (9–22%). Revenue-based approval. Bad credit OK. Companies like Capital Advance and CBL Financial.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="container">
+    <div class="section-header"><h2>What Working Capital Loans Cover</h2></div>
+    <div class="card-grid">
+      <div class="card"><h3>Payroll</h3><p>Keep your team paid even when revenue dips seasonally.</p></div>
+      <div class="card"><h3>Inventory</h3><p>Stock up on products during bulk discount opportunities.</p></div>
+      <div class="card"><h3>Equipment Repairs</h3><p>Fix equipment or facility issues before they impact operations.</p></div>
+      <div class="card"><h3>Growth & Expansion</h3><p>Take on new contracts or expand when the timing is right.</p></div>
+      <div class="card"><h3>Rent & Utilities</h3><p>Cover fixed operating costs during cash-flow gaps.</p></div>
+      <div class="card"><h3>Marketing</h3><p>Fund sales and marketing campaigns to drive revenue growth.</p></div>
+    </div>
+  </div></section>
+
+  <div class="container"><div class="cta-banner"><h2>Ready to get working capital?</h2><p>One assessment. Multiple lenders. No obligation.</p><a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a></div></div>
+
+  <section class="faq-section"><div class="container">
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    <details class="faq-item"><summary>How does a working capital loan work in Canada?</summary><div class="answer">A working capital loan provides a lump sum or revolving credit to cover daily operational costs — payroll, rent, inventory, and short-term expenses. In Canada, you can secure this through term loans or lines of credit from banks, crown corporations like BDC, or alternative lenders.</div></details>
+    <details class="faq-item"><summary>What is the $40,000 small business loan in Canada?</summary><div class="answer">The $40,000 reference is commonly associated with the Canada Emergency Business Account (CEBA). For current financing, the CSBFP offers government-backed loans and lines of credit up to $1,000,000 for term loans and $150,000 for lines of credit.</div></details>
+    <details class="faq-item"><summary>What credit score is needed for a working capital loan?</summary><div class="answer">Most Canadian banks require a credit score of 680+ for working capital loans. BDC is more flexible. Alternative lenders may accept scores as low as 500. CSBFP-backed loans have more flexible requirements since the government guarantees a portion.</div></details>
+    <details class="faq-item"><summary>Can startups get working capital loans in Canada?</summary><div class="answer">Startups can access working capital through the CSBFP, startup-specific funding programs, grants, or alternative lenders. Traditional bank working capital loans typically require 2+ years in business. Revenue-based alternative lenders may accept businesses as young as 3–6 months.</div></details>
+  </div></section>
+</div>
+
+<!-- ====== PAGE 6: CSBFP GUIDE ======
+PRODUCTION SEO SPEC:
+  URL:       /canada-small-business-financing-program/
+  Title:     CSBFP Guide 2026: Loans up to $1M, Eligibility & Rates
+  Meta desc: Complete guide to the Canada Small Business Financing Program — term loans up to $1,000,000, lines of credit up to $150K, eligibility rules & current rates.
+  Canonical: self
+  Schema:    FAQPage, BreadcrumbList, Organization
+====== -->
+<div class="page" id="p6">
+  <header class="site-header"><div class="container header-inner">
+    <a href="#" class="logo"><span class="logo-mark">LS</span><span class="logo-text">LeadSniper <span class="logo-accent">Marketplace</span></span></a>
+    <nav class="main-nav"><a href="#">Funding Options</a><a href="#">How It Works</a><a href="#">Resources</a><a href="#">For Financial Professionals</a><a href="#">Sign In</a></nav>
+    <a href="#assessment" class="btn btn-primary" style="font-size:13px;padding:8px 18px;">Check My Funding Options</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+  </div></header>
+
+  <section class="hero"><div class="container">
+    <h1>Canada Small Business Financing Program <span class="gold">(CSBFP)</span></h1>
+    <p class="sub">The complete guide to Canada's government-backed small business financing program. Term loans up to $1,000,000 and lines of credit up to $150,000. Find out if you're eligible and compare participating lenders.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Check My CSBFP Eligibility</a>
+      <a href="#how-it-works" class="btn btn-secondary btn-lg">How It Works</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to $1M term loan</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to $150K line of credit</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Government-guaranteed</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Revenue under $10M</span>
+    </div>
+  </div></section>
+
+  <section id="how-it-works"><div class="container">
+    <div class="section-header"><h2>CSBFP at a Glance</h2></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">💰</div><h3>Max Term Loan</h3><p style="font-size:24px;font-weight:800;color:var(--navy);">$1,000,000</p><p>Of which max $500K for leasehold improvements & equipment</p></div>
+      <div class="card"><div class="card-icon">🔄</div><h3>Max Line of Credit</h3><p style="font-size:24px;font-weight:800;color:var(--navy);">$150,000</p><p>For working capital — payroll, inventory, rent, operating costs</p></div>
+      <div class="card"><div class="card-icon">📊</div><h3>Revenue Limit</h3><p style="font-size:24px;font-weight:800;color:var(--navy);">$10M/year</p><p>Gross annual revenues must be $10M or less</p></div>
+      <div class="card"><div class="card-icon">🏦</div><h3>Rate Cap</h3><p style="font-size:24px;font-weight:800;color:var(--navy);">Prime + 3%</p><p>Lender sets the rate, program caps it. Currently ~6.20%–7.45%</p></div>
+    </div>
+  </div></section>
+
+  <section style="background:var(--surface)"><div class="container">
+    <div class="section-header"><h2>What Can CSBFP Financing Cover?</h2></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🏗️</div><h3>Equipment</h3><p>Purchase new or used equipment — manufacturing, construction, medical, restaurant, technology.</p></div>
+      <div class="card"><div class="card-icon">🏢</div><h3>Real Estate</h3><p>Purchase or improve land and buildings for your business operations.</p></div>
+      <div class="card"><div class="card-icon">🔧</div><h3>Leasehold Improvements</h3><p>Up to $500,000 for renovations and improvements to leased premises.</p></div>
+      <div class="card"><div class="card-icon">💵</div><h3>Working Capital (LOC)</h3><p>Up to $150,000 line of credit for payroll, inventory, rent, and operating expenses.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="container">
+    <div class="section-header"><h2>CSBFP vs. Conventional Business Loans</h2></div>
+    <table class="comparison-table"><thead><tr><th>Feature</th><th>CSBFP Loan</th><th>Conventional Bank Loan</th></tr></thead><tbody>
+      <tr><td>Government guarantee</td><td>✅ Yes (up to 85%)</td><td>❌ No</td></tr>
+      <tr><td>Max term loan</td><td>$1,000,000</td><td>Varies by lender</td></tr>
+      <tr><td>Max line of credit</td><td>$150,000</td><td>Varies by lender</td></tr>
+      <tr><td>Revenue requirement</td><td>Under $10M/year</td><td>Varies</td></tr>
+      <tr><td>Rate cap</td><td>Prime + 3% max</td><td>No cap — market rate</td></tr>
+      <tr><td>Approval difficulty</td><td>Easier (government-backed)</td><td>Harder (full lender risk)</td></tr>
+    </tbody></table>
+  </div></section>
+
+  <div class="container"><div class="cta-banner"><h2>Ready to check your CSBFP eligibility?</h2><p>One assessment. Multiple participating lenders. No obligation.</p><a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a></div></div>
+
+  <section class="faq-section"><div class="container">
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    <details class="faq-item"><summary>What is the Canada Small Business Financing Program (CSBFP)?</summary><div class="answer">The CSBFP is a federal program that makes it easier for small businesses to get loans from financial institutions by sharing the risk with lenders. The government guarantees a portion of the loan, allowing lenders to approve financing they might otherwise decline. As of 2026, the program offers term loans up to $1,000,000 and lines of credit up to $150,000.</div></details>
+    <details class="faq-item"><summary>How much can I borrow under the CSBFP?</summary><div class="answer">The maximum CSBFP loan is $1,000,000 for term loans, of which no more than $500,000 can be used for leasehold improvements and equipment. Lines of credit are available up to $150,000.</div></details>
+    <details class="faq-item"><summary>Who is eligible for the CSBFP?</summary><div class="answer">Your business must: (1) operate in Canada, (2) have gross annual revenues of $10 million or less, (3) be a for-profit business, and (4) use the loan for an eligible purpose. Startups and existing businesses are both eligible.</div></details>
+    <details class="faq-item"><summary>What are the CSBFP interest rates?</summary><div class="answer">CSBFP rates are set by the lender but capped at prime + 3%. As of July 2026, with prime at 4.45%, typical rates range from 6.20% to 7.45%.</div></details>
+  </div></section>
+</div>
+
+<!-- ====== PAGE 7: BUSINESS FUNDING HUB ======
+PRODUCTION SEO SPEC:
+  URL:       /business-funding-canada/  (hub — link to all product pages with real <a> hrefs)
+  Title:     Business Funding Canada — Compare All Options (2026)
+  Meta desc: Compare Canadian business funding: loans, lines of credit, equipment financing, commercial mortgages & government programs. One 3-minute assessment.
+  Canonical: self
+  Schema:    FAQPage, BreadcrumbList, Organization
+====== -->
+<div class="page" id="p7">
+  <header class="site-header"><div class="container header-inner">
+    <a href="#" class="logo"><span class="logo-mark">LS</span><span class="logo-text">LeadSniper <span class="logo-accent">Marketplace</span></span></a>
+    <nav class="main-nav"><a href="#">Funding Options</a><a href="#">How It Works</a><a href="#">Resources</a><a href="#">For Financial Professionals</a><a href="#">Sign In</a></nav>
+    <a href="#assessment" class="btn btn-primary" style="font-size:13px;padding:8px 18px;">Check My Funding Options</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+  </div></header>
+
+  <section class="hero"><div class="container">
+    <h1>Business Funding <span class="gold">Canada</span></h1>
+    <p class="sub">Compare Canadian business funding options — loans, lines of credit, equipment financing, commercial mortgages, acquisition financing, working capital, and government-backed programs. One guided assessment, multiple potential paths.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+      <a href="#options" class="btn btn-secondary btn-lg">Browse Options</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Takes 3–5 minutes</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No obligation</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No credit impact</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Human review</span>
+    </div>
+  </div></section>
+
+  <section id="options"><div class="container">
+    <div class="section-header"><h2>Funding Options at a Glance</h2><p>Choose a category to learn more, or complete the assessment to get matched.</p></div>
+    <div class="card-grid">
+      <div class="card clickable" onclick="showPage('p1')"><div class="card-icon">🔄</div><h3>Business Line of Credit</h3><p>Revolving credit up to $3M. Pay interest only on what you use.</p><p style="margin-top:10px;font-size:12px;color:var(--gold-dark);font-weight:600;">Compare rates →</p></div>
+      <div class="card clickable" onclick="showPage('p2')"><div class="card-icon">🏗️</div><h3>Equipment Financing</h3><p>Finance new or used equipment. Up to 100% financing. Bad credit OK.</p><p style="margin-top:10px;font-size:12px;color:var(--gold-dark);font-weight:600;">Compare lenders →</p></div>
+      <div class="card clickable" onclick="showPage('p3')"><div class="card-icon">🏢</div><h3>Commercial Mortgages</h3><p>CMHC-insured from 4.25%. A-lender, B-lender, and private options.</p><p style="margin-top:10px;font-size:12px;color:var(--gold-dark);font-weight:600;">View rate tables →</p></div>
+      <div class="card clickable" onclick="showPage('p4')"><div class="card-icon">🤝</div><h3>Business Acquisition</h3><p>Senior debt, CSBFP, seller financing, mezzanine — layered deals.</p><p style="margin-top:10px;font-size:12px;color:var(--gold-dark);font-weight:600;">See deal structures →</p></div>
+      <div class="card clickable" onclick="showPage('p5')"><div class="card-icon">💵</div><h3>Working Capital Loans</h3><p>From $5K to $800K. Term loans and lines of credit. Fast approval.</p><p style="margin-top:10px;font-size:12px;color:var(--gold-dark);font-weight:600;">Compare lenders →</p></div>
+      <div class="card clickable" onclick="showPage('p6')"><div class="card-icon">🏛️</div><h3>CSBFP (Government)</h3><p>Government-backed loans up to $1M. Lines of credit up to $150K.</p><p style="margin-top:10px;font-size:12px;color:var(--gold-dark);font-weight:600;">Check eligibility →</p></div>
+    </div>
+  </div></section>
+
+  <section style="background:var(--surface)"><div class="container">
+    <div class="section-header"><h2>What would you like funding to help your business accomplish?</h2></div>
+    <div class="card-grid">
+      <div class="card"><h3>💵 Manage cash flow</h3><p>Cover payroll, rent, and operating expenses during seasonal dips.</p></div>
+      <div class="card"><h3>📦 Purchase inventory</h3><p>Stock up for busy seasons or take advantage of bulk discounts.</p></div>
+      <div class="card"><h3>🚚 Buy equipment or vehicles</h3><p>Finance new or used equipment, trucks, machinery, or technology.</p></div>
+      <div class="card"><h3>📈 Expand or renovate</h3><p>Open a new location, renovate existing space, or expand operations.</p></div>
+      <div class="card"><h3>🏢 Purchase commercial property</h3><p>Buy owner-occupied commercial real estate or investment property.</p></div>
+      <div class="card"><h3>🔄 Refinance or consolidate</h3><p>Restructure existing business debt to reduce payments or free up cash.</p></div>
+      <div class="card"><h3>🤝 Buy a business or franchise</h3><p>Acquire an existing business, franchise, or buy out a partner.</p></div>
+      <div class="card"><h3>📋 Fulfil a large contract</h3><p>Cover costs to deliver a large purchase order or government contract.</p></div>
+      <div class="card"><h3>🏗️ Fund construction</h3><p>Construction or development project financing.</p></div>
+      <div class="card"><h3>🚀 Start a business</h3><p>Startup funding, government programs, grants, or innovation financing.</p></div>
+      <div class="card"><h3>🎁 Access grants & tax credits</h3><p>SR&ED tax credits, government grants, and innovation funding.</p></div>
+      <div class="card"><h3>❓ Something else</h3><p>Tell us what you're trying to accomplish and we'll identify options.</p></div>
+    </div>
+  </div></section>
+
+  <div class="container"><div class="cta-banner"><h2>Find the right funding path for your business</h2><p>One assessment. Multiple potential financing paths. No obligation to proceed.</p><a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a></div></div>
+
+  <section class="faq-section"><div class="container">
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    <details class="faq-item"><summary>How do I get business funding in Canada?</summary><div class="answer">Canadian businesses can access funding through multiple channels: bank loans, government-backed programs like the CSBFP, alternative lenders, equity financing, and government grants. The right path depends on your business stage, revenue, credit profile, and funding purpose.</div></details>
+    <details class="faq-item"><summary>Can I get business funding with bad credit in Canada?</summary><div class="answer">Yes. Several Canadian lenders offer financing for businesses with credit scores as low as 500. Alternative lenders provide equipment financing, working capital loans, and merchant cash advances with bad credit. The CSBFP program is also more accessible.</div></details>
+    <details class="faq-item"><summary>What is the Canada Small Business Financing Program?</summary><div class="answer">The CSBFP is a federal program that helps small businesses get loans from financial institutions by sharing the risk with lenders. It offers term loans up to $1,000,000 and lines of credit up to $150,000 for businesses with under $10M in annual revenue.</div></details>
+  </div></section>
+</div>
+
+<!-- ====== PAGE 8: COMMERCIAL MORTGAGE CANADA ======
+PRODUCTION SEO SPEC:
+  URL:       /commercial-mortgage-canada/
+  Title:     Commercial Mortgage Canada: Requirements & Lender Guide
+  Meta desc: Complete commercial mortgage guide for Canada — lender types, 15–35% down payment rules, DSCR requirements & property types. Compare your options.
+  Canonical: self
+  Schema:    FAQPage, BreadcrumbList, Organization
+  NOTE:      GUIDE-intent page. Overlaps Page 3 — differentiate before ship:
+             remove duplicated rate tables/FAQs, link to Page 3 for rates instead.
+====== -->
+<div class="page" id="p8">
+  <header class="site-header"><div class="container header-inner">
+    <a href="#" class="logo"><span class="logo-mark">LS</span><span class="logo-text">LeadSniper <span class="logo-accent">Marketplace</span></span></a>
+    <nav class="main-nav"><a href="#">Funding Options</a><a href="#">How It Works</a><a href="#">Resources</a><a href="#">For Financial Professionals</a><a href="#">Sign In</a></nav>
+    <a href="#assessment" class="btn btn-primary" style="font-size:13px;padding:8px 18px;">Check My Funding Options</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav(this)"><span></span><span></span><span></span></button>
+  </div></header>
+
+  <section class="hero"><div class="container">
+    <h1>Commercial Mortgage <span class="gold">Canada</span></h1>
+    <p class="sub">A complete guide to commercial mortgages in Canada. Compare lender types, understand down payment and DSCR requirements, and find the right commercial mortgage for your property — from CMHC-insured multi-family to private lender bridge financing.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+      <a href="#" class="btn btn-secondary btn-lg" onclick="showPage('p3');return false;">View Rate Tables</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> All 4 lender types compared</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Requirements checklist</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 6 property types covered</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 15–35% down explained</span>
+    </div>
+  </div></section>
+
+  <section><div class="container">
+    <div class="section-header"><h2>Commercial Mortgage Lender Types in Canada</h2></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🏛️</div><h3>A-Lenders (Major Banks)</h3><p>RBC, TD, BMO, CIBC, Scotiabank, National Bank. Rates 5.00–6.50%. Require 25–35% down, DSCR 1.25x+, credit 680+.</p></div>
+      <div class="card"><div class="card-icon">🏦</div><h3>B-Lenders (Credit Unions)</h3><p>Rates 6.50–8.50%. More flexible criteria — accept lower DSCR (1.15x), smaller down payments (15–25%).</p></div>
+      <div class="card"><div class="card-icon">🏠</div><h3>CMHC-Insured</h3><p>Government-insured for multi-family (5+ units). Rates from 4.25%. Down as low as 20%. Strict eligibility.</p></div>
+      <div class="card"><div class="card-icon">💼</div><h3>Private Lenders</h3><p>Equity-focused, fast approval (5–7 days). Rates 8–14%. Short terms (1–3 years). For credit-challenged or bridge financing.</p></div>
+    </div>
+  </div></section>
+
+  <section style="background:var(--surface)"><div class="container">
+    <div class="section-header"><h2>Commercial Mortgage Requirements</h2></div>
+    <table class="comparison-table"><thead><tr><th>Requirement</th><th>A-Lender</th><th>B-Lender</th><th>CMHC-Insured</th><th>Private</th></tr></thead><tbody>
+      <tr><td>Down Payment</td><td>25–35%</td><td>15–25%</td><td>20%+</td><td>25–35%</td></tr>
+      <tr><td>DSCR</td><td>1.25x+</td><td>1.15x+</td><td>1.20x+</td><td>1.10x+</td></tr>
+      <tr><td>Credit Score</td><td>680+</td><td>600+</td><td>680+</td><td>500+ or N/A</td></tr>
+      <tr><td>Amortization</td><td>20–25 yrs</td><td>20 yrs</td><td>25–30 yrs</td><td>1–3 yrs</td></tr>
+      <tr><td>Rate Tier</td><td class="rate">Low</td><td class="rate">Mid</td><td class="rate">Lowest</td><td class="rate">Highest</td></tr>
+      <tr><td>Approval Time</td><td>2–4 weeks</td><td>2–3 weeks</td><td>3–5 weeks</td><td>5–7 days</td></tr>
+    </tbody></table>
+    <p class="source-note" style="text-align:center;">For current numbers by lender category, see the <a href="#" onclick="showPage('p3');return false;" style="color:var(--gold-dark);font-weight:600;">Commercial Mortgage Rates Canada tables →</a></p>
+    <!-- TODO PRODUCTION: replace onclick with real href to /commercial-mortgage-rates-canada/ -->
+  </div></section>
+
+  <section><div class="container">
+    <div class="section-header"><h2>Documents You'll Need to Apply</h2><p>Commercial mortgage underwriting is document-heavy. Having these ready cuts weeks off approval.</p></div>
+    <ul class="checklist">
+      <li><strong>Business financial statements</strong> — 2–3 years, accountant-prepared (Notice to Reader minimum; Review Engagement preferred for larger loans)</li>
+      <li><strong>Personal net worth statement</strong> — assets, liabilities, and contingent guarantees for each principal owner</li>
+      <li><strong>Property appraisal</strong> — from an AACI-designated appraiser; lender typically orders it, borrower pays</li>
+      <li><strong>Rent roll and leases</strong> — current tenancy schedule with lease terms, renewal options, and arrears (income properties)</li>
+      <li><strong>Purchase agreement or refinance statement</strong> — accepted offer, or current mortgage statement if refinancing</li>
+      <li><strong>Environmental assessment</strong> — Phase I ESA commonly required for industrial, automotive, and fuel-adjacent properties</li>
+      <li><strong>Business plan or property pro forma</strong> — projected income and expenses, especially for owner-occupied or repositioning deals</li>
+    </ul>
+  </div></section>
+
+  <section><div class="container">
+    <div class="section-header"><h2>Property Types We Can Help Finance</h2></div>
+    <div class="card-grid">
+      <div class="card"><h3>🏢 Office Buildings</h3><p>Owner-occupied or investment office properties.</p></div>
+      <div class="card"><h3>🛒 Retail</h3><p>Strip malls, standalone retail, shopping centers.</p></div>
+      <div class="card"><h3>🏭 Industrial</h3><p>Warehouses, manufacturing facilities, distribution centers.</p></div>
+      <div class="card"><h3>🏠 Multi-Family</h3><p>5+ unit residential buildings. CMHC-insured options available.</p></div>
+      <div class="card"><h3>🏨 Hospitality</h3><p>Hotels, motels, bed and breakfasts.</p></div>
+      <div class="card"><h3>🏗️ Mixed-Use</h3><p>Combined residential and commercial properties.</p></div>
+    </div>
+  </div></section>
+
+  <div class="container"><div class="cta-banner"><h2>Ready to explore commercial mortgage options?</h2><p>One assessment. Multiple lender types. No obligation.</p><a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a></div></div>
+
+  <section class="faq-section"><div class="container">
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    <details class="faq-item"><summary>What is a commercial mortgage in Canada?</summary><div class="answer">A commercial mortgage is a loan secured by commercial real estate — office buildings, retail spaces, industrial properties, multi-family residential (5+ units), or mixed-use buildings. Unlike residential mortgages, commercial mortgages are underwritten based on the property's income-generating potential (DSCR) in addition to the borrower's credit.</div></details>
+    <details class="faq-item"><summary>How much down payment do I need for a commercial mortgage in Canada?</summary><div class="answer">Commercial mortgage down payments in Canada typically range from 15% to 35%. A-lenders usually require 25–35% down. B-lenders may accept 15–25%. CMHC-insured multi-family properties can have down payments as low as 20%.</div></details>
+    <details class="faq-item"><summary>What are the requirements for a commercial mortgage in Canada?</summary><div class="answer">Requirements include: 15–35% down payment, DSCR of 1.15x or higher, property appraisal, business financial statements (2–3 years), personal credit score of 680+ (A-lenders), and proof of rental income or business cash flow.</div></details>
+    <details class="faq-item"><summary>Can I get a commercial mortgage from a private lender in Canada?</summary><div class="answer">Yes. Private commercial mortgage lenders in Canada offer financing when traditional banks decline. They focus on property equity rather than borrower credit, with rates typically 8%–14% and terms of 1–3 years. Approval can be as fast as 5–7 days.</div></details>
+  </div></section>
+</div>
+
+<!-- ====== SHARED ASSESSMENT WIDGET (id="assessment" — target of every primary CTA) ======
+TODO PRODUCTION:
+  - Wire "Continue" to the real assessment funnel (this is a step-1 mock; selection should carry into the funnel as pre-fill)
+  - Replace [REVIEWER NAME] placeholder with real reviewer + link to author/credentials page
+  - Add 2-3 REAL attributed testimonials near this section before ship — do not fabricate
+====== -->
+<section class="assessment-section" id="assessment"><div class="container">
+  <div class="assessment-box">
+    <h2>How much funding does your business need?</h2>
+    <p>Start your 3–5 minute assessment. No obligation. No impact on your credit.</p>
+    <div class="amount-options">
+      <button class="amount-btn" onclick="selectAmount(this)">Under $50K</button>
+      <button class="amount-btn" onclick="selectAmount(this)">$50K–$250K</button>
+      <button class="amount-btn" onclick="selectAmount(this)">$250K–$1M</button>
+      <button class="amount-btn" onclick="selectAmount(this)">$1M+</button>
+    </div>
+    <a href="#" class="btn btn-primary btn-lg" onclick="return false;">Continue →</a>
+    <div class="trust-strip">
+      <span>Content reviewed by [REVIEWER NAME], Commercial Financing Specialist</span>
+      <span>Rate data verified July 2026 against lender published rates</span>
+      <span>Your information is never sold</span>
+    </div>
+  </div>
+</div></section>
+
+<!-- ====== SHARED FOOTER (on all pages) ====== -->
+<footer class="site-footer" style="margin-top:0;">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h4>Funding Options</h4><ul>
+        <li><a href="#" onclick="showPage('p1');return false;">Business Line of Credit</a></li>
+        <li><a href="#" onclick="showPage('p2');return false;">Equipment Financing</a></li>
+        <li><a href="#" onclick="showPage('p3');return false;">Commercial Mortgages</a></li>
+        <li><a href="#" onclick="showPage('p4');return false;">Business Acquisition</a></li>
+        <li><a href="#" onclick="showPage('p5');return false;">Working Capital Loans</a></li>
+        <li><a href="#" onclick="showPage('p6');return false;">CSBFP Guide</a></li>
+      </ul></div>
+      <div><h4>Resources</h4><ul><li><a href="#">How It Works</a></li><li><a href="#">Funding Assessment</a></li><li><a href="#">Blog & Guides</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">For Professionals</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LeadSniper Marketplace. Canadian business funding assessment and marketplace.</p>
+      <p class="disclaimer">LeadSniper Marketplace is a funding assessment platform, not a lender. Assessments are preliminary and not offers, approvals, or commitments. Final eligibility is determined by financing providers after complete underwriting.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.ps-tab').forEach(el=>el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector(`.ps-tab[data-page="${id}"]`).classList.add('active');
+  window.scrollTo(0,0);
+}
+function toggleNav(btn){
+  const header = btn.closest('.site-header');
+  const open = header.classList.toggle('nav-open');
+  btn.setAttribute('aria-expanded', open);
+}
+function selectAmount(btn){
+  btn.parentElement.querySelectorAll('.amount-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+</script>
+</body>
+</html>

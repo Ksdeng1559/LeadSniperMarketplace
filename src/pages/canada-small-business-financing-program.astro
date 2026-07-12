@@ -1,0 +1,187 @@
+---
+export const prerender = true;
+import FundingLayout from '../layouts/FundingLayout.astro';
+
+const title = 'Canada Small Business Financing Program (CSBFP) 2026 | Complete Guide';
+const description = 'Complete guide to the Canada Small Business Financing Program (CSBFP). Government-backed loans up to $1M, lines of credit up to $150K. Eligibility, rates, lenders, and how to apply. Check your options.';
+const canonicalPath = '/canada-small-business-financing-program';
+const keyword = 'canada small business financing program';
+
+const faqs = [
+  { q: 'What is the Canada Small Business Financing Program (CSBFP)?', a: 'The CSBFP is a federal program that makes it easier for small businesses to get loans from financial institutions by sharing the risk with lenders. The government guarantees a portion of the loan, allowing lenders to approve financing they might otherwise decline. As of 2026, the program offers term loans up to $1,000,000 and lines of credit up to $150,000 — a combined maximum of $1,150,000 per borrower — for eligible small businesses with under $10 million in annual revenue. Over the past 10 years, small businesses have received over 53,000 CSBFP loans totalling more than $11 billion.' },
+  { q: 'How much can I borrow under the CSBFP?', a: 'The maximum total CSBFP financing per borrower is $1,150,000. This includes: up to $1,000,000 for term loans (of which max $500,000 for equipment and leasehold improvements, and of that a max $150,000 for intangible assets and working capital costs), PLUS up to $150,000 for lines of credit (over and above the working capital available under the term loan). The loan amount is negotiated between you and your lender.' },
+  { q: 'Who is eligible for the Canada Small Business Financing Program?', a: 'Most start-ups and existing for-profit, not-for-profit, and charitable small businesses in Canada with gross annual revenues of $10 million or less are eligible. Businesses can be corporations, sole proprietors, partnerships, or cooperatives. Farming businesses are not eligible (use the Canadian Agricultural Loans Act program instead). The loan cannot be used for share purchases or assets acquired by a holding company.' },
+  { q: 'What are the CSBFP interest rates?', a: 'CSBFP interest rates are set by the lender but capped by the program. For term loans: floating rate max is the lender\'s prime rate plus 3%; fixed rate max is the lender\'s single family residential mortgage rate plus 3%. For lines of credit: the maximum rate is the lender\'s prime rate plus 5%. As of July 2026, with prime at 4.45%, typical term loan rates range from 6.45% to 7.45%, and line of credit rates up to 9.45%. The program also charges a 2% registration fee (financed as part of the loan) and a 1.25% annual administration fee on end-of-month balances.' },
+  { q: 'What are the maximum loan terms under the CSBFP?', a: 'For term loans: the maximum term (government coverage period) is 15 years for loans financing real property, leasehold improvements, equipment, intangible assets, and working capital costs. For lines of credit: the maximum term is 5 years, beginning the day after the line of credit is opened. Before the end of 5 years, you can re-register for a new 5-year period, convert the balance to a CSBFP term loan (max 10-year coverage at prime + 5%), or repay with a conventional loan.' },
+  { q: 'Which lenders offer CSBFP loans?', a: 'Most major Canadian banks and many credit unions offer CSBFP loans, including RBC, TD, BMO, CIBC, Scotiabank, National Bank, and many credit unions and caisses populaires. RBC offers a dedicated CSBF Line of Credit product — a 2-way revolving LOC that automatically deposits funds into your operating account when it runs low. Not all institutions currently offer the line of credit product; many are still rolling it out. Contact any participating financial institution to apply.' },
+  { q: 'What can I use a CSBFP loan for?', a: 'Term loans can finance: purchase or improvement of land and buildings for commercial use, new or used equipment (including commercial vehicles), leasehold improvements, intangible assets (franchise fees, goodwill, permits, capitalized R&D), working capital costs (inventory, payroll, rent, professional fees, software), and the registration fee. Lines of credit can finance working capital costs and the registration fee. The loan cannot be used for share purchases or assets acquired by a holding company.' },
+  { q: 'Can I purchase an existing business under the CSBFP?', a: 'Yes. The purchase of eligible assets of an existing business may qualify for CSBFP financing. You may finance the lesser of the cost of purchase and the appraised value of the eligible assets. Contact your financial institution before committing to appraisal expenses to ensure all other requirements are met.' },
+  { q: 'How do I apply for a CSBFP loan?', a: 'Present your business plan directly to any bank, credit union, or caisse populaire in Canada. The financial institution reviews your proposal and makes the approval decision — ISED does not get involved in the decision. If approved, the lender disburses the funds and registers the loan with ISED. You can find a participating lender near you at the ISED lender map. The money you receive is from the financial institution, not the government.' },
+  { q: 'What is the eligible expenditures time period?', a: 'For term loans, expenditures or commitments can be financed if they arise no more than 365 days prior to the date the term loan is approved. For lines of credit, expenditures must arise or be invoiced no more than 365 days prior to the date the line of credit was authorized. The registration period is 6 months from the date of first disbursement (term loans) or from the date the LOC is opened.' },
+];
+
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: description, author: { '@type': 'Organization', name: 'LeadSniper Marketplace' }, publisher: { '@type': 'Organization', name: 'LeadSniper Marketplace' }, datePublished: '2026-07-12', dateModified: '2026-07-12', about: 'Canada Small Business Financing Program (CSBFP) — eligibility, rates, lenders, loan limits' }
+];
+---
+
+<FundingLayout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} keyword={keyword}>
+<section class="hero">
+  <div class="container">
+    <h1>Canada Small Business Financing Program <span class="gold">(CSBFP)</span></h1>
+    <p class="sub">The complete guide to Canada's government-backed small business financing program. Term loans up to $1,000,000, lines of credit up to $150,000 — a combined maximum of $1,150,000 per borrower. Find out if you're eligible and compare participating lenders.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Check My CSBFP Eligibility</a>
+      <a href="#how-it-works" class="btn btn-secondary btn-lg">How It Works</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to $1M term loan</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to $150K line of credit</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Government-guaranteed</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Revenue under $10M</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-header"><h2>CSBFP at a Glance</h2></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">💰</div><h3>Max Total Financing</h3><p style="font-size: 24px; font-weight: 800; color: var(--navy);">$1,150,000</p><p>Combined max per borrower — $1M term loan + $150K line of credit</p></div>
+      <div class="card"><div class="card-icon">🔄</div><h3>Max Line of Credit</h3><p style="font-size: 24px; font-weight: 800; color: var(--navy);">$150,000</p><p>For working capital — payroll, inventory, rent, operating costs. 5-year term.</p></div>
+      <div class="card"><div class="card-icon">📊</div><h3>Revenue Limit</h3><p style="font-size: 24px; font-weight: 800; color: var(--navy);">$10M/year</p><p>Gross annual revenues must be $10M or less</p></div>
+      <div class="card"><div class="card-icon">🏦</div><h3>Rate Caps</h3><p style="font-size: 20px; font-weight: 800; color: var(--navy);">Prime + 3% / + 5%</p><p>Term loans: prime + 3%. Lines of credit: prime + 5%. 2% registration fee + 1.25% admin fee.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header"><h2>What Can CSBFP Financing Cover?</h2></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🏗️</div><h3>Equipment</h3><p>Purchase new or used equipment — manufacturing, construction, medical, restaurant, technology.</p></div>
+      <div class="card"><div class="card-icon">🏢</div><h3>Real Estate</h3><p>Purchase or improve land and buildings for your business operations.</p></div>
+      <div class="card"><div class="card-icon">🔧</div><h3>Leasehold Improvements</h3><p>Up to $500,000 for renovations and improvements to leased premises.</p></div>
+      <div class="card"><div class="card-icon">💵</div><h3>Working Capital (LOC)</h3><p>Up to $150,000 line of credit for payroll, inventory, rent, and operating expenses.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-header"><h2>Participating Lenders</h2></div>
+    <table class="comparison-table">
+      <thead><tr><th>Lender</th><th>CSBFP Product</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>RBC</strong></td><td>CSBF Line of Credit</td><td>2-way revolving LOC up to $150K. Automatic deposits when operating account is low.</td></tr>
+        <tr><td><strong>TD</strong></td><td>CSBFP Term Loan</td><td>Term loans for equipment, real estate, and improvements.</td></tr>
+        <tr><td><strong>BMO</strong></td><td>CSBFP Loan</td><td>Government-backed financing for eligible small businesses.</td></tr>
+        <tr><td><strong>CIBC</strong></td><td>CSBFP Loan</td><td>Term loans and lines of credit under the program.</td></tr>
+        <tr><td><strong>Scotiabank</strong></td><td>CSBFP Financing</td><td>Equipment financing and working capital solutions.</td></tr>
+        <tr><td><strong>National Bank</strong></td><td>CSBFP Loan</td><td>Term financing for eligible small businesses.</td></tr>
+        <tr><td><strong>Credit Unions</strong></td><td>CSBFP Loans</td><td>Many regional credit unions participate. Check with your local credit union.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header"><h2>CSBFP vs. Conventional Business Loans</h2></div>
+    <table class="comparison-table">
+      <thead><tr><th>Feature</th><th>CSBFP Loan</th><th>Conventional Bank Loan</th></tr></thead>
+      <tbody>
+        <tr><td>Government guarantee</td><td>✅ Yes (up to 85%)</td><td>❌ No</td></tr>
+        <tr><td>Max total per borrower</td><td>$1,150,000</td><td>Varies by lender</td></tr>
+        <tr><td>Max term loan</td><td>$1,000,000</td><td>Varies by lender</td></tr>
+        <tr><td>Max line of credit</td><td>$150,000</td><td>Varies by lender</td></tr>
+        <tr><td>Max term (term loans)</td><td>15 years</td><td>Varies (typically 5–10)</td></tr>
+        <tr><td>Max term (line of credit)</td><td>5 years (renewable)</td><td>Varies</td></tr>
+        <tr><td>Revenue requirement</td><td>Under $10M/year</td><td>Varies</td></tr>
+        <tr><td>Term loan rate cap</td><td>Prime + 3% (floating) or mortgage rate + 3% (fixed)</td><td>No cap — market rate</td></tr>
+        <tr><td>Line of credit rate cap</td><td>Prime + 5%</td><td>No cap — market rate</td></tr>
+        <tr><td>Registration fee</td><td>2% of loan amount (can be financed)</td><td>Varies</td></tr>
+        <tr><td>Annual administration fee</td><td>1.25% on end-of-month balances</td><td>None</td></tr>
+        <tr><td>Eligible expenditures window</td><td>365 days prior to approval</td><td>Varies</td></tr>
+        <tr><td>Registration period</td><td>6 months from first disbursement</td><td>Varies</td></tr>
+        <tr><td>Eligible business types</td><td>For-profit, not-for-profit, charitable, co-ops</td><td>Varies</td></tr>
+        <tr><td>Not eligible</td><td>Farming, share purchases, holding company assets</td><td>Varies</td></tr>
+        <tr><td>Approval difficulty</td><td>Easier (government-backed)</td><td>Harder (full lender risk)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-header"><h2>Interest Rates & Fees</h2><p>All rates are set by the lender but capped by the CSBFP program. Fees are standardized.</p></div>
+    <table class="comparison-table">
+      <thead><tr><th>Fee / Rate</th><th>Term Loans</th><th>Lines of Credit</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Interest rate (floating)</strong></td><td class="rate">Prime + 3% max</td><td class="rate">Prime + 5% max</td></tr>
+        <tr><td><strong>Interest rate (fixed)</strong></td><td class="rate">Residential mortgage rate + 3% max</td><td>N/A (floating only)</td></tr>
+        <tr><td><strong>Registration fee</strong></td><td>2% of total loan amount (can be financed)</td><td>2% of authorized amount (can be financed)</td></tr>
+        <tr><td><strong>Annual administration fee</strong></td><td>1.25% on end-of-month loan balances</td><td>1.25% on daily outstanding or average daily balance per month</td></tr>
+        <tr><td><strong>Lender fees</strong></td><td>Same as conventional loans (set-up, renewal). Cannot be financed.</td><td>Same as conventional loans. Cannot be financed.</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 16px; font-size: 13px; color: var(--text-light);">As of July 2026, prime rate is 4.45%. Typical term loan rates: 6.45%–7.45%. Line of credit rates: up to 9.45%. Rates are for comparison only and are not offers or commitments.</p>
+  </div>
+</section>
+
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header"><h2>Loan Terms & Security</h2></div>
+    <div class="card-grid">
+      <div class="card"><h3>Term Loan Duration</h3><p>Maximum 15-year government coverage period for all term loans (real property, leasehold improvements, equipment, intangible assets, working capital costs).</p></div>
+      <div class="card"><h3>Line of Credit Duration</h3><p>Maximum 5-year term. Renewable options: re-register for new 5-year period, convert to term loan (max 10-year coverage at prime + 5%), or repay with conventional loan.</p></div>
+      <div class="card"><h3>Security — Term Loans</h3><p>Real property & equipment: security on assets financed. Leasehold improvements, software, intangible assets, working capital: General Security Agreement on any business assets.</p></div>
+      <div class="card"><h3>Security — Lines of Credit</h3><p>Lender must take security on any business assets for the authorized amount (e.g., General Security Agreement).</p></div>
+      <div class="card"><h3>Personal Guarantee</h3><p>Lenders have the option to take an unsecured personal guarantee. Guarantor can be released if loan is in good standing (50% principal repayment condition removed since 2022).</p></div>
+      <div class="card"><h3>Eligible Expenditures</h3><p>Expenditures can be financed if they arise no more than 365 days before loan approval (term loans) or LOC authorization. Registration within 6 months of first disbursement.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-header"><h2>Program Track Record</h2></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">📈</div><h3>53,000+</h3><p style="font-size: 24px; font-weight: 800; color: var(--navy);">CSBFP Loans</p><p>Over the past 10 years</p></div>
+      <div class="card"><div class="card-icon">💰</div><h3>$11 Billion+</h3><p style="font-size: 24px; font-weight: 800; color: var(--navy);">Total Financing</p><p>Disbursed to small businesses over 10 years</p></div>
+      <div class="card"><div class="card-icon">🏛️</div><h3>2022</h3><p style="font-size: 24px; font-weight: 800; color: var(--navy);">Major Enhancement</p><p>New LOC product, increased limits, 15-year terms, reduced admin burden</p></div>
+      <div class="card"><div class="card-icon">📞</div><h3>1-866-959-1699</h3><p style="font-size: 20px; font-weight: 800; color: var(--navy);">Program Info Line</p><p>Or email: csbfp-pfpec@ised-isde.gc.ca</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works">
+  <div class="container">
+    <div class="section-header"><h2>How to Apply for CSBFP Financing</h2></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Check eligibility</h3><p>Operating in Canada, under $10M revenue, for-profit business.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Complete assessment</h3><p>Tell us what you need financing for and your business profile.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Get matched</h3><p>We identify participating CSBFP lenders that fit your needs.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Human review</h3><p>A team member reviews before connecting you with a lender.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="cta-banner">
+  <h2>Ready to check your CSBFP eligibility?</h2>
+  <p>One assessment. Multiple participating lenders. No obligation.</p>
+  <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+</div></div>
+
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    {faqs.map(f => (<details class="faq-item"><summary>{f.q}</summary><div class="answer">{f.a}</div></details>))}
+  </div>
+</section>
+
+<section style="padding: 32px 0; background: var(--navy); color: rgba(255,255,255,0.5);">
+  <div class="container"><p style="font-size: 13px; text-align: center;">These are preliminary financing categories for discussion. They are not offers, approvals, commitments, rates, or guarantees. Final eligibility and terms are determined by financing providers after complete underwriting. LeadSniper Marketplace is a funding assessment platform, not a lender.</p></div>
+</section>
+</FundingLayout>

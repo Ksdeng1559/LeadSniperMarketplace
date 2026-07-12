@@ -1,0 +1,131 @@
+---
+export const prerender = true;
+import FundingLayout from '../layouts/FundingLayout.astro';
+
+const title = 'Business Funding Canada 2026 | Compare Financing Options';
+const description = 'Compare Canadian business funding options — loans, lines of credit, equipment financing, commercial mortgages, acquisition financing, working capital, and government-backed programs. One assessment, multiple paths.';
+const canonicalPath = '/business-funding-canada';
+const keyword = 'business funding canada';
+
+const faqs = [
+  { q: 'How do I get business funding in Canada?', a: 'Canadian businesses can access funding through multiple channels: (1) Bank loans and lines of credit from RBC, TD, BMO, CIBC, Scotiabank, (2) Government-backed programs like the CSBFP (up to $1M) and BDC financing, (3) Alternative lenders with faster approval, (4) Equity financing from angels and VCs, (5) Government grants and tax credits. The right path depends on your business stage, revenue, credit profile, and funding purpose. Our assessment helps identify which options fit your situation.' },
+  { q: 'What funding is available for small businesses in Canada?', a: 'Small businesses in Canada can access: CSBFP government-backed loans up to $1M, BDC financing, business lines of credit up to $3M, equipment financing up to 100% of asset value, working capital loans from $5K–$800K, commercial mortgages from 4.25% (CMHC-insured), invoice financing, and government grants. Startups can access CSBFP, startup-specific programs, and alternative lenders.' },
+  { q: 'Can I get business funding with bad credit in Canada?', a: 'Yes. Several Canadian lenders offer financing for businesses with credit scores as low as 500. Alternative lenders provide equipment financing, working capital loans, and merchant cash advances with bad credit. The CSBFP program is also more accessible because the government guarantees a portion of the loan. Expect higher rates (12–25%) and larger down payments with bad credit.' },
+  { q: 'What is the Canada Small Business Financing Program?', a: 'The CSBFP is a federal program that helps small businesses get loans from financial institutions by sharing the risk with lenders. It offers term loans up to $1,000,000 and lines of credit up to $150,000 for businesses with under $10M in annual revenue. The government guarantees up to 85% of the loan, making approval easier than conventional financing.' },
+];
+
+const fundingOptions = [
+  { icon: '🔄', name: 'Business Line of Credit', desc: 'Revolving credit up to $3M. Pay interest only on what you use.', url: '/business-line-of-credit-canada', kd: 'KD 4', sv: '320/mo' },
+  { icon: '🏗️', name: 'Equipment Financing', desc: 'Finance new or used equipment. Up to 100% financing. Bad credit OK.', url: '/equipment-financing-canada', kd: 'KD 9', sv: '480/mo' },
+  { icon: '🏢', name: 'Commercial Mortgages', desc: 'CMHC-insured from 4.25%. A-lender, B-lender, and private options.', url: '/commercial-mortgage-rates-canada', kd: 'KD 6', sv: '390/mo' },
+  { icon: '🤝', name: 'Business Acquisition', desc: 'Senior debt, CSBFP, seller financing, mezzanine — layered deals.', url: '/business-acquisition-financing', kd: 'KD 7', sv: '90/mo' },
+  { icon: '💵', name: 'Working Capital Loans', desc: 'From $5K to $800K. Term loans and lines of credit. Fast approval.', url: '/working-capital-loans-canada', kd: 'KD 10', sv: '70/mo' },
+  { icon: '🏛️', name: 'CSBFP (Government)', desc: 'Government-backed loans up to $1M. Lines of credit up to $150K.', url: '/canada-small-business-financing-program', kd: 'KD 19', sv: '2,900/mo' },
+  { icon: '🏛️', name: 'BDC Small Business Loan', desc: 'Up to $350K online. Two-tier: fast approval under $100K or flexible terms up to $350K.', url: '/working-capital-loans-canada', kd: 'BDC', sv: 'Up to $350K' },
+];
+
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: description, author: { '@type': 'Organization', name: 'LeadSniper Marketplace' }, publisher: { '@type': 'Organization', name: 'LeadSniper Marketplace' }, datePublished: '2026-07-12', dateModified: '2026-07-12', about: 'Business funding in Canada — comprehensive comparison of all financing options' }
+];
+---
+
+<FundingLayout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} keyword={keyword}>
+<section class="hero">
+  <div class="container">
+    <h1>Business Funding <span class="gold">Canada</span></h1>
+    <p class="sub">Compare Canadian business funding options — loans, lines of credit, equipment financing, commercial mortgages, acquisition financing, working capital, and government-backed programs. One guided assessment, multiple potential paths.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Find My Funding Options</a>
+      <a href="#options" class="btn btn-secondary btn-lg">Browse Options</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Takes 3–5 minutes</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No obligation</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No credit impact</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Human review</span>
+    </div>
+  </div>
+</section>
+
+<section id="options">
+  <div class="container">
+    <div class="section-header"><h2>Funding Options at a Glance</h2><p>Choose a category to learn more, or complete the assessment to get matched.</p></div>
+    <div class="card-grid">
+      {fundingOptions.map(o => (
+        <a href={o.url} class="card" style="text-decoration: none; color: inherit;">
+          <div class="card-icon">{o.icon}</div>
+          <h3>{o.name}</h3>
+          <p>{o.desc}</p>
+          <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dark); font-weight: 600;">{o.kd} · {o.sv} →</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- BDC Trust Section -->
+<section style="background: var(--navy); color: #fff;">
+  <div class="container">
+    <div class="section-header">
+      <h2>BDC <span class="gold">by the numbers</span></h2>
+      <p style="color: rgba(255,255,255,0.7);">Canada's Business Development Bank — a federal Crown corporation supporting entrepreneurs across the country.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);"><h3 style="color: var(--gold); font-size: 2rem;">100,000+</h3><p style="color: rgba(255,255,255,0.8);">Entrepreneurs BDC works with across Canada</p></div>
+      <div class="card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);"><h3 style="color: var(--gold); font-size: 2rem;">$55.4B</h3><p style="color: rgba(255,255,255,0.8);">Committed exclusively to business owners</p></div>
+      <div class="card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);"><h3 style="color: var(--gold); font-size: 2rem;">93%</h3><p style="color: rgba(255,255,255,0.8);">Client satisfaction rate</p></div>
+      <div class="card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);"><h3 style="color: var(--gold); font-size: 2rem;">$435B</h3><p style="color: rgba(255,255,255,0.8);">Revenues generated by BDC clients</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header"><h2>What would you like funding to help your business accomplish?</h2></div>
+    <div class="card-grid">
+      <div class="card"><h3>💵 Manage cash flow</h3><p>Cover payroll, rent, and operating expenses during seasonal dips.</p></div>
+      <div class="card"><h3>📦 Purchase inventory</h3><p>Stock up for busy seasons or take advantage of bulk discounts.</p></div>
+      <div class="card"><h3>🚚 Buy equipment or vehicles</h3><p>Finance new or used equipment, trucks, machinery, or technology.</p></div>
+      <div class="card"><h3>📈 Expand or renovate</h3><p>Open a new location, renovate existing space, or expand operations.</p></div>
+      <div class="card"><h3>🏢 Purchase commercial property</h3><p>Buy owner-occupied commercial real estate or investment property.</p></div>
+      <div class="card"><h3>🔄 Refinance or consolidate</h3><p>Restructure existing business debt to reduce payments or free up cash.</p></div>
+      <div class="card"><h3>🤝 Buy a business or franchise</h3><p>Acquire an existing business, franchise, or buy out a partner.</p></div>
+      <div class="card"><h3>📋 Fulfil a large contract</h3><p>Cover costs to deliver a large purchase order or government contract.</p></div>
+      <div class="card"><h3>🏗️ Fund construction</h3><p>Construction or development project financing.</p></div>
+      <div class="card"><h3>🚀 Start a business</h3><p>Startup funding, government programs, grants, or innovation financing.</p></div>
+      <div class="card"><h3>🎁 Access grants & tax credits</h3><p>SR&ED tax credits, government grants, and innovation funding.</p></div>
+      <div class="card"><h3>❓ Something else</h3><p>Tell us what you're trying to accomplish and we'll identify options.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-header"><h2>How It Works</h2></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Tell us your goal</h3><p>What you need funding for, how much, and when.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Complete the assessment</h3><p>Business profile, revenue, operating history, location.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Receive potential paths</h3><p>We identify relevant product categories and flag preparation steps.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Human review</h3><p>A team member reviews before matching you with a financing professional.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="cta-banner">
+  <h2>Find the right funding path for your business</h2>
+  <p>One assessment. Multiple potential financing paths. No obligation to proceed.</p>
+  <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+</div></div>
+
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+    {faqs.map(f => (<details class="faq-item"><summary>{f.q}</summary><div class="answer">{f.a}</div></details>))}
+  </div>
+</section>
+
+<section style="padding: 32px 0; background: var(--navy); color: rgba(255,255,255,0.5);">
+  <div class="container"><p style="font-size: 13px; text-align: center;">These are preliminary financing categories for discussion. They are not offers, approvals, commitments, rates, or guarantees. Final eligibility and terms are determined by financing providers after complete underwriting. LeadSniper Marketplace is a funding assessment platform, not a lender.</p></div>
+</section>
+</FundingLayout>

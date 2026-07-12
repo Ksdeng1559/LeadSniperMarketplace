@@ -1,0 +1,201 @@
+---
+export const prerender = true;
+import FundingLayout from '../layouts/FundingLayout.astro';
+
+const title = 'Business Line of Credit Canada 2026 | Compare Rates & Options';
+const description = 'Compare business lines of credit in Canada. See current rates from BMO, RBC, Scotiabank, TD, CIBC and alternative lenders. Secured, unsecured, and CSBFP-backed options. Check your options in 3–5 minutes.';
+const canonicalPath = '/business-line-of-credit-canada';
+const keyword = 'business line of credit canada';
+
+// PAA questions from live SERP
+const faqs = [
+  { q: 'What is a business line of credit in Canada?', a: 'A business line of credit is a revolving credit facility that lets you borrow up to a pre-set limit, repay, and borrow again. You only pay interest on the amount you use, not the full limit. In Canada, lines of credit are available from major banks, credit unions, and alternative lenders, with limits ranging from $5,000 to $3 million depending on your business profile and collateral.' },
+  { q: 'Can I get a line of credit on a business account in Canada?', a: 'Yes. Canadian banks and credit unions offer business lines of credit on business accounts. You can apply as a sole proprietor, partnership, or corporation. Most lenders require bank statements, financial statements, and proof of business operations. The Canada Small Business Financing Program (CSBFP) also offers government-backed lines of credit up to $150,000 for eligible small businesses.' },
+  { q: 'How much interest is on a $100,000 line of credit?', a: 'Interest on a $100,000 business line of credit depends on the rate. At 7% prime + 1% (8% effective), you would pay approximately $667/month in interest if you carry the full $100,000 balance. You only pay interest on the drawn amount, not the credit limit. Rates typically range from 5.95% to 16.35% depending on whether the line is secured or unsecured.' },
+  { q: 'What is the monthly payment on a $50,000 line of credit?', a: 'Business lines of credit typically require interest-only payments on the drawn balance. On a $50,000 draw at 7.94%, your monthly interest payment would be approximately $331. Some lenders require a small principal repayment (1–3% of the drawn balance) in addition to interest. Full repayment is usually required when the term ends or when the line is converted to a term loan.' },
+  { q: 'What credit score do I need for a business line of credit in Canada?', a: 'Most Canadian banks require a personal credit score of 680+ for a business line of credit. Alternative lenders may accept scores as low as 500, but with higher interest rates. The CSBFP-backed line of credit has more flexible requirements since the government guarantees a portion of the loan. Your business credit profile, time in business, and annual revenue also factor into approval.' },
+  { q: 'What is the difference between a secured and unsecured business line of credit?', a: 'A secured line of credit is backed by business assets (accounts receivable, inventory, equipment, or real estate) and typically offers lower rates (5.95%–7.94%). An unsecured line requires no collateral but carries higher rates (9%–16.35%) and lower limits. The CSBFP line of credit is partially government-guaranteed, offering rates between secured and unsecured options.' },
+];
+
+// Rate data from live SERP AI Overview (July 2026)
+const rates = [
+  { lender: 'BMO', type: 'Secured', rate: 'From 6.45%', maxAmount: 'Up to $500K', notes: 'Credit Line for Business — flexible draw and repay' },
+  { lender: 'CIBC', type: 'Unsecured', rate: '5.95%–17.45%', maxAmount: 'Up to $250K', notes: 'Bizline Visa Card for smaller operations' },
+  { lender: 'RBC', type: 'CSBFP-backed', rate: '7.35%–16.35%', maxAmount: 'Up to $150K', notes: 'Canada Small Business Financing Line of Credit' },
+  { lender: 'Scotiabank', type: 'Unsecured', rate: 'From 7.94%', maxAmount: 'Up to $500K', notes: 'ScotiaLine for Business — revolving credit' },
+  { lender: 'TD', type: 'Secured/Unsecured', rate: 'Variable', maxAmount: 'Up to $500K', notes: 'Small Business Line of Credit — secured or unsecured' },
+  { lender: 'Alternative Lenders', type: 'Varies', rate: '9%–18%', maxAmount: '$10K–$500K', notes: 'Faster approval (1–3 days), higher rates, flexible criteria' },
+  { lender: 'CSBFP (Government)', type: 'Government-backed', rate: 'Prime + 1.75%–3%', maxAmount: 'Up to $150K', notes: 'For businesses with <$10M revenue. 2-way revolving credit.' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a }
+    }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    author: { '@type': 'Organization', name: 'LeadSniper Marketplace' },
+    publisher: { '@type': 'Organization', name: 'LeadSniper Marketplace' },
+    datePublished: '2026-07-12',
+    dateModified: '2026-07-12',
+    about: 'Business lines of credit in Canada — rates, types, eligibility, and comparison'
+  }
+];
+---
+
+<FundingLayout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} keyword={keyword}>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Business Line of Credit <span class="gold">Canada</span></h1>
+    <p class="sub">Compare current rates from Canada's major banks, credit unions, and alternative lenders. Find the right line of credit for your business — secured, unsecured, or CSBFP-backed. One guided assessment, multiple potential paths.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Find My Funding Options</a>
+      <a href="/how-it-works" class="btn btn-secondary btn-lg">How It Works</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Takes 3–5 minutes</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No obligation</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No impact on credit</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Human review before matching</span>
+    </div>
+  </div>
+</section>
+
+<!-- Rate Comparison Table -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <h2>Current Business Line of Credit Rates in Canada</h2>
+      <p>Updated July 2026. Rates shown are starting rates — your actual rate depends on credit profile, collateral, time in business, and revenue.</p>
+    </div>
+    <table class="rate-table">
+      <thead>
+        <tr>
+          <th>Lender</th>
+          <th>Type</th>
+          <th>Rate Range</th>
+          <th>Max Amount</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rates.map(r => (
+          <tr>
+            <td><strong>{r.lender}</strong></td>
+            <td><span class={`badge ${r.type === 'Secured' || r.type === 'Government-backed' ? 'badge-low' : r.type === 'Unsecured' ? 'badge-high' : 'badge-med'}`}>{r.type}</span></td>
+            <td class="rate">{r.rate}</td>
+            <td>{r.maxAmount}</td>
+            <td>{r.notes}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p style="margin-top: 16px; font-size: 13px; color: var(--text-light);">Rates are for comparison only. Final rates are set by the lender after underwriting. The prime rate as of July 2026 is 4.45%.</p>
+  </div>
+</section>
+
+<!-- Types of LOC -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Types of Business Lines of Credit in Canada</h2>
+      <p>Three main categories — each with different rates, requirements, and use cases.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🔐</div>
+        <h3>Secured Line of Credit</h3>
+        <p>Backed by business assets — accounts receivable, inventory, equipment, or real estate. Lower rates (5.95%–7.94%), higher limits (up to $3M+). Best for established businesses with assets to pledge.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔓</div>
+        <h3>Unsecured Line of Credit</h3>
+        <p>No collateral required. Higher rates (9%–16.35%), lower limits (up to $250K–$500K). Best for businesses with strong credit but few hard assets. Faster approval process.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <h3>CSBFP-Backed Line of Credit</h3>
+        <p>Government-guaranteed through the Canada Small Business Financing Program. Up to $150K for working capital. Available to businesses with under $10M in annual revenue. Competitive rates, flexible requirements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <h2>How to Get a Business Line of Credit</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Tell us your goal</h3>
+        <p>What you need funding for, how much, and when. Takes 2 minutes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Complete the assessment</h3>
+        <p>Business profile, revenue, time in business, location. 3–5 minutes total.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Receive potential paths</h3>
+        <p>We identify relevant line of credit categories and flag preparation steps.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Human review</h3>
+        <p>A qualified team member reviews before matching you with a financing professional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<div class="container">
+  <div class="cta-banner">
+    <h2>Ready to check your line of credit options?</h2>
+    <p>One assessment. Multiple potential lenders. No obligation to proceed.</p>
+    <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    {faqs.map(f => (
+      <details class="faq-item">
+        <summary>{f.q}</summary>
+        <div class="answer">{f.a}</div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section style="padding: 32px 0; background: var(--navy); color: rgba(255,255,255,0.5);">
+  <div class="container">
+    <p style="font-size: 13px; text-align: center;">
+      These are preliminary financing categories for discussion. They are not offers, approvals, commitments, rates, or guarantees.
+      Final eligibility and terms are determined by financing providers after complete underwriting.
+      LeadSniper Marketplace is a funding assessment platform, not a lender.
+    </p>
+  </div>
+</section>
+
+</FundingLayout>

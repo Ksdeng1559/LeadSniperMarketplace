@@ -8,3 +8,8 @@ dist/
 .convex/
 coverage/
 .DS_Store
+
+# Local research/workspace artifacts
+SEO/
+.sixth/
+.claude/settings.local.json

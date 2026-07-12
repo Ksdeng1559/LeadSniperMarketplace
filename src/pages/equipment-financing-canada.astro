@@ -1,0 +1,201 @@
+---
+export const prerender = true;
+import FundingLayout from '../layouts/FundingLayout.astro';
+
+const title = 'Equipment Financing Canada 2026 | Compare Lenders & Rates';
+const description = 'Compare equipment financing in Canada. New and used equipment loans, heavy equipment leasing, bad credit options. Rates from BDC, BMO, Scotiabank, and alternative lenders. Check your options in 3–5 minutes.';
+const canonicalPath = '/equipment-financing-canada';
+const keyword = 'equipment financing canada';
+
+const faqs = [
+  { q: 'Who has the best equipment financing in Canada?', a: 'The best equipment financing depends on your needs. BDC offers government-backed equipment loans covering up to 125% of the purchase price. BMO and Scotiabank offer competitive rates for established businesses. Alternative lenders like Greenbox Capital and Canadian Equipment Finance provide faster approval (24–48 hours) for businesses with challenged credit. Compare rates, terms, and approval criteria using our assessment tool.' },
+  { q: 'What credit score is needed for equipment financing in Canada?', a: 'Most Canadian banks require a credit score of 680+ for equipment financing. Alternative lenders may accept scores as low as 500, but with higher rates. The equipment itself serves as collateral, which can make approval easier than an unsecured loan. No-credit-check equipment financing is available from some alternative lenders, though rates are significantly higher.' },
+  { q: 'Is it hard to get equipment financing in Canada?', a: 'Equipment financing is generally easier to obtain than unsecured business loans because the equipment serves as collateral. If you have been in business for 2+ years, can demonstrate revenue, and the equipment has resale value, approval is likely. Businesses with bad credit or limited operating history can still qualify through alternative lenders, though rates will be higher.' },
+  { q: 'What is the $40,000 small business loan in Canada?', a: 'The $40,000 reference is likely the Canada Small Business Financing Program (CSBFP), which offers government-backed loans and lines of credit up to $1,000,000 for term loans and $150,000 for lines of credit. The CSBFP helps small businesses with under $10M in annual revenue access financing by sharing the risk with lenders.' },
+  { q: 'Can I finance used equipment in Canada?', a: 'Yes. Many Canadian lenders finance used equipment, including heavy machinery, vehicles, and restaurant equipment. BDC finances used equipment up to 125% of purchase price. Alternative lenders like Canadian Equipment Finance and Northpoint Commercial Finance specialize in used equipment financing. Rates for used equipment are typically 1–3% higher than new equipment.' },
+  { q: 'Can I get equipment financing with bad credit in Canada?', a: 'Yes. Several alternative lenders in Canada offer equipment financing for businesses with bad credit (scores as low as 500). No-credit-check options are available but carry significantly higher rates (12%–25%). The equipment serves as collateral, reducing the lender's risk. Expect larger down payments (10–25%) and shorter terms with bad credit equipment financing.' },
+];
+
+const lenders = [
+  { name: 'BDC', type: 'Government Crown Corp', rate: 'From 6.5%', maxAmount: 'Up to 125% of equipment value', approval: '1–2 weeks', notes: 'New or used equipment. Flexible terms up to 7 years.' },
+  { name: 'BMO', type: 'Major Bank', rate: 'From 7%', maxAmount: 'Up to $2M', approval: '2–4 weeks', notes: 'Equipment financing & leasing. Wide asset types.' },
+  { name: 'Scotiabank', type: 'Major Bank', rate: 'From 7.5%', maxAmount: 'Up to 100% financing', approval: '2–4 weeks', notes: 'Up to 100% financing to free up cash flow.' },
+  { name: 'National Bank', type: 'Major Bank', rate: 'From 7%', maxAmount: 'Varies', approval: '2–4 weeks', notes: 'Flexible leasing and financing for buy or sell.' },
+  { name: 'Canadian Equipment Finance', type: 'Alt Lender', rate: '8%–18%', maxAmount: '$25K–$500K', approval: '24–48 hours', notes: 'BC and Ontario. 100% financing available.' },
+  { name: 'Equipment Finance Canada', type: 'Alt Lender', rate: '8%–20%', maxAmount: 'Varies', approval: '24 hours', notes: 'New or used. Loan decision within 24 hours.' },
+  { name: 'Greenbox Capital', type: 'Alt Lender', rate: '9%–22%', maxAmount: '$10K–$500K', approval: '1–3 days', notes: 'Small business equipment loans. Bad credit OK.' },
+  { name: 'Northpoint Commercial Finance', type: 'Commercial Finance', rate: 'Custom', maxAmount: 'Varies', approval: '1–2 weeks', notes: 'Acquisition, sale, and refinancing of equipment.' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a }
+    }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    author: { '@type': 'Organization', name: 'LeadSniper Marketplace' },
+    publisher: { '@type': 'Organization', name: 'LeadSniper Marketplace' },
+    datePublished: '2026-07-12',
+    dateModified: '2026-07-12',
+    about: 'Equipment financing in Canada — lender comparison, rates, bad credit options, and eligibility'
+  }
+];
+---
+
+<FundingLayout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} keyword={keyword}>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Equipment Financing <span class="gold">Canada</span></h1>
+    <p class="sub">Compare equipment financing and leasing options from Canadian banks, crown corporations, and alternative lenders. New or used equipment, heavy machinery, vehicles, and specialized assets. Bad credit options available.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Find My Funding Options</a>
+      <a href="#lenders" class="btn btn-secondary btn-lg">Compare Lenders</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> New or used equipment</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Bad credit OK</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% financing available</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 24-hour decisions from alt lenders</span>
+    </div>
+  </div>
+</section>
+
+<!-- Lender Comparison -->
+<section id="lenders">
+  <div class="container">
+    <div class="section-header">
+      <h2>Equipment Financing Lenders in Canada</h2>
+      <p>Compare major banks, crown corporations, and alternative lenders. Rates and terms vary by equipment type, credit profile, and business history.</p>
+    </div>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Lender</th>
+          <th>Type</th>
+          <th>Rate</th>
+          <th>Max Amount</th>
+          <th>Approval Time</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {lenders.map(l => (
+          <tr>
+            <td><strong>{l.name}</strong></td>
+            <td>{l.type}</td>
+            <td class="rate">{l.rate}</td>
+            <td>{l.maxAmount}</td>
+            <td>{l.approval}</td>
+            <td>{l.notes}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Equipment Types -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>What Can You Finance?</h2>
+      <p>From heavy machinery to restaurant ovens — if it has resale value, a lender will finance it.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🏗️</div><h3>Heavy Equipment</h3><p>Excavators, loaders, bulldozers, cranes. BDC and Northpoint specialize in heavy equipment financing with terms up to 7 years.</p></div>
+      <div class="card"><div class="card-icon">🚚</div><h3>Trucks & Vehicles</h3><p>Commercial trucks, delivery vans, fleet vehicles. Scotiabank and BMO offer up to 100% financing for commercial vehicles.</p></div>
+      <div class="card"><div class="card-icon">🍳</div><h3>Restaurant Equipment</h3><p>Ovens, refrigeration, POS systems, furniture. Alternative lenders offer fast approval for restaurant equipment.</p></div>
+      <div class="card"><div class="card-icon">🏭</div><h3>Manufacturing</h3><p>CNC machines, lathes, presses, production lines. BDC covers up to 125% of purchase price for manufacturing equipment.</p></div>
+      <div class="card"><div class="card-icon">🏥</div><h3>Medical & Dental</h3><p>Imaging equipment, dental chairs, lab instruments. Specialized lenders offer practice-specific financing terms.</p></div>
+      <div class="card"><div class="card-icon">💻</div><h3>Technology & IT</h3><p>Servers, workstations, software systems. Technology financing often includes software and installation costs.</p></div>
+      <div class="card"><div class="card-icon">🚜</div><h3>Farm Equipment</h3><p>Tractors, combines, irrigation systems. Farm Credit Canada and BDC offer specialized agricultural equipment financing.</p></div>
+      <div class="card"><div class="card-icon">🌲</div><h3>Forestry Equipment</h3><p>Harvesters, forwarders, skidders. Specialty lenders understand forestry equipment valuation and seasonality.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Bad Credit Section -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <h2>Equipment Financing With Bad Credit</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h3>credit score 500+</h3>
+        <p>Alternative lenders accept scores from 500. The equipment serves as collateral, reducing lender risk. Expect rates of 12%–22% and down payments of 10–25%.</p>
+      </div>
+      <div class="card">
+        <h3>No credit check</h3>
+        <p>Some alternative lenders offer no-credit-check equipment financing, basing approval on business revenue and equipment value. Rates are higher (15%–25%) but approval is fast.</p>
+      </div>
+      <div class="card">
+        <h3>Used equipment</h3>
+        <p>Financing used equipment is often easier with bad credit because the purchase price is lower, reducing the lender's exposure. Used heavy equipment financing is available from specialist lenders.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>How to Get Equipment Financing</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Tell us what you need</h3><p>Equipment type, purchase price, new or used, and timeline.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Complete the assessment</h3><p>Business profile, revenue, time in business, credit range.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Get matched</h3><p>We identify lenders that fit your equipment type and credit profile.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Human review</h3><p>A team member reviews before connecting you with a financing professional.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="container">
+  <div class="cta-banner">
+    <h2>Ready to finance your equipment?</h2>
+    <p>One assessment. Multiple lenders. No obligation.</p>
+    <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    {faqs.map(f => (
+      <details class="faq-item">
+        <summary>{f.q}</summary>
+        <div class="answer">{f.a}</div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section style="padding: 32px 0; background: var(--navy); color: rgba(255,255,255,0.5);">
+  <div class="container">
+    <p style="font-size: 13px; text-align: center;">
+      These are preliminary financing categories for discussion. They are not offers, approvals, commitments, rates, or guarantees.
+      Final eligibility and terms are determined by financing providers after complete underwriting.
+      LeadSniper Marketplace is a funding assessment platform, not a lender.
+    </p>
+  </div>
+</section>
+
+</FundingLayout>

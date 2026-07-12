@@ -1,0 +1,253 @@
+---
+export const prerender = true;
+import FundingLayout from '../layouts/FundingLayout.astro';
+
+const title = 'Commercial Mortgage Rates Canada 2026 | Compare Lenders';
+const description = 'Compare current commercial mortgage rates in Canada. CMHC-insured from 4.25%, conventional A-lender 5.00–6.50%, B-lender 6.50–8.50%. Rate tables, calculators, and down payment guidance. Check your options.';
+const canonicalPath = '/commercial-mortgage-rates-canada';
+const keyword = 'canada commercial mortgage rates';
+
+const faqs = [
+  { q: 'What is the interest rate on a commercial mortgage in Canada?', a: 'As of July 2026, commercial mortgage rates in Canada range from 4.25% to 8.50%. CMHC-insured multi-family rates start at 4.25%–5.25%. Conventional A-lender rates range from 5.00% to 6.50%. B-lender financing ranges from 6.50% to 8.50%. The prime rate is currently 4.45%. Your actual rate depends on property type, loan-to-value (LTV), debt service coverage ratio (DSCR), and borrower credit.' },
+  { q: 'What is the lowest interest rate for commercial property in Canada?', a: 'The lowest commercial mortgage rates are CMHC-insured multi-family residential properties, starting at 4.25%. These rates are available for properties with 5+ residential units where the borrower qualifies for CMHC insurance. Conventional commercial mortgages start at 5.00% for A-lender financing with strong LTV (65% or lower) and DSCR (1.25x or higher).' },
+  { q: 'How much down payment do I need for a commercial mortgage in Canada?', a: 'Commercial mortgage down payments in Canada typically range from 15% to 35% of the property value. A-lenders usually require 25–35% down. B-lenders may accept 15–25% down but with higher rates. CMHC-insured multi-family properties can have down payments as low as 20%. The exact amount depends on property type, borrower credit, and lender requirements.' },
+  { q: 'What are the requirements for a commercial mortgage in Canada?', a: 'Canadian commercial mortgage requirements typically include: 15–35% down payment, debt service coverage ratio (DSCR) of 1.20x or higher, property appraisal, environmental assessment (for certain property types), business financial statements (2–3 years), personal credit score of 680+, and proof of rental income or business cash flow. Requirements vary by lender type (A-lender, B-lender, private).' },
+  { q: 'What is the difference between a commercial and residential mortgage in Canada?', a: 'Commercial mortgages carry 0.50% to 2.00% higher rates than residential mortgages due to increased risk. They require larger down payments (15–35% vs 5–20%), shorter amortization periods (20–25 years vs 25–30 years), and stricter DSCR requirements. Commercial mortgages are underwritten based on the property's income-generating potential, not just the borrower's personal income.' },
+  { q: 'Can I get a commercial mortgage from a private lender in Canada?', a: 'Yes. Private commercial mortgage lenders in Canada offer financing when traditional banks decline. Private lenders focus on property equity rather than borrower credit, with rates typically 8%–14% and terms of 1–3 years. They are suited for short-term bridge financing, credit-challenged borrowers, or non-traditional property types. Approval can be as fast as 5–7 days.' },
+  { q: 'What is the difference between a commercial mortgage and a commercial real estate loan?', a: 'A commercial mortgage is a loan secured by a commercial property (collateral), typically used to purchase, refinance, or renovate property, requiring a down payment of 20–35% with terms of 5–25 years. A commercial real estate loan (like BDC product) is more flexible — it can cover property costs plus related expenses like construction, renovation, or downpayments, may finance up to 100% of project costs, and can offer interest-only periods up to 36 months. Key difference: mortgages are property-specific with significant down payments, while loans offer broader financing with less upfront capital.' },
+  { q: 'What is BDC Commercial Real Estate Loan?', a: 'BDC (Business Development Bank of Canada) offers a Commercial Real Estate Loan with unique flexibility: up to 85% loan-to-value (higher than most banks), amortization up to 25 years, interest-only payments for up to the first 36 months, and financing of up to 100% of project cost (covering expenses like moving costs and downpayments). Loans start at $100,000 and go to several million. BDC does not publish rates — they customize based on your business financial health. BDC will not change terms or demand early repayment without valid reason. Note: BDC loan does not cover private schools, retirement homes, or residential-zoned projects.' },
+  { q: 'How long does it take to get approved for a commercial mortgage in Canada?', a: 'Approval timelines vary by lender type: A-lenders (major banks) typically take 2–4 weeks. B-lenders (credit unions) take 2–3 weeks. CMHC-insured mortgages take 3–5 weeks due to additional government review. Private lenders can approve in 5–7 days. BDC Commercial Real Estate Loan requires submitting a loan request online, then a representative calls to discuss the project — approval time depends on project complexity and how quickly you provide required documents.' },
+];
+
+const rateTable = [
+  { category: 'CMHC-Insured (Multi-family)', rateRange: '4.25% – 5.25%', ltv: 'Up to 80%', minDSCR: '1.20x', notes: '5+ residential units, CMHC-insured' },
+  { category: 'Conventional A-Lender', rateRange: '5.00% – 6.50%', ltv: 'Up to 65%', minDSCR: '1.25x', notes: 'Banks (RBC, TD, BMO, CIBC, Scotiabank)' },
+  { category: 'B-Lender', rateRange: '6.50% – 8.50%', ltv: 'Up to 75%', minDSCR: '1.15x', notes: 'Credit unions, mono-line lenders' },
+  { category: 'Private Lender', rateRange: '8.00% – 14.00%', ltv: 'Up to 75%', minDSCR: '1.10x', notes: 'Short-term, equity-focused, fast approval' },
+  { category: 'Bridge Financing', rateRange: '8.00% – 12.00%', ltv: 'Up to 75%', minDSCR: 'N/A', notes: 'Short-term gap financing, 6–12 months' },
+];
+
+const lenders = [
+  { name: 'RBC', type: 'A-Lender', notes: 'Variable and fixed rate commercial mortgages, competitive terms' },
+  { name: 'TD', type: 'A-Lender', notes: 'Commercial mortgages with flexible amortization options' },
+  { name: 'BMO', type: 'A-Lender', notes: 'Commercial mortgage solutions for owner-occupied and investment' },
+  { name: 'CIBC', type: 'A-Lender', notes: 'Commercial mortgages $1M–$40M, competitive rates' },
+  { name: 'Scotiabank', type: 'A-Lender', notes: 'Commercial mortgages with fixed/variable rate options' },
+  { name: 'National Bank', type: 'A-Lender', notes: 'Commercial real estate financing, acquisition financing' },
+  { name: 'BDC', type: 'Crown Corp', notes: 'Commercial Real Estate Loan — up to 85% LTV, 25-year amortization, interest-only up to 36 months, up to 100% project cost. Min $100K.' },
+  { name: 'Credit Unions', type: 'B-Lender', notes: 'Sunrise CU, Prospera, Innovation CU — competitive regional rates' },
+  { name: 'Private Lenders', type: 'Private', notes: 'Equity-focused, fast approval (5–7 days), short terms' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a }
+    }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    author: { '@type': 'Organization', name: 'LeadSniper Marketplace' },
+    publisher: { '@type': 'Organization', name: 'LeadSniper Marketplace' },
+    datePublished: '2026-07-12',
+    dateModified: '2026-07-12',
+    about: 'Commercial mortgage rates in Canada — rate comparison, lender types, down payment, requirements'
+  }
+];
+---
+
+<FundingLayout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} keyword={keyword}>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Commercial Mortgage Rates <span class="gold">Canada</span></h1>
+    <p class="sub">Compare current commercial mortgage rates from A-lenders, B-lenders, CMHC-insured, and private lenders. Rate tables, down payment guidance, and DSCR requirements. One assessment, multiple potential paths.</p>
+    <div class="hero-cta">
+      <a href="#assessment" class="btn btn-primary btn-lg">Find My Funding Options</a>
+      <a href="#rates" class="btn btn-secondary btn-lg">View Rate Table</a>
+    </div>
+    <div class="hero-reassurance">
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> CMHC-insured from 4.25%</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> A-lender 5.00–6.50%</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Private lender options</span>
+      <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No obligation</span>
+    </div>
+  </div>
+</section>
+
+<!-- Rate Table -->
+<section id="rates">
+  <div class="container">
+    <div class="section-header">
+      <h2>Current Commercial Mortgage Rates in Canada</h2>
+      <p>Updated July 2026. Prime rate: 4.45%. Rates shown are ranges — your actual rate depends on property type, LTV, DSCR, and credit profile.</p>
+    </div>
+    <table class="rate-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Rate Range</th>
+          <th>Max LTV</th>
+          <th>Min DSCR</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rateTable.map(r => (
+          <tr>
+            <td><strong>{r.category}</strong></td>
+            <td class="rate">{r.rateRange}</td>
+            <td>{r.ltv}</td>
+            <td>{r.minDSCR}</td>
+            <td>{r.notes}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p style="margin-top: 16px; font-size: 13px; color: var(--text-light);">LTV = Loan-to-Value ratio. DSCR = Debt Service Coverage Ratio. Rates are for comparison only and are not offers or commitments.</p>
+  </div>
+</section>
+
+<!-- Lender Types -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Types of Commercial Mortgage Lenders in Canada</h2>
+      <p>Four tiers of lenders — each with different rates, requirements, and approval speed.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <h3>A-Lenders (Major Banks)</h3>
+        <p>RBC, TD, BMO, CIBC, Scotiabank, National Bank. Rates 5.00–6.50%. Require 25–35% down, DSCR 1.25x+, credit 680+. Best for established businesses with strong credit and income-producing properties.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏦</div>
+        <h3>B-Lenders (Credit Unions)</h3>
+        <p>Credit unions and mono-line lenders. Rates 6.50–8.50%. More flexible criteria — accept lower DSCR (1.15x), smaller down payments (15–25%). Good for borrowers who don't quite meet A-lender standards.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h3>CMHC-Insured</h3>
+        <p>Government-insured for multi-family residential (5+ units). Rates from 4.25%. Down payments as low as 20%. Lowest rates but strict property and borrower eligibility requirements.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💼</div>
+        <h3>Private Lenders</h3>
+        <p>Equity-focused, fast approval (5–7 days). Rates 8–14%. Short terms (1–3 years). For credit-challenged borrowers, non-traditional properties, or short-term bridge financing. Focus on property equity, not credit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Down Payment & Requirements -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <h2>Down Payment & Requirements</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card"><h3>Down Payment</h3><p>A-lenders: 25–35%<br>B-lenders: 15–25%<br>CMHC-insured: 20%+<br>Private: 25–35%<br>BDC: May finance up to 100% of project cost</p></div>
+      <div class="card"><h3>DSCR</h3><p>A-lenders: 1.25x+<br>B-lenders: 1.15x+<br>Private: 1.10x+<br>CMHC: 1.20x+<br>BDC: Based on project viability</p></div>
+      <div class="card"><h3>Credit Score</h3><p>A-lenders: 680+<br>B-lenders: 600+<br>Private: 500+ or N/A<br>CMHC: 680+<br>BDC: Good track record (no specific minimum)</p></div>
+      <div class="card"><h3>Amortization</h3><p>A-lenders: 20–25 years<br>B-lenders: 20 years<br>Private: 1–3 years<br>CMHC: 25–30 years<br>BDC: Up to 25 years</p></div>
+      <div class="card"><h3>Documentation</h3><p>Property appraisal<br>Environmental assessment<br>2–3 years financials<br>Rental income proof<br>BDC: Business plan + projections</p></div>
+      <div class="card"><h3>Property Types</h3><p>Owner-occupied<br>Multi-family residential<br>Retail / Office<br>Industrial / Mixed-use<br>BDC: No residential-zoned, schools, or retirement homes</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BDC Highlight -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>BDC Commercial Real Estate Loan — A Flexible Alternative</h2>
+      <p>BDC (Business Development Bank of Canada) is a federal Crown corporation that complements traditional banks with more flexible commercial real estate financing.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">📈</div><h3>Higher LTV</h3><p>BDC starts at 85% loan-to-value — higher than most traditional banks (typically 65–75%). This means less upfront capital required from you.</p></div>
+      <div class="card"><div class="card-icon">⏳</div><h3>Interest-Only Period</h3><p>Pay only interest for up to the first 36 months of your loan. Eases cash flow during construction, renovation, or ramp-up periods.</p></div>
+      <div class="card"><div class="card-icon">💰</div><h3>Up to 100% Project Cost</h3><p>BDC can finance up to 100% of project cost, covering not just the property but also moving costs, renovations, and downpayments.</p></div>
+      <div class="card"><div class="card-icon">📅</div><h3>25-Year Amortization</h3><p>Longer amortization than most banks (typically 20 years), reducing monthly payments and protecting your working capital.</p></div>
+      <div class="card"><div class="card-icon">🔄</div><h3>Repayment Flexibility</h3><p>Match payments to your cash flow cycle. Seasonal repayment schedules and principal payment holidays available.</p></div>
+      <div class="card"><div class="card-icon">🛡️</div><h3>Term Stability</h3><p>BDC will not change terms and conditions or demand early repayment without a valid reason. Long-term commitment to your business.</p></div>
+    </div>
+    <table class="comparison-table" style="margin-top: 24px;">
+      <thead><tr><th>Feature</th><th>BDC Commercial Real Estate Loan</th><th>Traditional Bank Commercial Mortgage</th></tr></thead>
+      <tbody>
+        <tr><td>LTV</td><td class="rate">Up to 85%</td><td>Typically 65–75%</td></tr>
+        <tr><td>Down payment</td><td class="rate">May finance up to 100% of project cost</td><td>20–35% required</td></tr>
+        <tr><td>Interest-only period</td><td class="rate">Up to 36 months</td><td>Rarely offered</td></tr>
+        <tr><td>Amortization</td><td class="rate">Up to 25 years</td><td>Typically 20 years or less</td></tr>
+        <tr><td>Repayment flexibility</td><td class="rate">Seasonal schedules, principal holidays</td><td>Fixed monthly payments</td></tr>
+        <tr><td>Rates</td><td>Customized per client (not published)</td><td>Published rate sheets</td></tr>
+        <tr><td>Min loan amount</td><td>$100,000</td><td>Varies (often $250K+)</td></tr>
+        <tr><td>Construction financing</td><td class="rate">Included in the loan</td><td>Often a separate product</td></tr>
+        <tr><td>Working capital</td><td class="rate">Can replenish working capital depleted by real estate costs</td><td>Separate application</td></tr>
+        <tr><td>Advice & consulting</td><td class="rate">500+ consultants included</td><td>Not typically included</td></tr>
+        <tr><td>Exclusions</td><td>No private schools, retirement homes, residential-zoned projects</td><td>Varies</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 16px; font-size: 13px; color: var(--text-light);">BDC eligibility: Business registered in Canada, 24+ months generating revenue, profitability, good credit track record. BDC looks at overall financial health and growth potential, not just credit score.</p>
+  </div>
+</section>
+
+<!-- Steps -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <h2>How to Get a Commercial Mortgage</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Tell us your property</h3><p>Property type, purchase price, location, intended use.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Complete the assessment</h3><p>Business profile, revenue, existing financing, property details.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Get matched</h3><p>We identify which lender tier fits your property and profile.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Human review</h3><p>A team member reviews before connecting you with a mortgage professional.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="container">
+  <div class="cta-banner">
+    <h2>Ready to compare commercial mortgage options?</h2>
+    <p>One assessment. Multiple lender types. No obligation.</p>
+    <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    {faqs.map(f => (
+      <details class="faq-item">
+        <summary>{f.q}</summary>
+        <div class="answer">{f.a}</div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section style="padding: 32px 0; background: var(--navy); color: rgba(255,255,255,0.5);">
+  <div class="container">
+    <p style="font-size: 13px; text-align: center;">
+      These are preliminary financing categories for discussion. They are not offers, approvals, commitments, rates, or guarantees.
+      Final eligibility and terms are determined by financing providers after complete underwriting.
+      LeadSniper Marketplace is a funding assessment platform, not a lender.
+    </p>
+  </div>
+</section>
+
+</FundingLayout>
