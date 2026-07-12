@@ -22,6 +22,12 @@ The public SEO acquisition layer is deployed: a funding-first homepage plus eigh
 
 Planned next: a two-stage assessment and discovery funnel behind `/funding-assessment`, followed by consent-aware receipt, scheduling, human/AI discovery, and qualified-opportunity routing. The Convex marketplace, authentication, and payments are not yet built. See the implementation plans and order below.
 
+## Ownership and notice
+
+© 2026 KlickSmartAI.com and Eng & Associates Commercial Financing Solutions Inc. All rights reserved.
+
+LeadSniper Marketplace is a technology and lead-qualification platform, not a lender. Financing assessments are preliminary and are not offers, approvals, or commitments. Rates, terms, eligibility, and final approval are determined by financing providers following complete underwriting.
+
 ## Getting started
 
 ```bash
