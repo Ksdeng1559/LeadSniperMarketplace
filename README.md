@@ -2,6 +2,51 @@
 
 A multi-tenant financial lead-generation, qualification, distribution, and commerce platform for residential mortgages, business loans, commercial financing, and related professional services.
 
+**Live site:** <https://leadsniper-marketplace.vercel.app> — auto-deploys from `main`.
+
+## What's live now
+
+The public SEO acquisition layer is deployed: a funding-first homepage plus eight prerendered Canadian business-funding pages, all sharing `FundingLayout` (navy/gold design system, JSON-LD structured data, lead attribution, mobile nav, and a shared assessment entry widget).
+
+| Page | Path |
+|------|------|
+| Homepage | `/` |
+| Business Funding Hub | `/business-funding-canada` |
+| Business Line of Credit | `/business-line-of-credit-canada` |
+| Equipment Financing | `/equipment-financing-canada` |
+| Commercial Mortgage Rates (rates intent) | `/commercial-mortgage-rates-canada` |
+| Commercial Mortgage Guide (guide intent) | `/commercial-mortgage-canada` |
+| Business Acquisition Financing | `/business-acquisition-financing` |
+| Working Capital Loans | `/working-capital-loans-canada` |
+| CSBFP Guide | `/canada-small-business-financing-program` |
+
+Not yet built: the assessment funnel behind the widget (`/funding-assessment`), the Convex marketplace, auth, and payments. See implementation order below.
+
+## Getting started
+
+```bash
+npm install
+npm run dev        # local dev server (astro dev)
+npm run build      # astro check + astro build
+npm test           # vitest (domain logic)
+npm run check      # astro check + tsc --noEmit
+```
+
+## Deployment
+
+- **Host:** Vercel project `leadsniper-marketplace`, connected to this GitHub repository — every push to `main` deploys to production automatically.
+- **Adapter:** `@astrojs/vercel@^8` (pinned — v9+ requires Astro 6+; this repo is Astro 5). Do not bump without upgrading Astro.
+- **Rendering:** `output: "server"` with `export const prerender = true` on every current page. SEO pages ship as static HTML; server output is reserved for the future assessment funnel and API routes.
+- **Environment:** no env vars required for the current static pages. `.env.example` lists the variables for later phases (Convex, auth, Stripe, CRM).
+- **Domain:** `leadsniperai.ca` is the canonical domain hardcoded in `FundingLayout` but not yet connected in Vercel.
+
+## Content and research directories
+
+- `src/pages/` + `src/layouts/FundingLayout.astro` + `src/components/` — the live SEO site
+- `preview/` — standalone single-file HTML preview of the SEO pages with per-page production SEO specs (titles, meta descriptions, URL slugs) in comments
+- `knowledge-base/` — source research (BDC, CSBFP program terms) feeding page copy
+- Rate data on pages is dated **July 2026** and must be re-verified against lender published rates on a recurring cadence
+
 ## Product model
 
 LeadSniper Marketplace supports four operating paths:
@@ -215,7 +260,13 @@ Create the monorepo, shared tooling, TypeScript configuration, testing, continuo
 
 ## Repository status
 
-This repository currently contains the product and technical requirements for the platform. The next implementation milestone is **Phase 0A: Interpretive Contextual Workspace Foundation**, including the goal and loop workflows.
+The public Astro SEO website (homepage + eight Canadian business-funding pages) is implemented and deployed to Vercel with continuous deployment from `main`. Domain logic scaffolding (`src/domain/distribution.ts`) and the Convex schema exist with passing tests.
+
+Next implementation milestones:
+
+1. **Assessment funnel** — the intake flow behind the `#assessment` widget (`/funding-assessment`), carrying `window.__leadAttribution` (keyword, landing page, amount band) into structured intake with consent capture.
+2. **E-E-A-T completion** — real reviewer byline, attributed testimonials, and author/credentials page (placeholders are marked `TODO PRODUCTION` in `src/components/AssessmentWidget.astro`).
+3. **Phase 0A governance workspace** (below) before marketplace, auth, or payment features.
 
 ## Documentation
 
