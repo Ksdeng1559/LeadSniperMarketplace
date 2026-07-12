@@ -1,0 +1,76 @@
+---
+// Shared assessment entry widget — target of every "#assessment" CTA.
+// TODO PRODUCTION: wire Continue to the real assessment funnel and carry
+// the selected amount + window.__leadAttribution into it as pre-fill.
+// TODO PRODUCTION: replace [REVIEWER NAME] with a real reviewer + credentials page.
+---
+
+<section class="assessment-section" id="assessment">
+  <div class="container">
+    <div class="assessment-box">
+      <h2>How much funding does your business need?</h2>
+      <p class="assessment-sub">Start your 3–5 minute assessment. No obligation. No impact on your credit.</p>
+      <div class="amount-options" role="group" aria-label="Funding amount">
+        <button type="button" class="amount-btn" data-amount="under-50k">Under $50K</button>
+        <button type="button" class="amount-btn" data-amount="50k-250k">$50K–$250K</button>
+        <button type="button" class="amount-btn" data-amount="250k-1m">$250K–$1M</button>
+        <button type="button" class="amount-btn" data-amount="1m-plus">$1M+</button>
+      </div>
+      <a href="/funding-assessment" class="btn btn-primary btn-lg assessment-continue">Continue &rarr;</a>
+      <div class="trust-strip">
+        <span>Content reviewed by [REVIEWER NAME], Commercial Financing Specialist</span>
+        <span>Rate data verified July 2026 against lender published rates</span>
+        <span>Your information is never sold</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .assessment-section {
+    background: linear-gradient(135deg, var(--navy), var(--navy-2));
+    padding: 64px 0;
+    color: #fff;
+  }
+  .assessment-box {
+    max-width: 720px; margin: 0 auto; text-align: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius); padding: 40px;
+  }
+  .assessment-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; margin-bottom: 8px;
+  }
+  .assessment-sub { color: rgba(255,255,255,0.7); margin-bottom: 24px; }
+  .amount-options {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin-bottom: 24px;
+  }
+  .amount-btn {
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,255,255,0.15);
+    color: #fff; padding: 16px 12px; border-radius: var(--radius);
+    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .amount-btn:hover { border-color: var(--gold); }
+  .amount-btn.selected { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .trust-strip {
+    display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: center;
+    margin-top: 24px; font-size: 12.5px; color: rgba(255,255,255,0.5);
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.amount-options').forEach((group) => {
+    group.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.amount-btn');
+      if (!btn) return;
+      group.querySelectorAll('.amount-btn').forEach((b) => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      (window as any).__leadAttribution = (window as any).__leadAttribution || {};
+      (window as any).__leadAttribution.amountBand = (btn as HTMLElement).dataset.amount;
+    });
+  });
+</script>

@@ -15,13 +15,13 @@ const faqs = [
 ];
 
 const fundingOptions = [
-  { icon: '🔄', name: 'Business Line of Credit', desc: 'Revolving credit up to $3M. Pay interest only on what you use.', url: '/business-line-of-credit-canada', kd: 'KD 4', sv: '320/mo' },
-  { icon: '🏗️', name: 'Equipment Financing', desc: 'Finance new or used equipment. Up to 100% financing. Bad credit OK.', url: '/equipment-financing-canada', kd: 'KD 9', sv: '480/mo' },
-  { icon: '🏢', name: 'Commercial Mortgages', desc: 'CMHC-insured from 4.25%. A-lender, B-lender, and private options.', url: '/commercial-mortgage-rates-canada', kd: 'KD 6', sv: '390/mo' },
-  { icon: '🤝', name: 'Business Acquisition', desc: 'Senior debt, CSBFP, seller financing, mezzanine — layered deals.', url: '/business-acquisition-financing', kd: 'KD 7', sv: '90/mo' },
-  { icon: '💵', name: 'Working Capital Loans', desc: 'From $5K to $800K. Term loans and lines of credit. Fast approval.', url: '/working-capital-loans-canada', kd: 'KD 10', sv: '70/mo' },
-  { icon: '🏛️', name: 'CSBFP (Government)', desc: 'Government-backed loans up to $1M. Lines of credit up to $150K.', url: '/canada-small-business-financing-program', kd: 'KD 19', sv: '2,900/mo' },
-  { icon: '🏛️', name: 'BDC Small Business Loan', desc: 'Up to $350K online. Two-tier: fast approval under $100K or flexible terms up to $350K.', url: '/working-capital-loans-canada', kd: 'BDC', sv: 'Up to $350K' },
+  { icon: '🔄', name: 'Business Line of Credit', desc: 'Revolving credit up to $3M. Pay interest only on what you use.', url: '/business-line-of-credit-canada', cta: 'Compare rates' },
+  { icon: '🏗️', name: 'Equipment Financing', desc: 'Finance new or used equipment. Up to 100% financing. Bad credit OK.', url: '/equipment-financing-canada', cta: 'Compare lenders' },
+  { icon: '🏢', name: 'Commercial Mortgages', desc: 'CMHC-insured from 4.25%. A-lender, B-lender, and private options.', url: '/commercial-mortgage-rates-canada', cta: 'View rate tables' },
+  { icon: '🤝', name: 'Business Acquisition', desc: 'Senior debt, CSBFP, seller financing, mezzanine — layered deals.', url: '/business-acquisition-financing', cta: 'See deal structures' },
+  { icon: '💵', name: 'Working Capital Loans', desc: 'From $5K to $800K. Term loans and lines of credit. Fast approval.', url: '/working-capital-loans-canada', cta: 'Compare lenders' },
+  { icon: '🏛️', name: 'CSBFP (Government)', desc: 'Government-backed loans up to $1M. Lines of credit up to $150K.', url: '/canada-small-business-financing-program', cta: 'Check eligibility' },
+  { icon: '🏛️', name: 'BDC Small Business Loan', desc: 'Up to $350K online. Two-tier: fast approval under $100K or flexible terms up to $350K.', url: '/working-capital-loans-canada', cta: 'Compare options' },
 ];
 
 const jsonLd = [
@@ -36,7 +36,7 @@ const jsonLd = [
     <h1>Business Funding <span class="gold">Canada</span></h1>
     <p class="sub">Compare Canadian business funding options — loans, lines of credit, equipment financing, commercial mortgages, acquisition financing, working capital, and government-backed programs. One guided assessment, multiple potential paths.</p>
     <div class="hero-cta">
-      <a href="#assessment" class="btn btn-primary btn-lg">Find My Funding Options</a>
+      <a href="#assessment" class="btn btn-primary btn-lg">Check My Funding Options</a>
       <a href="#options" class="btn btn-secondary btn-lg">Browse Options</a>
     </div>
     <div class="hero-reassurance">
@@ -57,7 +57,7 @@ const jsonLd = [
           <div class="card-icon">{o.icon}</div>
           <h3>{o.name}</h3>
           <p>{o.desc}</p>
-          <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dark); font-weight: 600;">{o.kd} · {o.sv} →</p>
+          <p style="margin-top: 10px; font-size: 12px; color: var(--gold-dark); font-weight: 600;">{o.cta} →</p>
         </a>
       ))}
     </div>
