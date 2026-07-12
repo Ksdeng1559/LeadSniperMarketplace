@@ -20,7 +20,7 @@ The public SEO acquisition layer is deployed: a funding-first homepage plus eigh
 | Working Capital Loans | `/working-capital-loans-canada` |
 | CSBFP Guide | `/canada-small-business-financing-program` |
 
-Not yet built: the assessment funnel behind the widget (`/funding-assessment`), the Convex marketplace, auth, and payments. See implementation order below.
+Planned next: a two-stage assessment and discovery funnel behind `/funding-assessment`, followed by consent-aware receipt, scheduling, human/AI discovery, and qualified-opportunity routing. The Convex marketplace, authentication, and payments are not yet built. See the implementation plans and order below.
 
 ## Getting started
 
@@ -57,6 +57,45 @@ LeadSniper Marketplace supports four operating paths:
 4. **Cross-professional** — distributed as a separately consented opportunity to accountants, lawyers, benefits specialists, insurance advisors, wealth advisors, and other approved professionals.
 
 A single source inquiry may create multiple legitimate service opportunities. Each opportunity must maintain separate consent, pricing, buyer eligibility, access control, distribution status, and outcome tracking.
+
+
+## Progressive intake and voice-qualified opportunities
+
+LeadSniper will use one continuous lead record across two connected intake experiences:
+
+1. **One-minute funding assessment** — a conversion-focused form capturing funding purpose, amount band, operating history, revenue band, credit range, timeline, location, contact details, attribution, and granular consent.
+2. **Discovery intake** — a detailed interview completed through a prefilled long form, an authorized human agent, or a clearly disclosed AI voice assistant.
+
+After the assessment is accepted, the planned orchestration workflow will:
+
+- create the canonical lead and opportunity;
+- confirm receipt on screen and by transactional email;
+- send a consented SMS and, where permitted, an optional consented voice drop;
+- provide a secure appointment-booking link;
+- let the applicant select an authorized human agent, a disclosed AI intake assistant, or an online-form alternative;
+- manage reminders, missed appointments, rescheduling, opt-outs, and consent withdrawal; and
+- normalize every discovery channel into the same structured advisor brief.
+
+The AI voice assistant is an intake tool, not a lender, broker, underwriter, or financing advisor. It may collect and organize discovery information but may not approve financing, promise rates, make definitive lender selections, or publish an opportunity to the marketplace without required validation and human review.
+
+### Voice-qualified marketplace product
+
+LeadSniper's differentiated marketplace product is a **Voice-Qualified Business Funding Opportunity**: a consented prospect who completed the assessment and voice discovery, confirmed the core funding need, and produced a structured opportunity summary.
+
+Opportunity tiers are planned as:
+
+| Tier | Minimum deliverable | Distribution |
+|---|---|---|
+| Assessment Lead | Quick assessment and contact consent | Nurture or controlled shared |
+| Voice-Qualified Lead | Assessment and completed AI discovery | Exclusive or controlled shared |
+| Advisor-Ready Opportunity | Discovery, human QA, and clear funding fit | Exclusive |
+| Application-Ready Opportunity | Human QA and core documents available | Premium exclusive |
+| Complex Commercial Mandate | Specialized, high-value opportunity | Direct assignment or permitted referral |
+
+“Voice qualified” confirms participation in the discovery conversation; it does not mean that every applicant statement has been independently verified or that financing is approved.
+
+Marketplace previews must remain sanitized. Contact information, exact addresses, recordings, transcripts, bank information, tax identifiers, and uploaded documents are excluded before an authorized purchase or assignment. Raw recordings and transcripts are also excluded from ordinary buyer delivery by default.
+
 
 ## Platform architecture
 
@@ -264,9 +303,12 @@ The public Astro SEO website (homepage + eight Canadian business-funding pages) 
 
 Next implementation milestones:
 
-1. **Assessment funnel** — the intake flow behind the `#assessment` widget (`/funding-assessment`), carrying `window.__leadAttribution` (keyword, landing page, amount band) into structured intake with consent capture.
-2. **E-E-A-T completion** — real reviewer byline, attributed testimonials, and author/credentials page (placeholders are marked `TODO PRODUCTION` in `src/components/AssessmentWidget.astro`).
-3. **Phase 0A governance workspace** (below) before marketplace, auth, or payment features.
+1. **Progressive intake foundation** — connect the one-minute assessment and prefilled long discovery form to one canonical lead and opportunity, preserving `window.__leadAttribution` and granular consent.
+2. **Receipt, scheduling, and discovery orchestration** — add transactional acknowledgement, consented SMS/optional voice drop, secure booking, authorized-human and disclosed-AI choices, reminders, suppression, and shared discovery output.
+3. **Voice-qualified opportunity pilot** — conduct applicant-requested AI discovery with disclosure, consent, field-level confidence, human QA, and no automatic marketplace release.
+4. **Marketplace qualification and commerce** — add sanitized listings, buyer matching, reservations, payments, controlled access, service levels, returns, and outcome synchronization.
+5. **E-E-A-T completion** — real reviewer byline, attributed testimonials, and author/credentials page (placeholders are marked `TODO PRODUCTION` in `src/components/AssessmentWidget.astro`).
+6. **Phase 0A governance workspace** — complete and approve the governed workspace before marketplace, authentication, payment, or unsupervised voice features.
 
 ## Documentation
 
@@ -277,6 +319,8 @@ Next implementation milestones:
 - [Architecture](docs/ARCHITECTURE.md)
 - [Claude Code instructions](CLAUDE.md)
 - [Implementation backlog](docs/BACKLOG.md)
+- [Voice-Qualified Lead Implementation Plan](docs/VOICE_QUALIFIED_LEAD_IMPLEMENTATION_PLAN.md)
+- [Receipt, Scheduling, and Discovery Orchestration Task](docs/TASK_RECEIPT_SCHEDULING_DISCOVERY_ORCHESTRATION.md)
 
 ## First Claude Code instruction
 
