@@ -1,127 +1,293 @@
 # LeadSniper Marketplace
 
-A multi-tenant financial lead-generation, qualification, distribution, and commerce platform for residential mortgages, business loans, commercial financing, and related professional services.
+A multi-tenant Canadian business-funding lead generation, qualification, verification, distribution, and commerce platform.
 
-**Live site:** <https://leadsniper-marketplace.vercel.app> — auto-deploys from `main`.
+LeadSniper Marketplace converts consented funding inquiries into voice-verified, human-reviewed, advisor-ready opportunities and routes them to eligible financing professionals through controlled internal, exclusive, or shared distribution.
 
-## What's live now
+**Live site:** <https://leadsniper-marketplace.vercel.app> — production deploys automatically from `main`.
 
-The public SEO acquisition layer is deployed: a funding-first homepage plus eight prerendered Canadian business-funding pages, all sharing `FundingLayout` (navy/gold design system, JSON-LD structured data, lead attribution, mobile nav, and a shared assessment entry widget).
+## Current status
+
+The public SEO acquisition layer is live with a funding-first homepage and eight prerendered Canadian business-funding pages. The shared domain workflow for moving an inquiry from assessment through funding outcome is implemented in `src/domain/fundingWorkflow.ts` with unit tests.
+
+| Capability | Status |
+|---|---|
+| Public funding and SEO pages | Live |
+| Lead attribution widget | Live |
+| Funding workflow domain model | Implemented in PR #17 |
+| Workflow protection tests | Implemented in PR #17 |
+| `/funding-assessment` funnel | Next build |
+| Convex workflow persistence | Planned |
+| AI voice discovery | Planned |
+| Buyer marketplace and authentication | Planned |
+| Stripe lead commerce | Planned |
+| Atomic CRM and n8n synchronization | Planned |
+
+### Public pages
 
 | Page | Path |
-|------|------|
+|---|---|
 | Homepage | `/` |
 | Business Funding Hub | `/business-funding-canada` |
 | Business Line of Credit | `/business-line-of-credit-canada` |
 | Equipment Financing | `/equipment-financing-canada` |
-| Commercial Mortgage Rates (rates intent) | `/commercial-mortgage-rates-canada` |
-| Commercial Mortgage Guide (guide intent) | `/commercial-mortgage-canada` |
+| Commercial Mortgage Rates | `/commercial-mortgage-rates-canada` |
+| Commercial Mortgage Guide | `/commercial-mortgage-canada` |
 | Business Acquisition Financing | `/business-acquisition-financing` |
 | Working Capital Loans | `/working-capital-loans-canada` |
 | CSBFP Guide | `/canada-small-business-financing-program` |
 
-Not yet built: the assessment funnel behind the widget (`/funding-assessment`), the Convex marketplace, auth, and payments. See implementation order below.
+## Business-funding workflow
+
+The workflow is evidence-driven. A lead cannot advance because a user or integration merely assigns a higher-value label. Consent, verification, intelligence, human review, payment confirmation, and document readiness must satisfy the applicable transition guards.
+
+```text
+Assessment started
+→ Assessment submitted
+→ Consent verified
+→ Initially qualified
+→ Discovery scheduled
+→ Voice verified
+→ Intelligence complete
+→ Human review pending
+→ Advisor ready
+→ Listed
+→ Reserved
+→ Purchased
+→ Advisor contacted
+→ Documents requested
+→ Application ready
+→ Application submitted
+→ Conditionally approved
+→ Approved
+→ Funded
+```
+
+Alternative outcomes are `nurture`, `declined`, and `withdrawn`.
+
+### What happens after a business owner shows interest
+
+1. **Assessment** — capture the requested amount, use of funds, business history, revenue range, credit band, debt profile, timing, available security, attribution, and contact preferences.
+2. **Consent and verification** — record versioned consent, permitted contact channels, distribution permissions, and contact-verification evidence.
+3. **Initial qualification** — determine whether the inquiry should proceed, enter nurture, or be declined without exposing it to marketplace buyers.
+4. **AI discovery interview** — confirm the business objective, use of proceeds, operating history, financial profile, constraints, urgency, and document readiness.
+5. **Intelligence and analysis** — produce an evidence-backed opportunity summary, confidence score, completeness score, risks, strengths, and recommended financing paths.
+6. **Human quality review** — approve, correct, request more information, nurture, or reject the opportunity before marketplace publication.
+7. **Marketplace matching** — match the sanitized opportunity to eligible buyer organizations by province, financing type, deal size, credentials, capacity, and distribution rules.
+8. **Reservation and purchase** — reserve inventory, confirm authoritative Stripe payment, create an access grant, and preserve a complete audit trail.
+9. **Advisor handoff** — release protected lead details only to the authorized buyer or internal assignee and enforce contact and status-update service levels.
+10. **Application readiness** — collect the financing-specific document package and promote the opportunity only when the required evidence is substantially complete.
+11. **Submission and outcome** — track lender submission, conditions, approval, decline, funding, buyer feedback, and final revenue.
+12. **Learning loop** — use outcome data to improve qualification rules, pricing, buyer matching, acquisition sources, discovery questions, and marketplace quality.
+
+## Opportunity tiers
+
+| Tier | Evidence required | Commercial use |
+|---|---|---|
+| **Assessment Lead** | Completed short intake and valid purpose consent | Internal qualification or nurture |
+| **Voice-Verified Lead** | Assessment, verified contact, and completed discovery | Verified but not automatically publishable |
+| **Advisor-Ready Opportunity** | Intelligence package, confidence/completeness scores, distribution consent, and human approval | Premium marketplace or internal assignment |
+| **Application-Ready Opportunity** | Advisor-ready evidence plus substantially complete financing documents | Highest-value submission-ready opportunity |
+
+Tier advancement is derived from evidence and is separate from the workflow stage. Upgrading a lead creates a new qualification snapshot rather than silently changing what a previous buyer purchased.
+
+## Critical protection rules
+
+- No marketplace listing without valid distribution consent.
+- Shared distribution requires explicit multiple-professional consent.
+- Cross-professional opportunities require separate purpose and distribution consent.
+- No advisor-ready status without intelligence evidence and human approval.
+- No personal contact information appears in marketplace previews.
+- No completed purchase or access grant without authoritative server-side payment confirmation.
+- No application-ready status without substantially complete documents.
+- Sensitive documents remain private and are not automatically included with a lead purchase.
+- Every assignment, view, reservation, purchase, export, delivery, and status change must be auditable.
+- Authorization is enforced server-side; UI visibility is not an authorization control.
+
+## Product and distribution model
+
+LeadSniper Marketplace supports four operating paths:
+
+1. **Internal** — retained and managed by Mortgages by Dennis Eng or an authorized internal team.
+2. **Exclusive** — sold once to one approved broker, lender, or financing professional.
+3. **Shared** — sold to a small disclosed number of approved professionals under explicit client consent.
+4. **Cross-professional** — created as a separately consented opportunity for accountants, lawyers, benefits specialists, insurance advisors, wealth advisors, and other approved professionals.
+
+One source inquiry may create multiple legitimate opportunities. Each opportunity maintains separate consent, qualification, pricing, buyer eligibility, access control, distribution status, and outcome tracking.
+
+## Platform architecture
+
+```text
+Business owner
+    ↓
+Astro acquisition site and funding assessment
+    ↓
+Consent, attribution, verification, and qualification
+    ↓
+AI discovery and intelligence mission
+    ↓
+Human review and immutable qualification snapshot
+    ↓
+Atomic CRM / Supabase internal opportunity
+    ↓
+Routing decision
+ ┌───────────────┴────────────────┐
+ ↓                                ↓
+Internal assignment          Convex marketplace
+ ↓                                ↓
+Dennis / internal team       Eligible buyer tenants
+                                  ↓
+                      Exclusive or shared offer
+                                  ↓
+                    Reservation and Stripe payment
+                                  ↓
+                      Scoped protected access
+                                  ↓
+                  Advisor follow-up and application
+                                  ↓
+                     Outcome and revenue learning
+```
+
+## System ownership
+
+### Astro and React
+
+- Public acquisition pages
+- Progressive assessment and discovery interfaces
+- Buyer marketplace and operator interfaces
+- Calculators and dashboards
+
+### Convex
+
+- Marketplace organizations, users, and memberships
+- Sanitized opportunity inventory
+- Matching and buyer eligibility
+- Reservations, purchases, and scoped access grants
+- Marketplace audit events and real-time workflows
+
+### Atomic CRM and Supabase
+
+- Internal contacts and companies
+- Internal funding opportunities and pipelines
+- Tasks, notes, activities, referrals, and advisor follow-up
+- Lender submissions and funded outcomes
+- Marketplace-routing decisions
+
+### Stripe
+
+- Authoritative payment events
+- Lead purchases, refunds, disputes, credits, and subscriptions
+
+### Eve, ICM, and AI services
+
+- Discovery-interview orchestration
+- Intelligence mission planning
+- Evidence-backed analysis and opportunity summaries
+- Recommendations within bounded authority
+- Human-review queue preparation
+
+### n8n
+
+- External triggers and integration workflows
+- Notifications and communication handoffs
+- CRM, voice, email, SMS, and reporting synchronization
+
+Notion remains the strategy, operating-system, SOP, scorecard, and executive-planning layer. It must not store raw applicant PII, authoritative consent evidence, protected purchased-lead records, or payment state.
+
+## Core technology
+
+- **Astro + TypeScript** — public website and server application shell
+- **React islands** — dynamic forms, calculators, marketplace inventory, and dashboards
+- **Vitest** — domain workflow and protection-rule tests
+- **Convex** — tenant-aware marketplace state and commerce workflows
+- **Clerk** — authentication and organization membership
+- **Atomic CRM + Supabase** — internal relationship and financing operations
+- **Stripe** — authoritative commerce events
+- **Google Cloud** — private documents, secure processing, analytics, and AI services
+- **Open Knowledge Format** — structured financing knowledge and reusable playbooks
+
+## Repository structure
+
+```text
+src/
+├── components/              # Shared Astro and React UI
+├── domain/
+│   ├── distribution.ts      # Exclusive/shared inventory rules
+│   ├── fundingWorkflow.ts   # Funding lifecycle and transition guards
+│   └── fundingWorkflow.test.ts
+├── layouts/                 # Shared funding-page layouts
+└── pages/                   # Public SEO and future application routes
+
+convex/
+└── schema.ts                # Marketplace foundation schema
+
+docs/
+├── BUSINESS_FUNDING_WORKFLOW.md
+├── PRD.md
+├── ARCHITECTURE.md
+├── BACKLOG.md
+└── CLAUDE_GOAL_LOOP_WORKFLOWS.md
+
+knowledge-base/              # Financing research and source material
+preview/                     # Standalone SEO previews and specifications
+```
 
 ## Getting started
 
 ```bash
 npm install
-npm run dev        # local dev server (astro dev)
-npm run build      # astro check + astro build
-npm test           # vitest (domain logic)
-npm run check      # astro check + tsc --noEmit
+npm run dev        # local Astro development server
+npm run build      # astro check + production build
+npm test           # Vitest domain tests
+npm run check      # astro check + TypeScript validation
 ```
 
 ## Deployment
 
-- **Host:** Vercel project `leadsniper-marketplace`, connected to this GitHub repository — every push to `main` deploys to production automatically.
-- **Adapter:** `@astrojs/vercel@^8` (pinned — v9+ requires Astro 6+; this repo is Astro 5). Do not bump without upgrading Astro.
-- **Rendering:** `output: "server"` with `export const prerender = true` on every current page. SEO pages ship as static HTML; server output is reserved for the future assessment funnel and API routes.
-- **Environment:** no env vars required for the current static pages. `.env.example` lists the variables for later phases (Convex, auth, Stripe, CRM).
-- **Domain:** `leadsniperai.ca` is the canonical domain hardcoded in `FundingLayout` but not yet connected in Vercel.
+- **Host:** Vercel project `leadsniper-marketplace`
+- **Deployment branch:** `main`
+- **Adapter:** `@astrojs/vercel@^8` — pinned because v9+ requires Astro 6+
+- **Rendering:** server output with current SEO pages prerendered as static HTML
+- **Environment:** current static pages require no environment variables; `.env.example` documents future integrations
+- **Canonical domain:** `leadsniperai.ca`, pending connection in Vercel
 
-## Content and research directories
+Rate data currently displayed on public pages is dated **July 2026** and requires recurring verification against authoritative lender or program sources.
 
-- `src/pages/` + `src/layouts/FundingLayout.astro` + `src/components/` — the live SEO site
-- `preview/` — standalone single-file HTML preview of the SEO pages with per-page production SEO specs (titles, meta descriptions, URL slugs) in comments
-- `knowledge-base/` — source research (BDC, CSBFP program terms) feeding page copy
-- Rate data on pages is dated **July 2026** and must be re-verified against lender published rates on a recurring cadence
+## Implementation sequence
 
-## Product model
+1. Build `/funding-assessment` with progressive save, attribution, and versioned consent.
+2. Connect assessment submissions to the workflow domain rules.
+3. Persist inquiries, verification evidence, qualification snapshots, workflow events, and audit records.
+4. Add contact verification, discovery scheduling, and the AI voice interview.
+5. Add intelligence missions, evidence provenance, scoring, and the human-review queue.
+6. Build PII-free opportunity previews and buyer capability matching.
+7. Implement exclusive and two-seat shared inventory with atomic reservations.
+8. Connect Stripe-confirmed purchases and scoped access grants.
+9. Synchronize advisor follow-up, documents, applications, and outcomes with Atomic CRM.
+10. Add KPI dashboards, buyer-quality scoring, refunds, subscriptions, and continuous learning loops.
 
-LeadSniper Marketplace supports four operating paths:
+## Workflow validation
 
-1. **Internal** — retained and managed by Mortgages by Dennis Eng or an assigned internal team.
-2. **Exclusive** — sold once to one approved broker or financial professional.
-3. **Shared** — sold to a controlled number of approved professionals, subject to explicit client consent.
-4. **Cross-professional** — distributed as a separately consented opportunity to accountants, lawyers, benefits specialists, insurance advisors, wealth advisors, and other approved professionals.
+The domain test suite covers:
 
-A single source inquiry may create multiple legitimate service opportunities. Each opportunity must maintain separate consent, pricing, buyer eligibility, access control, distribution status, and outcome tracking.
+- The primary journey to advisor-ready status
+- Rejection of stage skipping
+- Distribution-consent protection
+- Human-approval protection
+- Authoritative payment-confirmation protection
+- Document-readiness protection
+- Evidence-derived tier advancement
 
-## Platform architecture
+Run:
 
-```text
-Consumers and business owners
-              ↓
-Astro financing website
-              ↓
-Lead intake, consent, attribution, and qualification
-              ↓
-Atomic CRM / Supabase internal opportunity record
-              ↓
-Routing and opportunity discovery
-        ┌─────┴──────────────┐
-        ↓                    ↓
-Internal financing       Convex marketplace
-        ↓                    ↓
-Dennis and team          Verified professionals
-                             ↓
-                 Exclusive / shared / related leads
-                             ↓
-                   Stripe purchase and access
-                             ↓
-                     Outcome and revenue tracking
+```bash
+npm test
+npm run check
 ```
-
-## Core technology
-
-- **Astro + TypeScript** — public SEO website, landing pages, financing education, and marketplace application shell
-- **React islands** — calculators, conditional forms, real-time marketplace inventory, dashboards, and buyer workspaces
-- **Atomic CRM + Supabase** — internal contacts, companies, opportunities, pipelines, tasks, activities, referrals, and funded outcomes
-- **Convex** — marketplace organizations, professional profiles, listings, matching, reservations, purchases, lead access, and real-time workflows
-- **Clerk** — marketplace authentication and organization membership
-- **Stripe** — verified payments, lead purchases, refunds, credits, and future subscriptions
-- **Google Cloud** — private document storage, secure processing, Cloud Run integrations, analytics, and AI services
-- **Open Knowledge Format** — structured domain knowledge for agent retrieval and reusable financing playbooks
-
-## System ownership boundaries
-
-### Atomic CRM and Supabase own
-
-- Internal contacts and companies
-- Internal mortgage, business-loan, and commercial-financing opportunities
-- Financing pipelines, tasks, notes, and activities
-- Lender submissions and funded outcomes
-- Internal referral relationships
-- Marketplace-routing decisions
-
-### Convex owns
-
-- Marketplace users and organizations
-- Professional verification and service territories
-- Sanitized lead inventory
-- Exclusive and shared availability
-- Matching and buyer eligibility
-- Reservations, purchases, and access grants
-- Lead delivery, outcomes, refunds, and buyer performance
-
-Atomic CRM and Convex must not become competing systems of record. They exchange only the information required for distribution, delivery, and outcome synchronization.
 
 ## Interpretive Contextual Workspace Method
 
-Development is governed by an agent-oriented filesystem workspace. Claude Code and subagents must use repository context, workstream, task, handoff, evaluation, and memory folders rather than relying on one large transient prompt.
-
-The required execution cycle is:
+Development follows an agent-oriented filesystem method rather than relying on one large transient prompt:
 
 ```text
 Intent
@@ -134,165 +300,47 @@ Intent
 → Durable memory
 ```
 
-The planned workspace structure is:
+The planned `.workspace/` structure contains governance, context, goals, architecture, workstreams, agent contracts, tasks, handoffs, decisions, evaluations, memory, runbooks, templates, and an archive.
 
-```text
-.workspace/
-├── 00-governance/
-├── 01-context/
-├── 02-intent/
-│   └── goals/
-├── 03-architecture/
-├── 04-workstreams/
-├── 05-agents/
-├── 06-tasks/
-├── 07-handoffs/
-├── 08-decisions/
-├── 09-evaluations/
-├── 10-memory/
-├── 11-runbooks/
-├── templates/
-└── 99-archive/
-```
+Every agent has a bounded role, approved writable directories, explicit inputs and outputs, required tests, escalation conditions, and a formal handoff. Agents may not independently verify their own work.
 
-Each subagent must have a bounded role, approved writable directories, explicit inputs and outputs, required tests, escalation conditions, and a formal handoff. Agents may not mark their own work independently verified.
+### `/goal`
 
-## Claude Code `/goal` workflow
+`/goal` converts an approved outcome into a durable goal, measurable success criteria, explicit constraints, a dependency-aware task graph, specialist assignments, and closure evidence.
 
-`/goal` converts an approved business or technical outcome into:
+### `/loop`
 
-- A durable goal record
-- Measurable success criteria
-- Explicit constraints
-- A dependency-aware task graph
-- Specialist subagent assignments
-- Evaluation and closure evidence
+`/loop` performs controlled iterative improvement for one approved task. Every loop defines its objective, acceptance criterion, writable scope, required tests, maximum iterations, and stop conditions. Open-ended loops are prohibited.
 
-Goals are stored under `.workspace/02-intent/goals/GOAL-####-description/`. Every task created from a goal must link back to it. A goal is not complete until required tasks are approved, evidence supports its success criteria, open risks are documented, handoffs are complete, and durable memory is updated.
-
-Example:
-
-```text
-/goal Implement Phase 0A of the Interpretive Contextual Workspace Method.
-Create workspace folders, eight subagent contracts, templates, governance files,
-a task register, and independent review evidence. Do not create application code,
-database schemas, or production cloud resources.
-```
-
-## Claude Code `/loop` workflow
-
-`/loop` provides controlled iterative improvement for one approved task. It may refine code, tests, documentation, architecture, or user experience only within the task's permitted scope.
-
-Each loop must define:
-
-- Parent task
-- Exact objective
-- Acceptance criterion
-- Allowed and prohibited directories
-- Required tests
-- Maximum iterations
-- Stop and escalation conditions
-
-Default limits are five iterations, two repetitions of the same failed approach, and one architecture-changing iteration before ADR review. Open-ended loops are prohibited.
-
-Each iteration must make one bounded change, run checks, and record evidence. The loop stops when criteria pass, its limit is reached, scope would expand, an ADR must change, or security, consent, privacy, authorization, payment, credential, or dependency uncertainty requires review.
-
-Example:
-
-```text
-/loop TASK-0004 Improve the listing sanitizer until all protected-data tests pass.
-Maximum four iterations. Modify only the sanitizer package and its tests.
-Stop and escalate if the public listing contract must change.
-```
-
-The full requirements are documented in [Claude Code Goal and Loop Workflows](docs/CLAUDE_GOAL_LOOP_WORKFLOWS.md).
-
-## Initial subagents
-
-Phase 0A will define these initial agents:
-
-1. Orchestrator
-2. Product architect
-3. Astro website agent
-4. Atomic CRM and Supabase agent
-5. Convex marketplace agent
-6. Stripe commerce agent
-7. Security and privacy reviewer
-8. Test and integration agent
-
-Additional agents may be introduced only when their scope and boundaries are documented.
-
-## Required implementation order
-
-### Phase 0A — Agent workspace foundation
-
-Create the Interpretive Contextual Workspace Method, `/goal` and `/loop` runbooks and templates, governance rules, context files, workstreams, agent contracts, task templates, handoff templates, ADRs, evaluation records, and durable project memory.
-
-No application feature or database schema work should begin until Phase 0A is reviewed and approved.
-
-### Phase 0B — Engineering foundation
-
-Create the monorepo, shared tooling, TypeScript configuration, testing, continuous integration, environment templates, documentation, and implementation status tracking.
-
-### Subsequent phases
-
-1. Public Astro website
-2. Lead intake and Atomic CRM
-3. Convex marketplace foundation
-4. Exclusive and shared lead commerce
-5. Cross-professional opportunities
-6. Outcomes, refunds, and buyer performance
-7. Secure documents and AI services
-
-## Delivery principles
-
-- Consent and purpose limitation are first-class data.
-- Shared distribution requires explicit multiple-professional consent.
-- Cross-professional opportunities require separate related-services consent.
-- No personal contact data is exposed in marketplace previews.
-- Lead access is granted only after authoritative server-side payment confirmation.
-- Every assignment, view, reservation, purchase, export, delivery, and status change is auditable.
-- Authorization is enforced server-side in Supabase, Convex, API services, and document access.
-- Sensitive documents are stored privately and are not automatically released through a lead purchase.
-- Durable architectural changes are recorded through Architecture Decision Records.
-- A task is not complete until tests, documentation, handoff, and independent evaluation are complete.
-- `/goal` and `/loop` may organize and refine work, but they cannot bypass governance or expand agent permissions.
-
-## Repository status
-
-The public Astro SEO website (homepage + eight Canadian business-funding pages) is implemented and deployed to Vercel with continuous deployment from `main`. Domain logic scaffolding (`src/domain/distribution.ts`) and the Convex schema exist with passing tests.
-
-Next implementation milestones:
-
-1. **Assessment funnel** — the intake flow behind the `#assessment` widget (`/funding-assessment`), carrying `window.__leadAttribution` (keyword, landing page, amount band) into structured intake with consent capture.
-2. **E-E-A-T completion** — real reviewer byline, attributed testimonials, and author/credentials page (placeholders are marked `TODO PRODUCTION` in `src/components/AssessmentWidget.astro`).
-3. **Phase 0A governance workspace** (below) before marketplace, auth, or payment features.
+See [Claude Code Goal and Loop Workflows](docs/CLAUDE_GOAL_LOOP_WORKFLOWS.md).
 
 ## Documentation
 
+- [Business Funding Workflow](docs/BUSINESS_FUNDING_WORKFLOW.md)
+- [Product Requirements](docs/PRD.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Implementation Backlog](docs/BACKLOG.md)
 - [Claude Code Execution PRD](docs/CLAUDE_CODE_EXECUTION_PRD.md)
 - [Interpretive Contextual Workspace Technical Requirements](docs/TECHNICAL_REQUIREMENTS_INTERPRETIVE_CONTEXTUAL_WORKSPACE.md)
 - [Claude Code Goal and Loop Workflows](docs/CLAUDE_GOAL_LOOP_WORKFLOWS.md)
-- [Product Requirements](docs/PRD.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Claude Code instructions](CLAUDE.md)
-- [Implementation backlog](docs/BACKLOG.md)
+- [Claude Code Instructions](CLAUDE.md)
 
-## First Claude Code instruction
+## Immediate build objective
 
-```text
-/goal Implement Phase 0A only.
+Prove one complete Canadian business-funding path:
 
-Create the Interpretive Contextual Workspace Method under `.workspace/`.
-Add governance, context, architecture, workstream, agent, task, handoff,
-decision, evaluation, memory, templates, and runbook structures.
+- One progressive funding assessment
+- One versioned consent record
+- One verified contact
+- One completed AI discovery interview
+- One evidence-backed intelligence package
+- One human-approved qualification snapshot
+- One PII-free shared offer with two seats
+- Two eligible buyer organizations
+- Two reservations and confirmed test payments
+- No third purchase
+- Two scoped access grants
+- Two Atomic CRM opportunity synchronizations
+- Complete audit evidence from inquiry through outcome
 
-Create the initial eight agent definitions and reusable templates.
-Implement the bounded `/goal` and `/loop` workflows and document their
-iteration limits, stop conditions, evidence, evaluation, and handoff rules.
-
-Do not implement application features.
-Do not create database schemas.
-Do not start Phase 0B until the workspace structure and agent contracts
-are reviewed and approved.
-```
+A capability is complete only when authorization, consent, validation, audit events, privacy controls, loading and error states, automated tests, documentation, handoff evidence, and independent review are included.
